@@ -3,249 +3,316 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mentrova — Your Safe Space for Mental Wellbeing</title>
-  <meta name="description" content="Mentrova is an upcoming platform dedicated to your mental health. Get early access to tools, guidance, and continuous support designed for peace of mind.">
-  <!-- Google Fonts: Poppins for clean, modern, empathetic typography -->
+  <title>Mentrova — Global Conversational Mental Health & Wellbeing Ecosystem</title>
+  <meta name="description" content="Mentrova provides clinically validated, completely anonymous conversational mental health support powered by empathetic cognitive-behavioral tools.">
+  
+  <!-- Import Comforting, Premium Google Font: Quicksand -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Poppins', 'sans-serif'],
+            sans: ['Quicksand', 'sans-serif'],
           },
           colors: {
-            mint: {
-              50: '#f0fdf9',
-              100: '#ccfbf1',
-              200: '#99f6e4',
-              300: '#5eead4',
-              400: '#2dd4bf',
-              500: '#14b8a6',
-              600: '#0d9488',
-              700: '#0f766e',
+            slateNavy: '#1E293B',   // Deep authoritative navy
+            creamBg: '#F8FAFC',     // Calming background off-white
+            pureWhite: '#FDFDFD',   // Crisp soft white
+            therapeuticGreen: {
+              DEFAULT: '#E6F4EA',   // Super soft pastel green
+              accent: '#34D399',    // Vibrant friendly green
+              deep: '#065F46'       // Safe dark forest text
             },
-            softBlue: {
-              50: '#f0f9ff',
-              100: '#e0f2fe',
-              200: '#bae6fd',
-              500: '#0ea5e9',
+            pastelBlue: {
+              DEFAULT: '#F0F9FF',   // Soft background sky blue
+              accent: '#38BDF8',
+              deep: '#0369A1'
+            },
+            pastelYellow: {
+              DEFAULT: '#FEF3C7',   // Friendly warming yellow
+              accent: '#FBBF24',
+              deep: '#92400E'
             }
+          },
+          borderRadius: {
+            '4xl': '2rem',
+            '5xl': '2.5rem',
           }
         }
       }
     }
   </script>
+
   <style>
-    /* Premium visual animations for modern UI */
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
+    /* Organic, continuous interactive floating micro-animations */
+    @keyframes gentle-bob {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
     }
-    @keyframes pulse-slow {
-      0%, 100% { transform: scale(1); opacity: 0.8; }
-      50% { transform: scale(1.05); opacity: 0.95; }
+    @keyframes gentle-bob-reverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(10px) rotate(-2deg); }
     }
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
+    @keyframes soft-pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.95; }
+      50% { transform: scale(1.04); opacity: 1; }
     }
-    .animate-pulse-slow {
-      animation: pulse-slow 4s ease-in-out infinite;
+    .animate-bob-1 {
+      animation: gentle-bob 7s ease-in-out infinite;
+    }
+    .animate-bob-2 {
+      animation: gentle-bob-reverse 8s ease-in-out infinite;
+    }
+    .animate-glow {
+      animation: soft-pulse-glow 4s ease-in-out infinite;
+    }
+    
+    /* Elegant Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F8FAFC;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #E2E8F0;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #CBD5E1;
     }
   </style>
 </head>
-<body class="font-sans bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+<body class="font-sans bg-creamBg text-slateNavy antialiased selection:bg-therapeuticGreen/65 selection:text-therapeuticGreen-deep min-h-screen flex flex-col">
 
-  <!-- SUCCESS MODAL (Custom Elegant On-Screen Success Overlay) -->
-  <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-    <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl border border-mint-100 transform scale-95 transition-all duration-300" id="success-modal-card">
-      <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-mint-100 text-mint-600 mb-6">
-        <!-- Checkmark Icon -->
-        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+  <!-- GLOBAL AMBIENT BACK-GLOWS -->
+  <div class="fixed top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-therapeuticGreen/30 filter blur-[120px] -z-10 pointer-events-none animate-bob-1"></div>
+  <div class="fixed bottom-20 right-10 w-[500px] h-[500px] rounded-full bg-pastelBlue/40 filter blur-[100px] -z-10 pointer-events-none animate-bob-2"></div>
+
+  <!-- CORE SUCCESS OVERLAY MODAL -->
+  <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slateNavy/30 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+    <div id="successModalCard" class="bg-pureWhite rounded-[2.5rem] p-8 md:p-12 max-w-xl w-full text-center shadow-2xl border border-white transform scale-90 transition-all duration-300">
+      <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-therapeuticGreen border-4 border-white text-therapeuticGreen-deep mb-6 shadow-md shadow-therapeuticGreen-accent/30 animate-glow">
+        <!-- Soothing Checkmark icon -->
+        <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
       </div>
-      <h3 class="text-2xl font-bold text-slate-900 mb-2" id="success-title">Thank You!</h3>
-      <p class="text-slate-600 mb-6" id="success-message">We've saved your spot. Stay tuned for early updates and calming tools delivered straight to your inbox.</p>
-      <button onclick="closeModal()" class="w-full py-3 px-6 bg-mint-600 hover:bg-mint-700 text-white font-medium rounded-full transition duration-300 focus:outline-none focus:ring-4 focus:ring-mint-500/20 shadow-lg shadow-mint-600/20">
+      <h3 class="text-3xl font-bold text-slateNavy mb-3" id="modalTitle">Welcome to Mentrova</h3>
+      <p class="text-slateNavy/85 text-lg font-medium leading-relaxed mb-8" id="modalMessage">
+        Your registration was successful. We have securely saved your priority access details inside our clinical network.
+      </p>
+      <button onclick="closeModal()" class="w-full py-4.5 px-8 bg-slateNavy hover:bg-slateNavy/95 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-slateNavy/15 active:scale-95 focus:outline-none focus:ring-4 focus:ring-slateNavy/20">
         Return to Peace
       </button>
     </div>
   </div>
 
-  <!-- HEADER / NAVBAR -->
-  <header class="sticky top-0 z-40 w-full bg-white/85 backdrop-blur-md border-b border-slate-100 transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- STICKY GLASSMORPHIC NAVBAR -->
+  <header class="sticky top-0 z-40 w-full bg-pureWhite/70 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
       <div class="flex items-center justify-between h-20">
-        <!-- Logo -->
-        <div class="flex items-center gap-2">
-          <div class="h-10 w-10 bg-gradient-to-tr from-mint-400 to-softBlue-200 rounded-xl flex items-center justify-center shadow-md shadow-mint-400/10">
-            <!-- Calming leaf/heart icon shape -->
-            <svg class="h-6 w-6 text-mint-700" fill="currentColor" viewBox="0 0 24 24">
+        
+        <!-- Platform Logo on Left -->
+        <a href="#hero-section" class="flex items-center gap-2.5 group focus:outline-none">
+          <div class="h-11 w-11 bg-gradient-to-tr from-therapeuticGreen-accent to-pastelBlue-accent flex items-center justify-center rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-300">
+            <!-- Leaf/Lotus emblem representation -->
+            <svg class="h-6.5 w-6.5 text-therapeuticGreen-deep" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
             </svg>
           </div>
-          <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-mint-700 to-teal-800 bg-clip-text text-transparent">Mentrova</span>
-        </div>
+          <span class="text-2xl font-bold tracking-tight text-slateNavy">Mentrova<span class="inline-block ml-0.5 w-2 h-2 rounded-full bg-therapeuticGreen-accent"></span></span>
+        </a>
 
-        <!-- Desktop Navigation Links -->
-        <nav class="hidden md:flex items-center space-x-10">
-          <a href="#how-it-works" class="text-slate-600 hover:text-mint-600 font-medium transition duration-200">How It Works</a>
-          <a href="#contact" class="text-slate-600 hover:text-mint-600 font-medium transition duration-200">Contact</a>
+        <!-- Center Navigation Menu Links -->
+        <nav class="hidden lg:flex items-center space-x-10">
+          <a href="#individuals-section" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">For Individuals</a>
+          <a href="#employers-section" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">For Employers</a>
+          <a href="#clinical-evidence" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">Clinical Evidence</a>
+          <a href="#faq" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">FAQ</a>
         </nav>
 
-        <!-- Desktop CTA -->
-        <div class="hidden md:flex items-center">
-          <a href="#waitlist-section" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-semibold rounded-full text-white bg-mint-600 hover:bg-mint-700 shadow-md shadow-mint-600/10 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mint-500">
-            Join Waitlist
+        <!-- Right Side CTA Action -->
+        <div class="hidden lg:flex items-center">
+          <a href="#contact" class="inline-flex items-center justify-center px-6 py-3.5 border border-slate-100 text-base font-bold rounded-full text-slateNavy bg-therapeuticGreen hover:bg-therapeuticGreen-accent/50 shadow-sm transition-all duration-300 active:scale-95">
+            Get Support Now
           </a>
         </div>
 
-        <!-- Mobile Menu Button -->
-        <div class="flex items-center md:hidden">
-          <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-mint-600 hover:bg-mint-50 focus:outline-none transition duration-200" aria-controls="mobile-menu" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg id="menu-icon-hamburger" class="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        <!-- Mobile Hamburg Menu Button -->
+        <div class="flex lg:hidden">
+          <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2.5 rounded-2xl text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/50 focus:outline-none transition duration-200">
+            <span class="sr-only">Toggle Menu</span>
+            <svg id="menuIconOpen" class="block h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
-            <svg id="menu-icon-close" class="hidden h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            <svg id="menuIconClose" class="hidden h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
         </div>
+
       </div>
     </div>
 
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 transition duration-300">
-      <div class="px-4 pt-2 pb-6 space-y-3 shadow-inner">
-        <a href="#how-it-works" class="block px-4 py-3 rounded-2xl text-base font-medium text-slate-600 hover:text-mint-600 hover:bg-mint-50/50 transition">How It Works</a>
-        <a href="#contact" class="block px-4 py-3 rounded-2xl text-base font-medium text-slate-600 hover:text-mint-600 hover:bg-mint-50/50 transition">Contact</a>
+    <!-- Mobile Slide-Down Navigation Drawer -->
+    <div id="mobileMenuDrawer" class="hidden lg:hidden bg-pureWhite/95 border-b border-slate-100 transition-all duration-300">
+      <div class="px-6 pt-3 pb-8 space-y-4 shadow-inner">
+        <a href="#individuals-section" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">For Individuals</a>
+        <a href="#employers-section" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">For Employers</a>
+        <a href="#clinical-evidence" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">Clinical Evidence</a>
+        <a href="#faq" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">FAQ</a>
         <div class="pt-4 border-t border-slate-100">
-          <a href="#waitlist-section" class="block w-full text-center px-6 py-3.5 text-base font-semibold rounded-2xl text-white bg-mint-600 hover:bg-mint-700 shadow-md transition">
-            Join Waitlist
+          <a href="#contact" class="block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-slateNavy bg-therapeuticGreen hover:bg-therapeuticGreen-accent/60 shadow-sm transition">
+            Get Support Now
           </a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
   <main class="flex-grow">
-    <section id="waitlist-section" class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-mint-50/70 via-white to-slate-50">
-      <!-- Decorative Organic Pastel Background Shapes -->
-      <div class="absolute top-0 left-1/4 w-96 h-96 bg-mint-200/20 rounded-full filter blur-3xl -z-10 animate-pulse-slow"></div>
-      <div class="absolute bottom-10 right-10 w-80 h-80 bg-softBlue-100/30 rounded-full filter blur-3xl -z-10 animate-float"></div>
-
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    
+    <!-- PREMIUM PLATFORM HERO LAYER -->
+    <section id="hero-section" class="relative py-20 lg:py-28 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
           
-          <!-- Left Content -->
-          <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-mint-100/60 border border-mint-200 text-mint-800 text-xs font-semibold uppercase tracking-wider">
-              <span class="w-2 h-2 rounded-full bg-mint-500 animate-ping"></span>
-              Join the Movement for Calm
+          <!-- Left Text Content -->
+          <div class="lg:col-span-7 text-center lg:text-left space-y-8">
+            <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-therapeuticGreen/60 border border-white text-therapeuticGreen-deep text-sm font-bold tracking-wide uppercase">
+              <span class="w-2.5 h-2.5 rounded-full bg-therapeuticGreen-accent animate-ping"></span>
+              Now Serving Global Populations
             </div>
-            
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              Your Safe Space for <br>
-              <span class="bg-gradient-to-r from-mint-600 to-teal-700 bg-clip-text text-transparent">Mental Wellbeing</span>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slateNavy tracking-tight leading-[1.12]">
+              An Elegant, Safe Space for <br>
+              <span class="bg-gradient-to-r from-therapeuticGreen-deep to-pastelBlue-deep bg-clip-text text-transparent">Your Mental Wellbeing.</span>
             </h1>
-            
-            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-              Mentrova is an upcoming platform dedicated to your mental health. Get early access to tools, guidance, and continuous support designed for your peace of mind.
+
+            <p class="text-lg sm:text-xl text-slateNavy/80 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+              Mentrova delivers clinically validated, anonymous mental health support through cognitive-behavioral tools and continuous guided conversations. Trusted globally by individuals seeking peace of mind, forward-thinking employers upgrading workplace resilience, and clinical networks expanding care access.
             </p>
 
-            <!-- Inline "Coming Soon" Email Form -->
-            <div class="max-w-md mx-auto lg:mx-0">
-              <form id="hero-waitlist-form" class="mt-4 sm:flex gap-3 bg-white p-2 rounded-3xl sm:rounded-full shadow-xl shadow-slate-200/50 border border-slate-100">
-                <div class="flex-grow min-w-0">
-                  <label for="hero-email" class="sr-only">Email address</label>
-                  <input type="email" id="hero-email" required class="block w-full px-5 py-4 text-base text-slate-900 bg-transparent placeholder-slate-400 focus:outline-none focus:ring-0 rounded-full border-0" placeholder="Enter your email address...">
-                </div>
-                <button type="submit" class="w-full sm:w-auto flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-full text-white bg-mint-600 hover:bg-mint-700 shadow-md shadow-mint-600/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mint-500 transition duration-200">
-                  Notify Me
-                </button>
-              </form>
-              <p class="mt-3 text-xs text-slate-400 text-center lg:text-left px-4">
-                🔒 Privacy guaranteed. No spam, ever. Opt out anytime.
-              </p>
+            <!-- Dual-CTA Action Blocks -->
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+              <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-white bg-slateNavy hover:bg-slateNavy/90 shadow-lg shadow-slateNavy/15 transition-all duration-300 hover:scale-[1.02] active:scale-95">
+                Start Chatting Free
+              </a>
+              <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-slateNavy bg-pureWhite hover:bg-slate-50 border border-slate-200/60 shadow-sm transition-all duration-300 active:scale-95">
+                Request Enterprise Demo
+              </a>
             </div>
           </div>
 
-          <!-- Right Graphical CSS Mockup -->
-          <div class="lg:col-span-5 flex justify-center">
-            <div class="relative animate-float">
-              <!-- Background soft decorative orb -->
-              <div class="absolute -inset-4 bg-gradient-to-tr from-mint-300 to-softBlue-200 rounded-[3rem] filter blur-xl opacity-35 -z-10"></div>
+          <!-- Right Phone Graphic Column -->
+          <div class="lg:col-span-5 flex justify-center relative">
+            <div class="relative animate-bob-1">
               
-              <!-- Pure CSS Smartphone Mockup representing mental wellness -->
-              <div class="w-72 h-[540px] bg-slate-900 rounded-[3.2rem] border-[10px] border-slate-800 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+              <!-- Back Glow Spheres -->
+              <div class="absolute -top-12 -left-12 w-32 h-32 rounded-full bg-pastelYellow/40 -z-10 animate-bob-2"></div>
+              <div class="absolute -bottom-10 -right-8 w-28 h-28 rounded-full bg-pastelBlue/50 -z-10 animate-bob-1"></div>
+
+              <!-- High-Fidelity Phone Frame CSS Layout -->
+              <div class="w-72 h-[550px] bg-slateNavy rounded-[3.2rem] border-[12px] border-slateNavy shadow-2xl relative overflow-hidden flex flex-col justify-between">
                 
-                <!-- Screen Notch / Camera -->
-                <div class="absolute top-0 inset-x-0 flex justify-center z-20">
-                  <div class="w-32 h-6 bg-slate-800 rounded-b-2xl flex justify-between items-center px-4">
-                    <span class="w-3.5 h-3.5 rounded-full bg-slate-900"></span>
-                    <span class="w-10 h-1 bg-slate-700 rounded-full"></span>
+                <!-- Notch detail -->
+                <div class="absolute top-0 inset-x-0 flex justify-center z-30">
+                  <div class="w-32 h-6 bg-slateNavy rounded-b-2xl flex justify-between items-center px-4">
+                    <span class="w-2.5 h-2.5 rounded-full bg-slate-900"></span>
+                    <span class="w-12 h-1.5 bg-slate-800 rounded-full"></span>
                   </div>
                 </div>
 
-                <!-- App Screen Content -->
-                <div class="flex-grow bg-gradient-to-b from-mint-50/80 via-white to-softBlue-50/50 pt-10 px-5 flex flex-col justify-between h-full text-left">
+                <!-- Chat display content -->
+                <div class="flex-grow bg-gradient-to-b from-therapeuticGreen via-pureWhite to-pastelBlue/30 pt-10 px-4 flex flex-col justify-between h-full text-left">
                   
-                  <!-- Top Bar (Time & Greeting) -->
-                  <div class="pt-4 flex justify-between items-center">
-                    <div>
-                      <span class="text-xs text-slate-400 block font-medium">Hello, Breathe Easy</span>
-                      <h4 class="text-sm font-bold text-slate-800">Welcome to Mentrova</h4>
+                  <!-- Screen Header info -->
+                  <div class="pt-4 flex justify-between items-center border-b border-slate-100 pb-3">
+                    <div class="flex items-center gap-2">
+                      <div class="w-9 h-9 rounded-full bg-pureWhite border border-therapeuticGreen-accent flex items-center justify-center shadow-sm">
+                        <svg class="w-5 h-5 text-therapeuticGreen-deep" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 class="text-xs font-bold text-slateNavy">Menti (AI Guide)</h4>
+                        <span class="text-[9px] text-therapeuticGreen-deep font-semibold tracking-wide">Fully Protected</span>
+                      </div>
                     </div>
-                    <span class="text-xs text-mint-600 font-semibold bg-mint-100/60 px-2 py-0.5 rounded-full">Active</span>
                   </div>
 
-                  <!-- Center Piece: Breathing Guided Bubble (Pulsing CSS) -->
-                  <div class="my-auto flex flex-col items-center py-6">
-                    <div class="relative flex items-center justify-center">
-                      <div class="absolute w-36 h-36 bg-mint-200/40 rounded-full animate-pulse-slow"></div>
-                      <div class="absolute w-28 h-28 bg-mint-300/40 rounded-full animate-ping opacity-30"></div>
-                      <div class="relative w-24 h-24 bg-gradient-to-br from-mint-400 to-softBlue-200 rounded-full flex flex-col items-center justify-center text-center shadow-lg shadow-mint-500/10">
-                        <span class="text-xs font-semibold text-teal-900 tracking-wide uppercase">Breathe</span>
-                        <span class="text-2xl font-bold text-teal-900">In</span>
+                  <!-- Chat dialog rows -->
+                  <div class="flex-grow flex flex-col justify-end space-y-4 pb-6">
+                    
+                    <!-- Bot -->
+                    <div class="space-y-1 max-w-[85%]">
+                      <span class="text-[9px] text-slateNavy/50 pl-2">Menti</span>
+                      <div class="bg-pureWhite border border-slate-100 p-3.5 rounded-[1.25rem] rounded-tl-none shadow-sm text-xs text-slateNavy/90 font-medium leading-relaxed">
+                        Good day. I am here to hold a safe space for you. How is your focus level right now? 🌿
                       </div>
                     </div>
-                    <span class="mt-4 text-xs font-medium text-slate-500 text-center px-4">Daily Check-in: Gentle breathing to align your focus</span>
+
+                    <!-- User -->
+                    <div class="space-y-1 max-w-[85%] self-end">
+                      <div class="bg-slateNavy text-pureWhite p-3.5 rounded-[1.25rem] rounded-tr-none shadow-sm text-xs font-medium leading-relaxed">
+                        A bit scattered, finding it hard to block out noise.
+                      </div>
+                    </div>
+
+                    <!-- Bot -->
+                    <div class="space-y-1 max-w-[85%]">
+                      <span class="text-[9px] text-slateNavy/50 pl-2">Menti</span>
+                      <div class="bg-pureWhite border border-slate-100 p-3.5 rounded-[1.25rem] rounded-tl-none shadow-sm text-xs text-slateNavy/90 font-medium leading-relaxed">
+                        Tension happens. Let's practice a brief anchoring exercise together...
+                      </div>
+                    </div>
+
                   </div>
 
-                  <!-- Bottom Wellness Cards inside Screen -->
-                  <div class="space-y-3 pb-8">
-                    <div class="bg-white/90 backdrop-blur-md border border-slate-100 p-3 rounded-2xl shadow-sm flex items-center gap-3">
-                      <div class="w-8 h-8 rounded-full bg-mint-100 flex items-center justify-center text-mint-600">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m14.071 8.071l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                  <!-- Mock Chat input -->
+                  <div class="pb-6">
+                    <div class="bg-pureWhite rounded-full border border-slate-100 p-1.5 flex justify-between items-center shadow-sm">
+                      <span class="text-[10px] text-slateNavy/40 pl-3 font-medium">Ready to focus...</span>
+                      <div class="w-7 h-7 rounded-full bg-therapeuticGreen-accent flex items-center justify-center text-therapeuticGreen-deep">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                        </svg>
                       </div>
-                      <div class="flex-grow">
-                        <div class="w-24 h-2 bg-slate-200 rounded-full mb-1"></div>
-                        <div class="w-16 h-1.5 bg-slate-100 rounded-full"></div>
-                      </div>
-                      <span class="text-[10px] font-semibold text-mint-600 bg-mint-50 px-2 py-0.5 rounded-md">8m Left</span>
-                    </div>
-
-                    <div class="bg-white/90 backdrop-blur-md border border-slate-100 p-3 rounded-2xl shadow-sm flex items-center gap-3">
-                      <div class="w-8 h-8 rounded-full bg-softBlue-100 flex items-center justify-center text-softBlue-500">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-                      </div>
-                      <div class="flex-grow">
-                        <div class="w-20 h-2 bg-slate-200 rounded-full mb-1"></div>
-                        <div class="w-12 h-1.5 bg-slate-100 rounded-full"></div>
-                      </div>
-                      <span class="text-[10px] font-semibold text-slate-400">Locked</span>
                     </div>
                   </div>
 
                 </div>
+
               </div>
+
+              <!-- Compliance Overlays / Floating Badges -->
+              <div class="absolute -top-6 -right-6 bg-pureWhite rounded-3xl p-4 border border-slate-100 shadow-xl flex items-center gap-3 animate-bob-2 max-w-[160px]">
+                <div class="w-10 h-10 rounded-xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep">
+                  🔒
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-slateNavy">HIPAA</h5>
+                  <p class="text-[10px] text-slateNavy/60 font-semibold">Compliant Security</p>
+                </div>
+              </div>
+
+              <div class="absolute bottom-12 -left-12 bg-pureWhite rounded-3xl p-4 border border-slate-100 shadow-xl flex items-center gap-3 animate-bob-1 max-w-[160px]">
+                <div class="w-10 h-10 rounded-xl bg-pastelBlue flex items-center justify-center text-pastelBlue-deep">
+                  🛡️
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-slateNavy">SOC2</h5>
+                  <p class="text-[10px] text-slateNavy/60 font-semibold">Certified Ecosystem</p>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -253,140 +320,352 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS SECTION -->
-    <section id="how-it-works" class="py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- ENTERPRISE GLOBAL TRUST BANNER -->
+    <section class="py-12 bg-slate-50 border-y border-slate-100 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center space-y-6">
+        <h4 class="text-xs font-bold uppercase tracking-widest text-slateNavy/40">Trusted by forward-thinking organizations globally</h4>
         
-        <!-- Section Header -->
-        <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
-          <h2 class="text-xs font-semibold uppercase tracking-wider text-mint-600">Simple & Effective</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Your Path to Calm in 3 Steps</h3>
-          <p class="text-lg text-slate-600 font-light">
-            We are structuring Mentrova around direct, easy steps that protect your privacy and empower your personal peace process.
+        <!-- Grid layout of monochrome logo representation values -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-40">
+          <span class="text-lg font-bold text-slateNavy tracking-wider">HEALTHCORE</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">AETNA APEX</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MEDNET CO</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">VANGUARD LABS</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">NEXUS HUMAN</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE SOLUTION EXPLORER -->
+    <section class="py-24 bg-pureWhite relative">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        <!-- Header info -->
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Tailored Configurations</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">How Mentrova Meets Your Needs</h3>
+          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
+            Select a pathway below to view optimized features and operational parameters structured around your demographic class.
           </p>
         </div>
 
-        <!-- 3-Column Steps Layout -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          
-          <!-- Step 1 Card -->
-          <div class="relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-mint-200 shadow-sm hover:shadow-xl hover:shadow-mint-100/10 transition-all duration-300 group">
-            <div class="w-14 h-14 rounded-2xl bg-mint-50 group-hover:bg-mint-100 text-mint-600 flex items-center justify-center mb-6 transition-colors">
-              <!-- Step 1 SVG Icon (User registration / Mail) -->
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5"></path>
-              </svg>
-            </div>
-            <span class="absolute top-8 right-8 text-5xl font-extrabold text-slate-100 select-none group-hover:text-mint-100/50 transition-colors">01</span>
-            <h4 class="text-xl font-bold text-slate-900 mb-3">Join the Waitlist</h4>
-            <p class="text-slate-600 font-light leading-relaxed">
-              Secure your early spot with just your email. You will receive priority updates and exclusive early-bird notifications.
-            </p>
+        <!-- Horizontal navigation bar tabs -->
+        <div class="flex justify-center mb-12">
+          <div class="bg-slate-50 p-2 rounded-full border border-slate-100 flex gap-2">
+            <button onclick="switchTab('individuals')" id="tab-btn-individuals" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 bg-slateNavy text-white">
+              For Individuals
+            </button>
+            <button onclick="switchTab('employers')" id="tab-btn-employers" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slateNavy/70 hover:text-slateNavy">
+              For Employers
+            </button>
+            <button onclick="switchTab('healthcare')" id="tab-btn-healthcare" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slateNavy/70 hover:text-slateNavy">
+              For Healthcare
+            </button>
           </div>
-
-          <!-- Step 2 Card -->
-          <div class="relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-mint-200 shadow-sm hover:shadow-xl hover:shadow-mint-100/10 transition-all duration-300 group">
-            <div class="w-14 h-14 rounded-2xl bg-mint-50 group-hover:bg-mint-100 text-mint-600 flex items-center justify-center mb-6 transition-colors">
-              <!-- Step 2 SVG Icon (App / Dashboard / Sparkles) -->
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-              </svg>
-            </div>
-            <span class="absolute top-8 right-8 text-5xl font-extrabold text-slate-100 select-none group-hover:text-mint-100/50 transition-colors">02</span>
-            <h4 class="text-xl font-bold text-slate-900 mb-3">Get Early Access</h4>
-            <p class="text-slate-600 font-light leading-relaxed">
-              Be the first to explore personalized wellbeing tools. Test beta workflows designed strictly by mental health engineers.
-            </p>
-          </div>
-
-          <!-- Step 3 Card -->
-          <div class="relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-mint-200 shadow-sm hover:shadow-xl hover:shadow-mint-100/10 transition-all duration-300 group">
-            <div class="w-14 h-14 rounded-2xl bg-mint-50 group-hover:bg-mint-100 text-mint-600 flex items-center justify-center mb-6 transition-colors">
-              <!-- Step 3 SVG Icon (Heart / Shield) -->
-              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-              </svg>
-            </div>
-            <span class="absolute top-8 right-8 text-5xl font-extrabold text-slate-100 select-none group-hover:text-mint-100/50 transition-colors">03</span>
-            <h4 class="text-xl font-bold text-slate-900 mb-3">Thrive Daily</h4>
-            <p class="text-slate-600 font-light leading-relaxed">
-              Take complete control of your mental health journey. Experience full security and 100% data privacy parameters.
-            </p>
-          </div>
-
         </div>
-      </div>
-    </section>
 
-    <!-- TRUST & PRIVACY BANNER -->
-    <section class="py-12 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="relative bg-gradient-to-r from-mint-500 to-teal-700 text-white rounded-[2rem] px-8 py-10 md:py-12 md:px-14 shadow-xl shadow-mint-600/15 overflow-hidden">
-          <!-- Geometric accent background detail -->
-          <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-white/5 rounded-full filter blur-2xl"></div>
+        <!-- Tab contents (Managed Dynamically via JS) -->
+        <div class="bg-creamBg border border-slate-100 rounded-5xl p-8 md:p-16 shadow-inner transition-all duration-300">
           
-          <div class="relative flex flex-col md:flex-row items-center gap-6 md:gap-10">
-            <!-- Security Icon Shield -->
-            <div class="flex-shrink-0 h-16 w-16 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 shadow-inner">
-              <svg class="h-9 w-9 text-mint-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <!-- Trust text content -->
-            <div class="text-center md:text-left">
-              <h3 class="text-xl md:text-2xl font-bold tracking-tight">100% Private & Secure</h3>
-              <p class="mt-2 text-base text-mint-50 font-light leading-relaxed">
-                Your mental health journey is entirely confidential and encrypted. We maintain no-log policies to ensure that whatever you express remains strictly yours.
+          <!-- Tab 1 content: Individuals -->
+          <div id="tab-content-individuals" class="tab-pane grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <h4 class="text-3xl font-extrabold text-slateNavy">Private Wellness Guides for You</h4>
+              <p class="text-lg text-slateNavy/80 font-medium leading-relaxed">
+                Connect directly with Menti, our conversational assistant. Explore 150+ evidence-based exercises designed by mental health specialists to process anxiety, regulate sleep patterns, and build daily habits without login configurations.
               </p>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-therapeuticGreen-accent"></div>
+                  <span class="text-sm font-bold text-slateNavy/90">24/7 Unlimited Listening Companion</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-therapeuticGreen-accent"></div>
+                  <span class="text-sm font-bold text-slateNavy/90">Curated Clinical Exercises (CBT & DBT)</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <!-- Custom Graphic Mockup -->
+              <div class="bg-pureWhite rounded-[2.5rem] p-8 border border-slate-100 shadow-sm max-w-sm space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep">
+                  👤
+                </div>
+                <h5 class="text-xl font-bold text-slateNavy">Personal Core Journey</h5>
+                <p class="text-sm text-slateNavy/70 leading-relaxed font-medium">Your spaces, parameters, and logs stay locally on your device, giving you absolute power over your security.</p>
+              </div>
             </div>
           </div>
+
+          <!-- Tab 2 content: Employers -->
+          <div id="tab-content-employers" class="tab-pane hidden grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <h4 class="text-3xl font-extrabold text-slateNavy">Empower & Support Your Workforce</h4>
+              <p class="text-lg text-slateNavy/80 font-medium leading-relaxed">
+                Upgrade workplace resilience with an anonymous platform your team will actually want to use. Mentrova provides early mental resilience interventions while guaranteeing complete employee privacy to optimize true workspace trust.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-pastelBlue-accent"></div>
+                  <span class="text-sm font-bold text-slateNavy/90">Aggregated Workspace Wellness Scoreboards</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-pastelBlue-accent"></div>
+                  <span class="text-sm font-bold text-slateNavy/90">100% Anonymity for Team Members</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <div class="bg-pureWhite rounded-[2.5rem] p-8 border border-slate-100 shadow-sm max-w-sm space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-pastelBlue flex items-center justify-center text-pastelBlue-deep">
+                  🏢
+                </div>
+                <h5 class="text-xl font-bold text-slateNavy">Corporate Enterprise Suite</h5>
+                <p class="text-sm text-slateNavy/70 leading-relaxed font-medium">Protect employee health directly, resulting in lower clinical insurance parameters and elevated retention metrics.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab 3 content: Healthcare -->
+          <div id="tab-content-healthcare" class="tab-pane hidden grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+              <h4 class="text-3xl font-extrabold text-slateNavy">Integrating Clinical Support Pipelines</h4>
+              <p class="text-lg text-slateNavy/80 font-medium leading-relaxed">
+                Scale your mental health services safely. Mentrova operates as a digital triaging tool, assessing and routing patient flows toward standard standardized clinical metrics (PHQ-9 / GAD-7) with secure backend API handshakes.
+              </p>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-pastelYellow-accent"></div>
+                  <span class="text-sm font-bold text-slateNavy/90">Standardized PHQ-9 & GAD-7 Checkpoints</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-3.5 h-3.5 rounded-full bg-pastelYellow-accent"></div>
+                  <span class="text-sm font-bold text-slateNavy/90">Secure Patient Data Routing Handshakes</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-center">
+              <div class="bg-pureWhite rounded-[2.5rem] p-8 border border-slate-100 shadow-sm max-w-sm space-y-4">
+                <div class="w-12 h-12 rounded-2xl bg-pastelYellow flex items-center justify-center text-pastelYellow-deep">
+                  🏥
+                </div>
+                <h5 class="text-xl font-bold text-slateNavy">Clinical Ecosystem Tools</h5>
+                <p class="text-sm text-slateNavy/70 leading-relaxed font-medium">Direct diagnostic assessment pipelines assisting in pre-triaging before human psychiatric consulting interfaces.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PRODUCT FEATURE GRID -->
+    <section class="py-24 bg-gradient-to-b from-creamBg via-pureWhite to-creamBg">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        <!-- Grid header -->
+        <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Product Capabilities</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">Ecosystem Architecture Modules</h3>
+          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
+            Our platform merges clinical intelligence with elegant, high-fidelity engineering configurations.
+          </p>
+        </div>
+
+        <!-- 3 Card layout -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+          
+          <!-- Card A -->
+          <div class="bg-pureWhite rounded-4xl p-8 border border-slate-100 hover:border-therapeuticGreen-accent hover:-translate-y-2 hover:shadow-xl hover:shadow-therapeuticGreen-accent/5 transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center mb-8">
+              💬
+            </div>
+            <h4 class="text-xl font-bold text-slateNavy mb-3">Conversational AI Guide</h4>
+            <p class="text-slateNavy/75 font-medium leading-relaxed">
+              Our core conversational companion offers unlimited 24/7 listening support. It is trained under clinically validated cognitive-behavioral guidelines to provide a non-judgmental dialogue experience.
+            </p>
+          </div>
+
+          <!-- Card B -->
+          <div class="bg-pureWhite rounded-4xl p-8 border border-slate-100 hover:border-pastelBlue-accent hover:-translate-y-2 hover:shadow-xl hover:shadow-pastelBlue-accent/5 transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-pastelBlue text-pastelBlue-deep flex items-center justify-center mb-8">
+              🧘
+            </div>
+            <h4 class="text-xl font-bold text-slateNavy mb-3">Mindfulness Toolkits</h4>
+            <p class="text-slateNavy/75 font-medium leading-relaxed">
+              Explore over 150+ specialized digital interventions, including controlled breathing pattern metrics, sleep aids, muscle-relaxation audios, and dynamic daily mood assessment metrics.
+            </p>
+          </div>
+
+          <!-- Card C -->
+          <div class="bg-pureWhite rounded-4xl p-8 border border-slate-100 hover:border-pastelYellow-accent hover:-translate-y-2 hover:shadow-xl hover:shadow-pastelYellow-accent/5 transition-all duration-300">
+            <div class="w-14 h-14 rounded-2xl bg-pastelYellow text-pastelYellow-deep flex items-center justify-center mb-8">
+              🔒
+            </div>
+            <h4 class="text-xl font-bold text-slateNavy mb-3">Anonymity & Encryption</h4>
+            <p class="text-slateNavy/75 font-medium leading-relaxed">
+              We deploy strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information on our companion dialog servers.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CLINICAL EFFICACY & SCIENCE BANNER -->
+    <section id="clinical-evidence" class="py-24 bg-gradient-to-r from-therapeuticGreen-deep via-emerald-800 to-therapeuticGreen-deep text-pureWhite shadow-inner relative overflow-hidden">
+      <!-- Background detail -->
+      <div class="absolute -right-24 -bottom-24 w-80 h-80 bg-white/5 rounded-full filter blur-3xl"></div>
+      
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          
+          <!-- Left side metric statistics -->
+          <div class="space-y-8">
+            <h4 class="text-xs font-bold uppercase tracking-widest text-therapeuticGreen bg-white/10 px-4 py-2 rounded-full inline-block">Science Backed</h4>
+            <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">Empathetic Tech Rooted in Real Data</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+              <div class="border-l-4 border-therapeuticGreen-accent pl-4">
+                <span class="block text-4xl font-black text-white tracking-tight">91%</span>
+                <p class="text-sm text-therapeuticGreen font-medium mt-1">Users reporting improved mood & resilience</p>
+              </div>
+              <div class="border-l-4 border-therapeuticGreen-accent pl-4">
+                <span class="block text-4xl font-black text-white tracking-tight">50M+</span>
+                <p class="text-sm text-therapeuticGreen font-medium mt-1">Encrypted sessions safely completed</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side clinical description copy -->
+          <div class="bg-white/10 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/15 space-y-6">
+            <h5 class="text-lg font-bold text-therapeuticGreen">Validated Behavioral Methods</h5>
+            <p class="text-base text-therapeuticGreen/90 font-medium leading-relaxed">
+              Mentrova is designed from peer-reviewed research, adapting Cognitive Behavioral Therapy (CBT), Dialectical Behavioral Therapy (DBT), and mindfulness exercises into comfortable, user-friendly mobile chat environments.
+            </p>
+            <p class="text-base text-therapeuticGreen/90 font-medium leading-relaxed">
+              Our computational frameworks undergo clinical trial evaluations to ensure that Menti's conversational responses remain clinically safe, supportive, and effective.
+            </p>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <!-- CONTACT US SECTION -->
-    <section id="contact" class="py-24 bg-gradient-to-b from-slate-50 to-white">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- COMPREHENSIVE FAQ ACCORDION HUB -->
+    <section id="faq" class="py-24 bg-pureWhite">
+      <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
         
-        <!-- Contact Heading -->
-        <div class="text-center mb-16 space-y-4">
-          <h2 class="text-xs font-semibold uppercase tracking-wider text-mint-600">Connect With Us</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">We’re Here to Listen</h3>
-          <p class="text-lg text-slate-600 font-light">
-            Do you have questions, partnerships, or suggestions? Drop us a line.
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Common Questions</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">Clear Insights Into Mentrova</h3>
+          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
+            Discover how we manage personal safety, data parameters, and clinical compliance workflows.
           </p>
         </div>
 
-        <!-- Elegant Contact Form Card -->
-        <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-100 shadow-xl shadow-slate-200/40">
-          <form id="contact-form" class="space-y-6">
-            <!-- Form Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              
-              <!-- Name Input -->
+        <!-- Accordion Modules -->
+        <div class="space-y-4">
+          
+          <!-- Accordion item 1 -->
+          <div class="bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300">
+            <button onclick="toggleAccordion(1)" class="w-full flex items-center justify-between p-6 sm:p-8 text-left focus:outline-none">
+              <span class="text-lg sm:text-xl font-bold text-slateNavy">Is my personal data completely secure and anonymous?</span>
+              <span id="faq-icon-1" class="text-2xl font-bold text-slateNavy/50 transform transition-transform duration-300">+</span>
+            </button>
+            <div id="faq-panel-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="p-6 sm:p-8 pt-0 border-t border-slate-200/50 text-base text-slateNavy/80 font-medium leading-relaxed">
+                Yes, your privacy is our foundation. Mentrova implements strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information. All communication logs are fully encrypted.
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion item 2 -->
+          <div class="bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300">
+            <button onclick="toggleAccordion(2)" class="w-full flex items-center justify-between p-6 sm:p-8 text-left focus:outline-none">
+              <span class="text-lg sm:text-xl font-bold text-slateNavy">How does the conversational support framework operate?</span>
+              <span id="faq-icon-2" class="text-2xl font-bold text-slateNavy/50 transform transition-transform duration-300">+</span>
+            </button>
+            <div id="faq-panel-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="p-6 sm:p-8 pt-0 border-t border-slate-200/50 text-base text-slateNavy/80 font-medium leading-relaxed">
+                Our conversational assistant, Menti, uses evidence-based Cognitive Behavioral Therapy (CBT) and Dialectical Behavioral Therapy (DBT) guidelines. Menti is programmed to respond with empathy, providing a safe and non-judgmental dialogue experience 24/7.
+              </div>
+            </div>
+          </div>
+
+          <!-- Accordion item 3 -->
+          <div class="bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300">
+            <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 sm:p-8 text-left focus:outline-none">
+              <span class="text-lg sm:text-xl font-bold text-slateNavy">Can organizations deploy Mentrova for employee wellness benefits?</span>
+              <span id="faq-icon-3" class="text-2xl font-bold text-slateNavy/50 transform transition-transform duration-300">+</span>
+            </button>
+            <div id="faq-panel-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+              <div class="p-6 sm:p-8 pt-0 border-t border-slate-200/50 text-base text-slateNavy/80 font-medium leading-relaxed">
+                Absolutely. We partner with forward-thinking organizations globally to upgrade employee mental health parameters, providing anonymized dashboard analytics and custom programs while keeping individual privacy safe.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CORE PLATFORM CONTACT PORTAL -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-pureWhite to-creamBg">
+      <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        <!-- Headers -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Partner With Us</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">Begin Your Mental Health Journey</h3>
+          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
+            Fill out the inquiry form below, and a clinical representative will guide your next steps.
+          </p>
+        </div>
+
+        <!-- Contact card -->
+        <div class="bg-pureWhite rounded-5xl p-8 md:p-14 border border-slate-100 shadow-xl shadow-slate-200/40">
+          <form id="contactForm" class="space-y-6">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <!-- Name -->
               <div>
-                <label for="contact-name" class="block text-sm font-semibold text-slate-700 mb-2">Name</label>
-                <input type="text" id="contact-name" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 transition-colors bg-slate-50/50 text-slate-900 placeholder-slate-400" placeholder="Your name">
+                <label for="contactName" class="block text-sm font-bold text-slateNavy mb-2">Full Name</label>
+                <input type="text" id="contactName" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy placeholder-slateNavy/40" placeholder="Jane Doe">
               </div>
 
-              <!-- Email Input -->
+              <!-- Organization Selector -->
               <div>
-                <label for="contact-email" class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
-                <input type="email" id="contact-email" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 transition-colors bg-slate-50/50 text-slate-900 placeholder-slate-400" placeholder="your.email@domain.com">
+                <label for="orgType" class="block text-sm font-bold text-slateNavy mb-2">Organization Type</label>
+                <select id="orgType" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy font-bold select-custom">
+                  <option value="individual">Individual</option>
+                  <option value="employer">Employer / Business Owner</option>
+                  <option value="healthcare">Healthcare Provider</option>
+                  <option value="insurance">Insurance Network</option>
+                </select>
               </div>
-
             </div>
 
-            <!-- Message Input -->
+            <!-- Email -->
             <div>
-              <label for="contact-message" class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
-              <textarea id="contact-message" rows="5" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 transition-colors bg-slate-50/50 text-slate-900 placeholder-slate-400" placeholder="How can we help or support your wellness mission?"></textarea>
+              <label for="contactEmail" class="block text-sm font-bold text-slateNavy mb-2">Email Address</label>
+              <input type="email" id="contactEmail" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy placeholder-slateNavy/40" placeholder="jane@domain.com">
             </div>
 
-            <!-- Submit Button -->
+            <!-- Message -->
+            <div>
+              <label for="contactMessage" class="block text-sm font-bold text-slateNavy mb-2">Your Message</label>
+              <textarea id="contactMessage" rows="5" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy placeholder-slateNavy/40" placeholder="Write your core support needs here..."></textarea>
+            </div>
+
+            <!-- Submit -->
             <div class="pt-2">
-              <button type="submit" class="w-full inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-2xl text-white bg-mint-600 hover:bg-mint-700 shadow-lg shadow-mint-600/15 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mint-500 transition duration-300">
-                Send Message
+              <button type="submit" class="w-full inline-flex items-center justify-center px-10 py-4.5 border border-transparent text-lg font-bold rounded-full text-pureWhite bg-slateNavy hover:bg-slateNavy/95 shadow-lg shadow-slateNavy/15 focus:outline-none transition-all duration-300 animate-glow">
+                Submit Inquiry
               </button>
             </div>
 
@@ -395,136 +674,206 @@
 
       </div>
     </section>
+
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-slate-50 border-t border-slate-100 py-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+  <!-- ENTERPRISE FOOTER INTERFACE -->
+  <footer class="bg-slate-50 py-16 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         
-        <!-- Bottom Brand Logo -->
-        <div class="flex items-center gap-2">
-          <div class="h-8 w-8 bg-gradient-to-tr from-mint-400 to-softBlue-200 rounded-lg flex items-center justify-center">
-            <svg class="h-4.5 w-4.5 text-mint-700" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
-            </svg>
+        <!-- Col 1: Brand Info -->
+        <div class="space-y-4 md:col-span-2">
+          <div class="flex items-center gap-2.5">
+            <div class="h-9 w-9 bg-gradient-to-tr from-therapeuticGreen-accent to-pastelBlue-accent flex items-center justify-center rounded-xl shadow-sm">
+              <svg class="h-5.5 w-5.5 text-therapeuticGreen-deep" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+              </svg>
+            </div>
+            <span class="text-xl font-bold text-slateNavy tracking-tight">Mentrova</span>
           </div>
-          <span class="text-lg font-bold text-slate-800 tracking-tight">Mentrova</span>
+          <p class="text-sm text-slateNavy/60 max-w-sm font-medium leading-relaxed">
+            Mentrova is a globally deployed conversational mental health ecosystem providing evidence-based digital therapy solutions. Committed to clinical efficacy, safety, and strict HIPAA security parameters.
+          </p>
+          <div class="text-[10px] text-slateNavy/40 font-bold tracking-wider uppercase pt-2">
+            🔒 HIPAA Compliant • SOC2 Type II Certified
+          </div>
         </div>
 
-        <!-- Copyright Info -->
-        <p class="text-sm text-slate-500 order-last md:order-none">
-          &copy; 2026 Mentrova. All rights reserved.
-        </p>
+        <!-- Col 2: Platform Links -->
+        <div class="space-y-4">
+          <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy/80">Platform</h5>
+          <ul class="space-y-2 text-sm font-semibold">
+            <li><a href="#individuals-section" class="text-slateNavy/60 hover:text-slateNavy transition">For Individuals</a></li>
+            <li><a href="#employers-section" class="text-slateNavy/60 hover:text-slateNavy transition">For Employers</a></li>
+            <li><a href="#clinical-evidence" class="text-slateNavy/60 hover:text-slateNavy transition">Clinical Evidence</a></li>
+            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">FAQ</a></li>
+          </ul>
+        </div>
 
-        <!-- Terms & Conditions Footer Links -->
-        <div class="flex space-x-6">
-          <a href="#" class="text-sm text-slate-500 hover:text-mint-600 transition">Privacy Policy</a>
-          <a href="#" class="text-sm text-slate-500 hover:text-mint-600 transition">Terms & Conditions</a>
+        <!-- Col 3: Legal & Security Links -->
+        <div class="space-y-4">
+          <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy/80">Legal & Security</h5>
+          <ul class="space-y-2 text-sm font-semibold">
+            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">Privacy Policy</a></li>
+            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">Terms of Service</a></li>
+            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">Security Data Sheet</a></li>
+            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">EHR API Spec</a></li>
+          </ul>
         </div>
 
       </div>
+
+      <!-- Legal Break line -->
+      <div class="border-t border-slate-200/60 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slateNavy/40 font-medium">
+          &copy; 2026 Mentrova. All rights reserved. All digital conversational interactions are managed under strict zero-knowledge encryption patterns.
+        </p>
+      </div>
+
     </div>
   </footer>
 
-  <!-- JAVASCRIPT LOGIC -->
+  <!-- INTERACTIVE JAVASCRIPT ENGINE -->
   <script>
-    // Elements
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const menuIconHamburger = document.getElementById('menu-icon-hamburger');
-    const menuIconClose = document.getElementById('menu-icon-close');
-    
-    const heroWaitlistForm = document.getElementById('hero-waitlist-form');
-    const contactForm = document.getElementById('contact-form');
-    
-    const successModal = document.getElementById('success-modal');
-    const successModalCard = document.getElementById('success-modal-card');
-    const successTitle = document.getElementById('success-title');
-    const successMessage = document.getElementById('success-message');
+    // Mobile Drawer Navigation Toggles
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+    const menuIconOpen = document.getElementById('menuIconOpen');
+    const menuIconClose = document.getElementById('menuIconClose');
 
-    // MOBILE MENU TOGGLE
     mobileMenuButton.addEventListener('click', () => {
-      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-      mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-      
-      mobileMenu.classList.toggle('hidden');
-      menuIconHamburger.classList.toggle('hidden');
-      menuIconClose.classList.toggle('hidden');
+      const isVisible = !mobileMenuDrawer.classList.contains('hidden');
+      if (isVisible) {
+        mobileMenuDrawer.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      } else {
+        mobileMenuDrawer.classList.remove('hidden');
+        menuIconOpen.classList.add('hidden');
+        menuIconClose.classList.remove('hidden');
+      }
     });
 
-    // Close mobile menu when clicking any menu links
-    const mobileNavLinks = mobileMenu.querySelectorAll('a');
-    mobileNavLinks.forEach(link => {
+    // Close mobile drawer on element selection
+    const drawerNavLinks = mobileMenuDrawer.querySelectorAll('a');
+    drawerNavLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.add('hidden');
-        menuIconHamburger.classList.remove('hidden');
+        mobileMenuDrawer.classList.add('hidden');
+        menuIconOpen.classList.remove('hidden');
         menuIconClose.classList.add('hidden');
-        mobileMenuButton.setAttribute('aria-expanded', 'false');
       });
     });
 
-    // FORM ACTION SUBMISSIONS
+    // Interactive Solution Explorer Tab Management
+    function switchTab(tabId) {
+      // Deactivate all tab contents
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      tabPanes.forEach(pane => {
+        pane.classList.add('hidden');
+      });
 
-    // Open Elegant Success Modal
-    function openModal(title, msg) {
-      successTitle.innerText = title;
-      successMessage.innerText = msg;
-      
+      // Remove activation colors from all tab buttons
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      tabButtons.forEach(btn => {
+        btn.classList.remove('bg-slateNavy', 'text-white');
+        btn.classList.add('text-slateNavy/70', 'hover:text-slateNavy');
+      });
+
+      // Activate clicked tab content
+      const activePane = document.getElementById(`tab-content-${tabId}`);
+      if (activePane) {
+        activePane.classList.remove('hidden');
+      }
+
+      // Activate clicked tab button styling
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slateNavy/70', 'hover:text-slateNavy');
+        activeBtn.classList.add('bg-slateNavy', 'text-white');
+      }
+    }
+
+    // Expandable FAQ Accordions
+    function toggleAccordion(id) {
+      const panel = document.getElementById(`faq-panel-${id}`);
+      const icon = document.getElementById(`faq-icon-${id}`);
+
+      if (panel.style.maxHeight && panel.style.maxHeight !== '0px') {
+        panel.style.maxHeight = '0px';
+        icon.style.transform = 'rotate(0deg)';
+      } else {
+        // Reset all accordions first
+        for (let i = 1; i <= 3; i++) {
+          const currentPanel = document.getElementById(`faq-panel-${i}`);
+          const currentIcon = document.getElementById(`faq-icon-${i}`);
+          if (currentPanel) {
+            currentPanel.style.maxHeight = '0px';
+            currentIcon.style.transform = 'rotate(0deg)';
+          }
+        }
+        
+        // Open target accordion
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        icon.style.transform = 'rotate(45deg)';
+      }
+    }
+
+    // Success Overlay System Functions
+    const successModal = document.getElementById('successModal');
+    const successModalCard = document.getElementById('successModalCard');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMessage = document.getElementById('modalMessage');
+
+    function openModal(title, message) {
+      modalTitle.innerText = title;
+      modalMessage.innerText = message;
       successModal.classList.remove('opacity-0', 'pointer-events-none');
-      successModalCard.classList.remove('scale-95');
+      successModalCard.classList.remove('scale-90');
       successModalCard.classList.add('scale-100');
     }
 
-    // Close Elegant Success Modal
     function closeModal() {
       successModal.classList.add('opacity-0', 'pointer-events-none');
       successModalCard.classList.remove('scale-100');
-      successModalCard.classList.add('scale-95');
+      successModalCard.classList.add('scale-90');
     }
 
-    // Handle waitlist submission
-    heroWaitlistForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const emailInput = document.getElementById('hero-email');
-      const emailValue = emailInput.value.trim();
-
-      if (emailValue) {
-        // Mock API submission flow
-        openModal(
-          "Welcome to Mentrova!", 
-          `We've added your address (${emailValue}) to our exclusive VIP early waiting list. We will send updates when our next batch of slots opens.`
-        );
-        // Clear value
-        emailInput.value = '';
-      }
-    });
-
-    // Handle contact form submission
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const nameInput = document.getElementById('contact-name');
-      const emailInput = document.getElementById('contact-email');
-      const messageInput = document.getElementById('contact-message');
-
-      if (nameInput.value.trim() && emailInput.value.trim() && messageInput.value.trim()) {
-        // Mock API message submission flow
-        openModal(
-          "Message Received", 
-          `Thank you, ${nameInput.value.trim()}. Your message has been sent directly to our wellness advocacy support network. We will answer your inquiry shortly.`
-        );
-        // Reset field elements
-        nameInput.value = '';
-        emailInput.value = '';
-        messageInput.value = '';
-      }
-    });
-
-    // Close modal when hitting outside the inner container card
+    // Close modal when clicking on ambient background
     successModal.addEventListener('click', (e) => {
       if (e.target === successModal) {
         closeModal();
+      }
+    });
+
+    // Setup Form Interceptors
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const nameField = document.getElementById('contactName');
+      const orgField = document.getElementById('orgType');
+      const emailField = document.getElementById('contactEmail');
+      const messageField = document.getElementById('contactMessage');
+
+      const nameVal = nameField.value.trim();
+      const orgVal = orgField.value;
+      const emailVal = emailField.value.trim();
+      const messageVal = messageField.value.trim();
+
+      if (nameVal && emailVal && messageVal) {
+        // Trigger Success feedback
+        openModal(
+          "Inquiry Received",
+          `Thank you, ${nameVal}. Our specialized clinical wellness team has received your ${orgVal} inquiry and will follow up with you at ${emailVal} within 12 hours.`
+        );
+
+        // Clear data
+        nameField.value = '';
+        orgField.value = 'individual';
+        emailField.value = '';
+        messageField.value = '';
       }
     });
   </script>
