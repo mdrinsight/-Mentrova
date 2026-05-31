@@ -3,223 +3,298 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mentrova — Global Conversational Mental Health & Wellbeing Ecosystem</title>
-  <meta name="description" content="Mentrova provides clinically validated, completely anonymous conversational mental health support powered by empathetic cognitive-behavioral tools.">
+  <title>Mentrova — Enterprise-Grade Conversational Wellbeing Platform</title>
+  <meta name="description" content="Mentrova provides clinically validated, completely anonymous conversational mental health support powered by empathetic cognitive-behavioral tools. Directed by Sachin.">
   
-  <!-- Import Comforting, Premium Google Font: Quicksand -->
+  <!-- Premium Luxury Typography: Cormorant Garamond & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
-  <!-- Tailwind CSS via CDN -->
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.css" />
+
+  <!-- Tailwind CSS via CDN with customized clinical light theme config -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Quicksand', 'sans-serif'],
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Cormorant Garamond', 'serif'],
           },
           colors: {
-            slateNavy: '#1E293B',   // Deep authoritative navy
-            creamBg: '#F8FAFC',     // Calming background off-white
-            pureWhite: '#FDFDFD',   // Crisp soft white
-            therapeuticGreen: {
-              DEFAULT: '#E6F4EA',   // Super soft pastel green
-              accent: '#34D399',    // Vibrant friendly green
-              deep: '#065F46'       // Safe dark forest text
-            },
-            pastelBlue: {
-              DEFAULT: '#F0F9FF',   // Soft background sky blue
-              accent: '#38BDF8',
-              deep: '#0369A1'
-            },
-            pastelYellow: {
-              DEFAULT: '#FEF3C7',   // Friendly warming yellow
-              accent: '#FBBF24',
-              deep: '#92400E'
-            }
+            brand: '#6C8CF5',           // Empathetic royal indigo
+            violetAccent: '#A78BFA',    // Calm therapeutic violet
+            tealAccent: '#38BDF8',      // Sky blue highlights
+            roseAccent: '#F472B6',      // Soft heart pink
+            slateNavy: '#1E293B',       // Deep slate navy
+            canvasBase: '#F1F5F9',      // Polished, highly professional light grey base
+            canvasCream: '#FFFFFF',     // Clean pure white panels
+            mutedText: '#475569',       // Clean highly readable slate grey
+            borderAccent: 'rgba(108,140,245,0.12)'
           },
           borderRadius: {
             '4xl': '2rem',
             '5xl': '2.5rem',
+            '6xl': '3rem',
           }
         }
       }
     }
   </script>
 
+  <!-- Advanced Creative Frontend Architect Micro-UX Styles -->
   <style>
-    /* Organic, continuous interactive floating micro-animations */
-    @keyframes gentle-bob {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-12px) rotate(2deg); }
+    /* Clean, Professional light canvas background */
+    body {
+      background-color: #F1F5F9;
+      color: #1E293B;
+      cursor: none; /* Custom interactive luxury cursor */
     }
-    @keyframes gentle-bob-reverse {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(10px) rotate(-2deg); }
+
+    /* ── CUSTOM CURSOR ── */
+    #cursor {
+      position: fixed; z-index: 9999; pointer-events: none;
+      width: 12px; height: 12px;
+      background: #6C8CF5;
+      border-radius: 50%;
+      transform: translate(-50%,-50%);
+      transition: transform .1s, width .3s, height .3s, background .3s;
+      mix-blend-mode: multiply; /* Perfect visual contrast on light bg */
     }
-    @keyframes soft-pulse-glow {
-      0%, 100% { transform: scale(1); opacity: 0.95; }
-      50% { transform: scale(1.04); opacity: 1; }
+    body:has(a:hover) #cursor,
+    body:has(button:hover) #cursor,
+    body:has(input:hover) #cursor,
+    body:has(select:hover) #cursor,
+    body:has(textarea:hover) #cursor { width: 20px; height: 20px; background: #A78BFA; }
+
+    /* Infinite Marquee Ticker Keyframe */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
     }
-    .animate-bob-1 {
-      animation: gentle-bob 7s ease-in-out infinite;
+    .animate-marquee-loop {
+      display: flex;
+      width: max-content;
+      animation: marquee 30s linear infinite;
     }
-    .animate-bob-2 {
-      animation: gentle-bob-reverse 8s ease-in-out infinite;
+
+    /* Elastic Chat Stream Entry Animation */
+    @keyframes elastic-bubble {
+      0% { transform: scale(0.85) translateY(40px); opacity: 0; }
+      70% { transform: scale(1.04) translateY(-4px); opacity: 0.9; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
     }
-    .animate-glow {
-      animation: soft-pulse-glow 4s ease-in-out infinite;
+    .chat-bubble-animated {
+      animation: elastic-bubble 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
     }
-    
-    /* Elegant Custom Scrollbar */
+
+    /* Premium 3D Perspective Card Flip Architecture - Fixed displacements */
+    .perspective-container {
+      perspective: 1500px;
+      -webkit-perspective: 1500px;
+      height: 440px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .perspective-container:hover .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 2.5rem;
+      overflow: hidden;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+    }
+
+    /* Sleek Mirror Glint card effect */
+    .glint-overlay {
+      position: relative;
+      overflow: hidden;
+    }
+    .glint-overlay::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 30%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.25) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(30deg);
+      transition: all 0.6s ease;
+      opacity: 0;
+    }
+    .glint-overlay:hover::after {
+      left: 130%;
+      opacity: 1;
+    }
+
+    /* Prevent text selection layout friction */
+    .no-select {
+      user-select: none;
+    }
+
+    /* Custom scrollbar configurations */
     ::-webkit-scrollbar {
       width: 10px;
     }
     ::-webkit-scrollbar-track {
-      background: #F8FAFC;
+      background: rgba(248, 250, 252, 0.8);
     }
     ::-webkit-scrollbar-thumb {
-      background: #E2E8F0;
+      background: #CBD5E1;
       border-radius: 9999px;
+      border: 2px solid #F8FAFC;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #CBD5E1;
+      background: #94A3B8;
+    }
+
+    /* Universal active click-state outline highlight for box structures */
+    .interactive-box {
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .interactive-box:active,
+    .interactive-box:focus-within {
+      border-color: #6C8CF5 !important;
+      box-shadow: 0 0 0 3px rgba(108,140,245,0.2) !important;
+      transform: scale(0.985);
     }
   </style>
 </head>
-<body class="font-sans bg-creamBg text-slateNavy antialiased selection:bg-therapeuticGreen/65 selection:text-therapeuticGreen-deep min-h-screen flex flex-col">
+<body class="bg-canvasBase text-slateNavy antialiased selection:bg-brand/25 selection:text-brand min-h-screen flex flex-col relative overflow-x-hidden">
 
-  <!-- GLOBAL AMBIENT BACK-GLOWS -->
-  <div class="fixed top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-therapeuticGreen/30 filter blur-[120px] -z-10 pointer-events-none animate-bob-1"></div>
-  <div class="fixed bottom-20 right-10 w-[500px] h-[500px] rounded-full bg-pastelBlue/40 filter blur-[100px] -z-10 pointer-events-none animate-bob-2"></div>
+  <!-- CUSTOM CURSOR -->
+  <div id="cursor"></div>
 
-  <!-- CORE SUCCESS OVERLAY MODAL -->
+  <!-- FIXED LAYER — INTERACTIVE WAVE CANVAS BACKDROP -->
+  <canvas id="hero-canvas" class="fixed inset-0 -z-50 w-full h-full pointer-events-none opacity-[0.85]"></canvas>
+
+  <!-- SUCCESS MODAL OVERLAY -->
   <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slateNavy/30 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
-    <div id="successModalCard" class="bg-pureWhite rounded-[2.5rem] p-8 md:p-12 max-w-xl w-full text-center shadow-2xl border border-white transform scale-90 transition-all duration-300">
-      <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-therapeuticGreen border-4 border-white text-therapeuticGreen-deep mb-6 shadow-md shadow-therapeuticGreen-accent/30 animate-glow">
-        <!-- Soothing Checkmark icon -->
+    <div id="successModalCard" class="bg-canvasCream rounded-[2.5rem] p-8 md:p-12 max-w-xl w-full text-center shadow-2xl border border-slate-100 transform scale-90 transition-all duration-300 text-slateNavy">
+      <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-therapeuticGreen border-4 border-white text-therapeuticGreen-deep mb-6 shadow-md shadow-brand/30 animate-pulse-brand">
         <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
       </div>
-      <h3 class="text-3xl font-bold text-slateNavy mb-3" id="modalTitle">Welcome to Mentrova</h3>
-      <p class="text-slateNavy/85 text-lg font-medium leading-relaxed mb-8" id="modalMessage">
-        Your registration was successful. We have securely saved your priority access details inside our clinical network.
+      <h3 class="text-3xl font-bold text-slateNavy mb-3" id="modalTitle">Successfully Submitted</h3>
+      <p class="text-slate-600 text-lg font-medium leading-relaxed mb-8" id="modalMessage">
+        Your registration details have been verified and securely logged inside Sachin's Mentrova clinical directory.
       </p>
-      <button onclick="closeModal()" class="w-full py-4.5 px-8 bg-slateNavy hover:bg-slateNavy/95 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-slateNavy/15 active:scale-95 focus:outline-none focus:ring-4 focus:ring-slateNavy/20">
+      <button onclick="closeModal()" class="w-full py-4.5 px-8 bg-slateNavy hover:bg-slateNavy/90 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg active:scale-95 focus:outline-none">
         Return to Peace
       </button>
     </div>
   </div>
 
-  <!-- STICKY GLASSMORPHIC NAVBAR -->
-  <header class="sticky top-0 z-40 w-full bg-pureWhite/70 backdrop-blur-md border-b border-slate-100 transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-      <div class="flex items-center justify-between h-20">
-        
-        <!-- Platform Logo on Left -->
-        <a href="#hero-section" class="flex items-center gap-2.5 group focus:outline-none">
-          <div class="h-11 w-11 bg-gradient-to-tr from-therapeuticGreen-accent to-pastelBlue-accent flex items-center justify-center rounded-2xl shadow-sm group-hover:scale-105 transition-transform duration-300">
-            <!-- Leaf/Lotus emblem representation -->
-            <svg class="h-6.5 w-6.5 text-therapeuticGreen-deep" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
-            </svg>
-          </div>
-          <span class="text-2xl font-bold tracking-tight text-slateNavy">Mentrova<span class="inline-block ml-0.5 w-2 h-2 rounded-full bg-therapeuticGreen-accent"></span></span>
+  <!-- SECTION 1 — STICKY NAV -->
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between padding-navbar bg-canvasCream/70 backdrop-blur-md border-b border-slate-100 py-5 px-12 transition-all duration-300">
+    <a class="logo flex items-center gap-2.5 group focus:outline-none" href="#hero-section">
+      <div class="logo-dot w-2.5 h-2.5 rounded-full bg-brand"></div>
+      <span class="text-2xl font-bold tracking-tight font-serif text-slateNavy group-hover:scale-105 transition-transform">Mentrova</span>
+    </a>
+    <ul class="nav-links hidden lg:flex items-center space-x-10">
+      <li><a href="#about" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">About</a></li>
+      <li><a href="#solutions-explorer" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Pathways</a></li>
+      <li><a href="#feature-grid" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Capabilities</a></li>
+      <li><a href="#clinical-integrity" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Integrity</a></li>
+      <li><a href="#faq" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">FAQ</a></li>
+    </ul>
+    <div class="hidden lg:flex items-center">
+      <a class="nav-cta text-xs font-bold uppercase tracking-widest px-6 py-3 border border-brand/50 rounded-full text-brand hover:bg-brand hover:text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(108,140,245,0.15)] animate-none" href="#contact-portal">Begin Anonymously</a>
+    </div>
+
+    <!-- Mobile Hamburg Menu Button -->
+    <div class="flex lg:hidden">
+      <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2.5 rounded-2xl text-slateNavy hover:text-brand hover:bg-slate-100 focus:outline-none transition duration-200">
+        <span class="sr-only">Toggle Drawer</span>
+        <svg id="menuIconOpen" class="block h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <svg id="menuIconClose" class="hidden h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Slide-Down Navigation Drawer -->
+  <div id="mobileMenuDrawer" class="hidden lg:hidden fixed top-20 left-0 right-0 z-35 bg-canvasCream/95 border-b border-slate-100 transition-all duration-300">
+    <div class="px-6 pt-3 pb-8 space-y-4 shadow-inner">
+      <a href="#about" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">About</a>
+      <a href="#solutions-explorer" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">Pathways</a>
+      <a href="#feature-grid" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">Capabilities</a>
+      <a href="#clinical-integrity" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">Clinical Integrity</a>
+      <a href="#faq" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">FAQ Hub</a>
+      <div class="pt-4 border-t border-slate-100">
+        <a href="#contact-portal" class="block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand bg-canvasCream border border-brand/50 shadow-sm transition">
+          Begin Anonymously
         </a>
-
-        <!-- Center Navigation Menu Links -->
-        <nav class="hidden lg:flex items-center space-x-10">
-          <a href="#individuals-section" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">For Individuals</a>
-          <a href="#employers-section" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">For Employers</a>
-          <a href="#clinical-evidence" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">Clinical Evidence</a>
-          <a href="#faq" class="text-slateNavy/80 hover:text-slateNavy font-semibold text-base transition duration-200">FAQ</a>
-        </nav>
-
-        <!-- Right Side CTA Action -->
-        <div class="hidden lg:flex items-center">
-          <a href="#contact" class="inline-flex items-center justify-center px-6 py-3.5 border border-slate-100 text-base font-bold rounded-full text-slateNavy bg-therapeuticGreen hover:bg-therapeuticGreen-accent/50 shadow-sm transition-all duration-300 active:scale-95">
-            Get Support Now
-          </a>
-        </div>
-
-        <!-- Mobile Hamburg Menu Button -->
-        <div class="flex lg:hidden">
-          <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2.5 rounded-2xl text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/50 focus:outline-none transition duration-200">
-            <span class="sr-only">Toggle Menu</span>
-            <svg id="menuIconOpen" class="block h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-            </svg>
-            <svg id="menuIconClose" class="hidden h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-
       </div>
     </div>
+  </div>
 
-    <!-- Mobile Slide-Down Navigation Drawer -->
-    <div id="mobileMenuDrawer" class="hidden lg:hidden bg-pureWhite/95 border-b border-slate-100 transition-all duration-300">
-      <div class="px-6 pt-3 pb-8 space-y-4 shadow-inner">
-        <a href="#individuals-section" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">For Individuals</a>
-        <a href="#employers-section" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">For Employers</a>
-        <a href="#clinical-evidence" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">Clinical Evidence</a>
-        <a href="#faq" class="block px-4 py-3 rounded-2xl text-lg font-semibold text-slateNavy/80 hover:text-slateNavy hover:bg-therapeuticGreen/40 transition">FAQ</a>
-        <div class="pt-4 border-t border-slate-100">
-          <a href="#contact" class="block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-slateNavy bg-therapeuticGreen hover:bg-therapeuticGreen-accent/60 shadow-sm transition">
-            Get Support Now
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
+  <main class="flex-grow pt-20">
 
-  <main class="flex-grow">
-    
-    <!-- PREMIUM PLATFORM HERO LAYER -->
-    <section id="hero-section" class="relative py-20 lg:py-28 overflow-hidden">
+    <!-- SECTION 2 — HERO -->
+    <section id="hero-section" class="relative py-24 lg:py-32 overflow-hidden">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
           
-          <!-- Left Text Content -->
+          <!-- Left Text Content Column -->
           <div class="lg:col-span-7 text-center lg:text-left space-y-8">
-            <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-therapeuticGreen/60 border border-white text-therapeuticGreen-deep text-sm font-bold tracking-wide uppercase">
+            <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-therapeuticGreen border border-therapeuticGreen-accent/30 text-therapeuticGreen-deep text-xs font-bold tracking-widest uppercase">
               <span class="w-2.5 h-2.5 rounded-full bg-therapeuticGreen-accent animate-ping"></span>
-              Now Serving Global Populations
+              Sachin's Global Wellbeing Initiative
             </div>
 
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slateNavy tracking-tight leading-[1.12]">
-              An Elegant, Safe Space for <br>
-              <span class="bg-gradient-to-r from-therapeuticGreen-deep to-pastelBlue-deep bg-clip-text text-transparent">Your Mental Wellbeing.</span>
+            <!-- Staggered GSAP Typography Target -->
+            <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-slateNavy tracking-tight leading-[1.08] font-serif">
+              An Elegant, Safe Space for Your Mental Wellbeing.
             </h1>
 
-            <p class="text-lg sm:text-xl text-slateNavy/80 max-w-2xl mx-auto lg:mx-0 font-medium leading-relaxed">
+            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
               Mentrova delivers clinically validated, anonymous mental health support through cognitive-behavioral tools and continuous guided conversations. Trusted globally by individuals seeking peace of mind, forward-thinking employers upgrading workplace resilience, and clinical networks expanding care access.
             </p>
 
-            <!-- Dual-CTA Action Blocks -->
+            <!-- Dual-CTA Action Panel -->
             <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-white bg-slateNavy hover:bg-slateNavy/90 shadow-lg shadow-slateNavy/15 transition-all duration-300 hover:scale-[1.02] active:scale-95">
-                Start Chatting Free
+              <a href="#contact-portal" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-white bg-brand hover:bg-brand/90 shadow-lg shadow-brand/15 transition-all duration-300 hover:scale-[1.02] active:scale-95">
+                Start Private Chat Free
               </a>
-              <a href="#contact" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-slateNavy bg-pureWhite hover:bg-slate-50 border border-slate-200/60 shadow-sm transition-all duration-300 active:scale-95">
+              <a href="#contact-portal" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-base font-bold rounded-full text-slate-600 bg-canvasCream hover:bg-slate-50 border border-slate-200 shadow-sm transition-all duration-300 active:scale-95">
                 Request Enterprise Demo
               </a>
             </div>
           </div>
 
-          <!-- Right Phone Graphic Column -->
-          <div class="lg:col-span-5 flex justify-center relative">
-            <div class="relative animate-bob-1">
+          <!-- Right Phone Graphics Mockup Column -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative">
               
-              <!-- Back Glow Spheres -->
-              <div class="absolute -top-12 -left-12 w-32 h-32 rounded-full bg-pastelYellow/40 -z-10 animate-bob-2"></div>
-              <div class="absolute -bottom-10 -right-8 w-28 h-28 rounded-full bg-pastelBlue/50 -z-10 animate-bob-1"></div>
-
-              <!-- High-Fidelity Phone Frame CSS Layout -->
+              <!-- Smartphone CSS Mockup framework -->
               <div class="w-72 h-[550px] bg-slateNavy rounded-[3.2rem] border-[12px] border-slateNavy shadow-2xl relative overflow-hidden flex flex-col justify-between">
                 
                 <!-- Notch detail -->
@@ -230,56 +305,56 @@
                   </div>
                 </div>
 
-                <!-- Chat display content -->
-                <div class="flex-grow bg-gradient-to-b from-therapeuticGreen via-pureWhite to-pastelBlue/30 pt-10 px-4 flex flex-col justify-between h-full text-left">
+                <!-- Live-Simulated Chat message viewport -->
+                <div id="chatViewport" class="flex-grow bg-gradient-to-b from-slate-50 via-white to-slate-50 pt-10 px-4 flex flex-col justify-between h-full text-left">
                   
-                  <!-- Screen Header info -->
+                  <!-- Screen Header Bar info -->
                   <div class="pt-4 flex justify-between items-center border-b border-slate-100 pb-3">
                     <div class="flex items-center gap-2">
-                      <div class="w-9 h-9 rounded-full bg-pureWhite border border-therapeuticGreen-accent flex items-center justify-center shadow-sm">
+                      <div class="w-9 h-9 rounded-full bg-white border border-therapeuticGreen-accent flex items-center justify-center shadow-sm">
                         <svg class="w-5 h-5 text-therapeuticGreen-deep" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                         </svg>
                       </div>
                       <div>
                         <h4 class="text-xs font-bold text-slateNavy">Menti (AI Guide)</h4>
-                        <span class="text-[9px] text-therapeuticGreen-deep font-semibold tracking-wide">Fully Protected</span>
+                        <span class="text-[9px] text-therapeuticGreen-deep font-bold tracking-wide">Fully Anonymous</span>
                       </div>
                     </div>
                   </div>
 
-                  <!-- Chat dialog rows -->
+                  <!-- Chat bubbles list -->
                   <div class="flex-grow flex flex-col justify-end space-y-4 pb-6">
                     
-                    <!-- Bot -->
-                    <div class="space-y-1 max-w-[85%]">
-                      <span class="text-[9px] text-slateNavy/50 pl-2">Menti</span>
-                      <div class="bg-pureWhite border border-slate-100 p-3.5 rounded-[1.25rem] rounded-tl-none shadow-sm text-xs text-slateNavy/90 font-medium leading-relaxed">
-                        Good day. I am here to hold a safe space for you. How is your focus level right now? 🌿
+                    <!-- Bubble 1: Bot -->
+                    <div class="space-y-1 max-w-[85%] chat-bubble-animated" style="animation-delay: 0.5s;">
+                      <span class="text-[9px] text-slate-500 pl-2">Menti</span>
+                      <div class="bg-white border border-slate-100 p-3.5 rounded-[1.25rem] rounded-tl-none shadow-sm text-xs text-slate-700 font-semibold leading-relaxed">
+                        Welcome to a quiet harbor. Tell me, how does your mind feel today? 🌸
                       </div>
                     </div>
 
-                    <!-- User -->
-                    <div class="space-y-1 max-w-[85%] self-end">
-                      <div class="bg-slateNavy text-pureWhite p-3.5 rounded-[1.25rem] rounded-tr-none shadow-sm text-xs font-medium leading-relaxed">
-                        A bit scattered, finding it hard to block out noise.
+                    <!-- Bubble 2: User response -->
+                    <div class="space-y-1 max-w-[85%] self-end chat-bubble-animated" style="animation-delay: 2.2s;">
+                      <div class="bg-therapeuticGreen border border-therapeuticGreen-accent/30 text-therapeuticGreen-deep p-3.5 rounded-[1.25rem] rounded-tr-none shadow-sm text-xs font-semibold leading-relaxed">
+                        Slightly anxious about my current workloads.
                       </div>
                     </div>
 
-                    <!-- Bot -->
-                    <div class="space-y-1 max-w-[85%]">
-                      <span class="text-[9px] text-slateNavy/50 pl-2">Menti</span>
-                      <div class="bg-pureWhite border border-slate-100 p-3.5 rounded-[1.25rem] rounded-tl-none shadow-sm text-xs text-slateNavy/90 font-medium leading-relaxed">
-                        Tension happens. Let's practice a brief anchoring exercise together...
+                    <!-- Bubble 3: Bot Response -->
+                    <div class="space-y-1 max-w-[85%] chat-bubble-animated" style="animation-delay: 4.0s;">
+                      <span class="text-[9px] text-slate-500 pl-2">Menti</span>
+                      <div class="bg-white border border-slate-100 p-3.5 rounded-[1.25rem] rounded-tl-none shadow-sm text-xs text-slate-700 font-semibold leading-relaxed">
+                        I am here for that noise. Let's try a simple square breathing flow together...
                       </div>
                     </div>
 
                   </div>
 
-                  <!-- Mock Chat input -->
+                  <!-- Mock Chat Entry Bar -->
                   <div class="pb-6">
-                    <div class="bg-pureWhite rounded-full border border-slate-100 p-1.5 flex justify-between items-center shadow-sm">
-                      <span class="text-[10px] text-slateNavy/40 pl-3 font-medium">Ready to focus...</span>
+                    <div class="bg-white rounded-full border border-slate-100 p-1.5 flex justify-between items-center shadow-sm">
+                      <span class="text-[10px] text-slate-400 pl-3 font-semibold">Tuning into focus...</span>
                       <div class="w-7 h-7 rounded-full bg-therapeuticGreen-accent flex items-center justify-center text-therapeuticGreen-deep">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
                           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -292,24 +367,24 @@
 
               </div>
 
-              <!-- Compliance Overlays / Floating Badges -->
-              <div class="absolute -top-6 -right-6 bg-pureWhite rounded-3xl p-4 border border-slate-100 shadow-xl flex items-center gap-3 animate-bob-2 max-w-[160px]">
-                <div class="w-10 h-10 rounded-xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep">
+              <!-- Extra floating parameters / badges -->
+              <div class="absolute -top-8 -right-8 bg-white rounded-3xl p-4 border border-slate-100 shadow-xl flex items-center gap-3 max-w-[170px] pointer-events-none">
+                <div class="w-10 h-10 rounded-2xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep">
                   🔒
                 </div>
                 <div>
                   <h5 class="text-xs font-bold text-slateNavy">HIPAA</h5>
-                  <p class="text-[10px] text-slateNavy/60 font-semibold">Compliant Security</p>
+                  <p class="text-[10px] text-slate-500 font-semibold">Protected Care</p>
                 </div>
               </div>
 
-              <div class="absolute bottom-12 -left-12 bg-pureWhite rounded-3xl p-4 border border-slate-100 shadow-xl flex items-center gap-3 animate-bob-1 max-w-[160px]">
-                <div class="w-10 h-10 rounded-xl bg-pastelBlue flex items-center justify-center text-pastelBlue-deep">
+              <div class="absolute bottom-8 -left-8 bg-white rounded-3xl p-4 border border-slate-100 shadow-xl flex items-center gap-3 max-w-[170px] pointer-events-none">
+                <div class="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-electricBlue-accent">
                   🛡️
                 </div>
                 <div>
-                  <h5 class="text-xs font-bold text-slateNavy">SOC2</h5>
-                  <p class="text-[10px] text-slateNavy/60 font-semibold">Certified Ecosystem</p>
+                  <h5 class="text-xs font-bold text-slateNavy">SOC2 Type II</h5>
+                  <p class="text-[10px] text-slate-500 font-semibold">Certified Safe</p>
                 </div>
               </div>
 
@@ -320,137 +395,185 @@
       </div>
     </section>
 
-    <!-- ENTERPRISE GLOBAL TRUST BANNER -->
-    <section class="py-12 bg-slate-50 border-y border-slate-100 overflow-hidden">
+    <!-- SECTION 3 — THE GLOBAL VALIDATION MARQUEE -->
+    <section class="py-12 bg-slate-50 border-y border-slate-100 overflow-hidden relative">
+      <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10 pointer-events-none"></div>
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center space-y-6">
-        <h4 class="text-xs font-bold uppercase tracking-widest text-slateNavy/40">Trusted by forward-thinking organizations globally</h4>
-        
-        <!-- Grid layout of monochrome logo representation values -->
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-40">
-          <span class="text-lg font-bold text-slateNavy tracking-wider">HEALTHCORE</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">AETNA APEX</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">MEDNET CO</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">VANGUARD LABS</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">NEXUS HUMAN</span>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400">Trusted by forward-thinking organizations globally</h4>
+        <div class="animate-marquee-loop flex items-center gap-16 opacity-45">
+          <span class="text-lg font-bold text-slateNavy tracking-wider">HEALTHCORE HEALTH SYSTEMS</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">AETNA APEX GROUP</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MEDNET CLINICAL CORP</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">VANGUARD LABS GLOBAL</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">NEXUS HUMAN LOGISTICS</span>
         </div>
       </div>
     </section>
 
-    <!-- INTERACTIVE SOLUTION EXPLORER -->
-    <section class="py-24 bg-pureWhite relative">
+    <!-- SECTION 4 — ABOUT SPLIT (COMPACT SHOWN ROW IN HIGH CONTRAST) -->
+    <section id="about" class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center py-24 px-12 max-w-7xl mx-auto">
+      
+      <!-- Visual Display Container (Squeezed compact form factor, no empty bars above/below) -->
+      <div class="about-visual relative rounded-[2.5rem] overflow-visible bg-gradient-to-br from-slate-100/40 to-white border border-slate-200/60 p-6 md:p-8 flex flex-col items-center justify-center w-full shadow-inner">
+        <div class="about-grid absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(108,140,245,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(108,140,245,0.18)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        
+        <!-- Center-Aligned Visual Orb serving as background directly behind the cards -->
+        <div class="about-visual-orb absolute w-[75%] h-[75%] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(108,140,245,0.16),rgba(167,139,250,0.08)_50%,transparent_70%)] animate-pulse-brand filter blur-[3px]"></div>
+
+        <!-- Centered, side-by-side horizontal row (Aligns perfectly with circle bg) -->
+        <div class="relative z-20 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
+          
+          <!-- Card A (Hover border highlight enabled) -->
+          <div class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-[2rem] p-5 shadow-lg shadow-slate-200/40 text-left transition-all duration-300 hover:border-brand interactive-box">
+            <div class="w-10 h-10 rounded-xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep mb-3 font-semibold text-lg">👥</div>
+            <div class="about-stat-num font-serif text-3xl font-extrabold text-brand" data-count="10000" data-suffix="+">0</div>
+            <div class="text-slateNavy font-bold text-sm mt-1">Sessions Completed</div>
+            <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-1">Anonymous support sessions successfully completed globally.</p>
+          </div>
+
+          <!-- Card B -->
+          <div class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-[2rem] p-5 shadow-lg shadow-slate-200/40 text-left transition-all duration-300 hover:border-brand interactive-box">
+            <div class="w-10 h-10 rounded-xl bg-electricBlue flex items-center justify-center text-electricBlue-deep mb-3 font-semibold text-lg">📈</div>
+            <div class="about-stat-num font-serif text-3xl font-extrabold text-brand" data-count="95" data-suffix="%">0</div>
+            <div class="text-slateNavy font-bold text-sm mt-1">Positive Outcomes</div>
+            <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-1">Users report positive progress within their very first session.</p>
+          </div>
+
+        </div>
+      </div>
+      
+      <div class="text-center lg:text-left space-y-6">
+        <span class="section-label text-xs font-bold uppercase tracking-widest text-brand block reveal">Who We Are</span>
+        <h2 class="section-title font-serif text-4xl sm:text-5xl font-light leading-tight text-slateNavy reveal reveal-delay-1">Healing begins with <em class="italic text-violetAccent">feeling safe</em></h2>
+        <p class="section-body text-base text-slate-600 font-light leading-relaxed reveal reveal-delay-2">
+          Mentrova is built on a single belief — that everyone deserves access to compassionate mental wellness support, without fear of judgment or identity exposure. We combine the speed of AI with the warmth of real human counsellors.
+        </p>
+        <div class="about-pills flex flex-wrap gap-2.5 pt-4 justify-center lg:justify-start reveal reveal-delay-3">
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">No account required</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">Data never sold</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">End-to-end privacy</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">Clinically informed</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">Always available</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 — INTERACTIVE SOLUTIONS EXPLORER -->
+    <section id="solutions-explorer" class="py-24 bg-canvasBase relative border-t border-slate-100">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
-        <!-- Header info -->
+        <!-- Header -->
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Tailored Configurations</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">How Mentrova Meets Your Needs</h3>
-          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
-            Select a pathway below to view optimized features and operational parameters structured around your demographic class.
+          <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Flexible Implementations</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">How Mentrova Meets Your Needs</h3>
+          <p class="text-lg text-slate-650 font-semibold leading-relaxed">
+            Select a pathway below to view customized configurations designed around individual or professional demographics.
           </p>
         </div>
 
         <!-- Horizontal navigation bar tabs -->
         <div class="flex justify-center mb-12">
-          <div class="bg-slate-50 p-2 rounded-full border border-slate-100 flex gap-2">
-            <button onclick="switchTab('individuals')" id="tab-btn-individuals" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 bg-slateNavy text-white">
+          <div class="bg-slate-50 p-2 rounded-full border border-slate-200 flex gap-2">
+            <button onclick="switchTab('individuals')" id="tab-btn-individuals" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 bg-brand text-slateNavy shadow-md cursor-none">
               For Individuals
             </button>
-            <button onclick="switchTab('employers')" id="tab-btn-employers" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slateNavy/70 hover:text-slateNavy">
+            <button onclick="switchTab('employers')" id="tab-btn-employers" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slateNavy cursor-none">
               For Employers
             </button>
-            <button onclick="switchTab('healthcare')" id="tab-btn-healthcare" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slateNavy/70 hover:text-slateNavy">
+            <button onclick="switchTab('healthcare')" id="tab-btn-healthcare" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slateNavy cursor-none">
               For Healthcare
             </button>
           </div>
         </div>
 
         <!-- Tab contents (Managed Dynamically via JS) -->
-        <div class="bg-creamBg border border-slate-100 rounded-5xl p-8 md:p-16 shadow-inner transition-all duration-300">
+        <div class="bg-canvasCream border border-slate-200 rounded-5xl p-8 md:p-16 shadow-lg transition-all duration-300">
           
           <!-- Tab 1 content: Individuals -->
           <div id="tab-content-individuals" class="tab-pane grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-              <h4 class="text-3xl font-extrabold text-slateNavy">Private Wellness Guides for You</h4>
-              <p class="text-lg text-slateNavy/80 font-medium leading-relaxed">
+            <div class="space-y-6 text-left">
+              <h4 class="text-3xl font-extrabold text-slateNavy font-serif">Private Wellness Guides for You</h4>
+              <p class="text-lg text-slate-600 font-medium leading-relaxed">
                 Connect directly with Menti, our conversational assistant. Explore 150+ evidence-based exercises designed by mental health specialists to process anxiety, regulate sleep patterns, and build daily habits without login configurations.
               </p>
-              <div class="space-y-3">
+              <div class="space-y-3 font-semibold">
                 <div class="flex items-center gap-3">
-                  <div class="w-3.5 h-3.5 rounded-full bg-therapeuticGreen-accent"></div>
-                  <span class="text-sm font-bold text-slateNavy/90">24/7 Unlimited Listening Companion</span>
+                  <div class="w-3.5 h-3.5 rounded-full bg-brand"></div>
+                  <span class="text-sm text-slate-700">24/7 Unlimited Listening Companion</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <div class="w-3.5 h-3.5 rounded-full bg-therapeuticGreen-accent"></div>
-                  <span class="text-sm font-bold text-slateNavy/90">Curated Clinical Exercises (CBT & DBT)</span>
+                  <div class="w-3.5 h-3.5 rounded-full bg-brand"></div>
+                  <span class="text-sm text-slate-700">Curated Clinical Exercises (CBT & DBT)</span>
                 </div>
               </div>
             </div>
             <div class="flex justify-center">
-              <!-- Custom Graphic Mockup -->
-              <div class="bg-pureWhite rounded-[2.5rem] p-8 border border-slate-100 shadow-sm max-w-sm space-y-4">
-                <div class="w-12 h-12 rounded-2xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep">
+              <!-- Personal Core Journey Card - Interactive hover highlight border -->
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
+                <div class="w-12 h-12 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center">
                   👤
                 </div>
-                <h5 class="text-xl font-bold text-slateNavy">Personal Core Journey</h5>
-                <p class="text-sm text-slateNavy/70 leading-relaxed font-medium">Your spaces, parameters, and logs stay locally on your device, giving you absolute power over your security.</p>
+                <h5 class="text-xl font-bold text-slateNavy font-serif">Personal Core Journey</h5>
+                <p class="text-sm text-slate-500 leading-relaxed font-semibold">Your spaces, parameters, and logs stay locally on your device, giving you absolute power over your security.</p>
               </div>
             </div>
           </div>
 
           <!-- Tab 2 content: Employers -->
           <div id="tab-content-employers" class="tab-pane hidden grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-              <h4 class="text-3xl font-extrabold text-slateNavy">Empower & Support Your Workforce</h4>
-              <p class="text-lg text-slateNavy/80 font-medium leading-relaxed">
+            <div class="space-y-6 text-left">
+              <h4 class="text-3xl font-extrabold text-slateNavy font-serif">Empower & Support Your Workforce</h4>
+              <p class="text-lg text-slate-655 font-medium leading-relaxed">
                 Upgrade workplace resilience with an anonymous platform your team will actually want to use. Mentrova provides early mental resilience interventions while guaranteeing complete employee privacy to optimize true workspace trust.
               </p>
-              <div class="space-y-3">
+              <div class="space-y-3 font-semibold">
                 <div class="flex items-center gap-3">
-                  <div class="w-3.5 h-3.5 rounded-full bg-pastelBlue-accent"></div>
-                  <span class="text-sm font-bold text-slateNavy/90">Aggregated Workspace Wellness Scoreboards</span>
+                  <div class="w-3.5 h-3.5 rounded-full bg-electricBlue-accent"></div>
+                  <span class="text-sm text-slate-700">Aggregated Workspace Wellness Scoreboards</span>
                 </div>
                 <div class="flex items-center gap-3">
-                  <div class="w-3.5 h-3.5 rounded-full bg-pastelBlue-accent"></div>
-                  <span class="text-sm font-bold text-slateNavy/90">100% Anonymity for Team Members</span>
+                  <div class="w-3.5 h-3.5 rounded-full bg-electricBlue-accent"></div>
+                  <span class="text-sm text-slate-700">100% Anonymity for Team Members</span>
                 </div>
               </div>
             </div>
             <div class="flex justify-center">
-              <div class="bg-pureWhite rounded-[2.5rem] p-8 border border-slate-100 shadow-sm max-w-sm space-y-4">
-                <div class="w-12 h-12 rounded-2xl bg-pastelBlue flex items-center justify-center text-pastelBlue-deep">
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 text-electricBlue-accent flex items-center justify-center border border-electricBlue-accent/20">
                   🏢
                 </div>
-                <h5 class="text-xl font-bold text-slateNavy">Corporate Enterprise Suite</h5>
-                <p class="text-sm text-slateNavy/70 leading-relaxed font-medium">Protect employee health directly, resulting in lower clinical insurance parameters and elevated retention metrics.</p>
+                <h5 class="text-xl font-bold text-slateNavy font-serif">Corporate Enterprise Suite</h5>
+                <p class="text-sm text-slate-500 leading-relaxed font-semibold">Protect employee health directly, resulting in lower clinical insurance parameters and elevated retention metrics.</p>
               </div>
             </div>
           </div>
 
           <!-- Tab 3 content: Healthcare -->
           <div id="tab-content-healthcare" class="tab-pane hidden grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="space-y-6">
-              <h4 class="text-3xl font-extrabold text-slateNavy">Integrating Clinical Support Pipelines</h4>
-              <p class="text-lg text-slateNavy/80 font-medium leading-relaxed">
-                Scale your mental health services safely. Mentrova operates as a digital triaging tool, assessing and routing patient flows toward standard standardized clinical metrics (PHQ-9 / GAD-7) with secure backend API handshakes.
+            <div class="space-y-6 text-left">
+              <h4 class="text-3xl font-extrabold text-slateNavy font-serif">Integrating Clinical Support Pipelines</h4>
+              <p class="text-lg text-slate-655 font-medium leading-relaxed">
+                Scale your mental health services safely. Mentrova operates as a digital triaging tool, assessing and routing patient flows toward standardized clinical metrics (PHQ-9 / GAD-7) with secure backend API handshakes.
               </p>
-              <div class="space-y-3">
+              <div class="space-y-3 font-semibold">
                 <div class="flex items-center gap-3">
                   <div class="w-3.5 h-3.5 rounded-full bg-pastelYellow-accent"></div>
-                  <span class="text-sm font-bold text-slateNavy/90">Standardized PHQ-9 & GAD-7 Checkpoints</span>
+                  <span class="text-sm text-slate-700">Standardized PHQ-9 & GAD-7 Checkpoints</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <div class="w-3.5 h-3.5 rounded-full bg-pastelYellow-accent"></div>
-                  <span class="text-sm font-bold text-slateNavy/90">Secure Patient Data Routing Handshakes</span>
+                  <span class="text-sm text-slate-700">Secure Patient Data Routing Handshakes</span>
                 </div>
               </div>
             </div>
             <div class="flex justify-center">
-              <div class="bg-pureWhite rounded-[2.5rem] p-8 border border-slate-100 shadow-sm max-w-sm space-y-4">
-                <div class="w-12 h-12 rounded-2xl bg-pastelYellow flex items-center justify-center text-pastelYellow-deep">
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 text-pastelYellow-accent flex items-center justify-center border border-pastelYellow-accent/20">
                   🏥
                 </div>
-                <h5 class="text-xl font-bold text-slateNavy">Clinical Ecosystem Tools</h5>
-                <p class="text-sm text-slateNavy/70 leading-relaxed font-medium">Direct diagnostic assessment pipelines assisting in pre-triaging before human psychiatric consulting interfaces.</p>
+                <h5 class="text-xl font-bold text-slateNavy font-serif">Clinical Ecosystem Tools</h5>
+                <p class="text-sm text-slate-500 leading-relaxed font-semibold">Direct diagnostic assessment pipelines assisting in pre-triaging before human psychiatric consulting interfaces.</p>
               </div>
             </div>
           </div>
@@ -460,51 +583,60 @@
       </div>
     </section>
 
-    <!-- PRODUCT FEATURE GRID -->
-    <section class="py-24 bg-gradient-to-b from-creamBg via-pureWhite to-creamBg">
+    <!-- SECTION 5 — ECOSYSTEM FEATURE GRID -->
+    <section id="feature-grid" class="py-24 bg-canvasBase relative border-t border-slate-100">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         
-        <!-- Grid header -->
+        <!-- Grid Header -->
         <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Product Capabilities</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">Ecosystem Architecture Modules</h3>
-          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Architecture</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Ecosystem Architecture Modules</h3>
+          <p class="text-lg text-slate-655 font-semibold leading-relaxed">
             Our platform merges clinical intelligence with elegant, high-fidelity engineering configurations.
           </p>
         </div>
 
-        <!-- 3 Card layout -->
+        <!-- 3-Column Feature Grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           
-          <!-- Card A -->
-          <div class="bg-pureWhite rounded-4xl p-8 border border-slate-100 hover:border-therapeuticGreen-accent hover:-translate-y-2 hover:shadow-xl hover:shadow-therapeuticGreen-accent/5 transition-all duration-300">
+          <!-- Module A -->
+          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-200/80 hover:border-brand hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/5 transition-all duration-300 group text-left interactive-box">
             <div class="w-14 h-14 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center mb-8">
-              💬
+              <!-- Chat Bubble SVG -->
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.023c.09-.457-.133-.901-.467-1.226C3.504 16.33 3 14.28 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+              </svg>
             </div>
-            <h4 class="text-xl font-bold text-slateNavy mb-3">Conversational AI Guide</h4>
-            <p class="text-slateNavy/75 font-medium leading-relaxed">
+            <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Conversational AI Guide</h4>
+            <p class="text-slate-500 font-semibold leading-relaxed text-sm">
               Our core conversational companion offers unlimited 24/7 listening support. It is trained under clinically validated cognitive-behavioral guidelines to provide a non-judgmental dialogue experience.
             </p>
           </div>
 
-          <!-- Card B -->
-          <div class="bg-pureWhite rounded-4xl p-8 border border-slate-100 hover:border-pastelBlue-accent hover:-translate-y-2 hover:shadow-xl hover:shadow-pastelBlue-accent/5 transition-all duration-300">
-            <div class="w-14 h-14 rounded-2xl bg-pastelBlue text-pastelBlue-deep flex items-center justify-center mb-8">
-              🧘
+          <!-- Module B -->
+          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-200/80 hover:border-tealAccent hover:-translate-y-2 hover:shadow-2xl hover:shadow-tealAccent/5 transition-all duration-300 group text-left interactive-box">
+            <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-tealAccent/25 text-tealAccent flex items-center justify-center mb-8">
+              <!-- Lotus SVG -->
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m14.071 8.071l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
             </div>
-            <h4 class="text-xl font-bold text-slateNavy mb-3">Mindfulness Toolkits</h4>
-            <p class="text-slateNavy/75 font-medium leading-relaxed">
+            <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Mindfulness Toolkits</h4>
+            <p class="text-slate-500 font-semibold leading-relaxed text-sm">
               Explore over 150+ specialized digital interventions, including controlled breathing pattern metrics, sleep aids, muscle-relaxation audios, and dynamic daily mood assessment metrics.
             </p>
           </div>
 
-          <!-- Card C -->
-          <div class="bg-pureWhite rounded-4xl p-8 border border-slate-100 hover:border-pastelYellow-accent hover:-translate-y-2 hover:shadow-xl hover:shadow-pastelYellow-accent/5 transition-all duration-300">
-            <div class="w-14 h-14 rounded-2xl bg-pastelYellow text-pastelYellow-deep flex items-center justify-center mb-8">
-              🔒
+          <!-- Module C (Anonymity & Encryption card - Hover highlight enabled) -->
+          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-200 hover:border-brand hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/5 transition-all duration-300 group text-left interactive-box">
+            <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-goldAccent-accent/25 text-goldAccent-accent flex items-center justify-center mb-8">
+              <!-- Lock SVG -->
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+              </svg>
             </div>
-            <h4 class="text-xl font-bold text-slateNavy mb-3">Anonymity & Encryption</h4>
-            <p class="text-slateNavy/75 font-medium leading-relaxed">
+            <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Anonymity & Encryption</h4>
+            <p class="text-slate-500 font-semibold leading-relaxed text-sm">
               We deploy strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information on our companion dialog servers.
             </p>
           </div>
@@ -514,96 +646,364 @@
       </div>
     </section>
 
-    <!-- CLINICAL EFFICACY & SCIENCE BANNER -->
-    <section id="clinical-evidence" class="py-24 bg-gradient-to-r from-therapeuticGreen-deep via-emerald-800 to-therapeuticGreen-deep text-pureWhite shadow-inner relative overflow-hidden">
-      <!-- Background detail -->
-      <div class="absolute -right-24 -bottom-24 w-80 h-80 bg-white/5 rounded-full filter blur-3xl"></div>
-      
+    <!-- SECTION 6 — ADVANCED 3D SPATIAL FLIP-CARDS -->
+    <section class="py-24 bg-canvasBase relative border-t border-slate-100">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Matrix Header -->
+        <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Interactive Pillars</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Immersive Framework Deep Dive</h3>
+          <p class="text-lg text-slate-655 font-semibold leading-relaxed">
+            Hover or tap any card below to experience the dynamic depth transforms.
+          </p>
+        </div>
+
+        <!-- Card matrix -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
           
-          <!-- Left side metric statistics -->
-          <div class="space-y-8">
-            <h4 class="text-xs font-bold uppercase tracking-widest text-therapeuticGreen bg-white/10 px-4 py-2 rounded-full inline-block">Science Backed</h4>
-            <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight">Empathetic Tech Rooted in Real Data</h3>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
-              <div class="border-l-4 border-therapeuticGreen-accent pl-4">
-                <span class="block text-4xl font-black text-white tracking-tight">91%</span>
-                <p class="text-sm text-therapeuticGreen font-medium mt-1">Users reporting improved mood & resilience</p>
+          <!-- Card A: Conversational AI Guide -->
+          <div class="perspective-container" data-tilt>
+            <div class="flip-card-inner interactive-box">
+              
+              <!-- Front Face (Absolutely positioned to match identical grid coordinate specs + hover border trigger) -->
+              <div class="flip-card-front bg-canvasCream border border-slate-200/80 hover:border-brand p-8 flex flex-col justify-between text-center shadow-lg hover:shadow-2xl transition-all duration-300 glint-overlay">
+                <div class="mx-auto w-16 h-16 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.023c.09-.457-.133-.901-.467-1.226C3.504 16.33 3 14.28 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                  </svg>
+                </div>
+                <h4 class="text-2xl font-bold text-slateNavy font-serif">Absolute Privacy</h4>
+                <p class="text-slate-500 text-sm font-semibold leading-relaxed">Safe, completely anonymous login protocols that guarantee zero trace elements are kept from your private dialog logs.</p>
+                <div class="text-xs font-bold text-brand uppercase tracking-widest bg-slate-50 border border-slate-200 py-2 px-4 rounded-full inline-block self-center">Hover to Flip</div>
               </div>
-              <div class="border-l-4 border-therapeuticGreen-accent pl-4">
-                <span class="block text-4xl font-black text-white tracking-tight">50M+</span>
-                <p class="text-sm text-therapeuticGreen font-medium mt-1">Encrypted sessions safely completed</p>
+
+              <!-- Back Face -->
+              <div class="flip-card-back bg-slateNavy border-4 border-brand p-8 flex flex-col justify-between text-center text-slate-200 shadow-2xl">
+                <div class="space-y-4">
+                  <h4 class="text-2xl font-bold text-brand font-serif">Active AI Listening</h4>
+                  <p class="text-slate-300 text-sm font-medium leading-relaxed">Menti offers patient conversational therapeutic alignment. No wait lists, no entry diagnostics, and absolute private guidance.</p>
+                  <ul class="text-xs text-brand space-y-1 font-semibold">
+                    <li>• 24/7 Unrestricted Availability</li>
+                    <li>• End-to-End Encrypted Dialogs</li>
+                    <li>• Evidence-Based CBT Schemas</li>
+                  </ul>
+                </div>
+                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-none">Connect Now</a>
               </div>
+
             </div>
           </div>
 
-          <!-- Right side clinical description copy -->
-          <div class="bg-white/10 backdrop-blur-md p-8 rounded-[2.5rem] border border-white/15 space-y-6">
-            <h5 class="text-lg font-bold text-therapeuticGreen">Validated Behavioral Methods</h5>
-            <p class="text-base text-therapeuticGreen/90 font-medium leading-relaxed">
-              Mentrova is designed from peer-reviewed research, adapting Cognitive Behavioral Therapy (CBT), Dialectical Behavioral Therapy (DBT), and mindfulness exercises into comfortable, user-friendly mobile chat environments.
-            </p>
-            <p class="text-base text-therapeuticGreen/90 font-medium leading-relaxed">
-              Our computational frameworks undergo clinical trial evaluations to ensure that Menti's conversational responses remain clinically safe, supportive, and effective.
-            </p>
+          <!-- Card B: Mindful Exercises -->
+          <div class="perspective-container" data-tilt>
+            <div class="flip-card-inner interactive-box">
+              
+              <!-- Front Face -->
+              <div class="flip-card-front bg-canvasCream border border-slate-200/80 hover:border-brand p-8 flex flex-col justify-between text-center shadow-lg hover:shadow-2xl transition-all duration-300 glint-overlay">
+                <div class="mx-auto w-16 h-16 rounded-2xl bg-slate-100 border border-tealAccent/20 text-tealAccent flex items-center justify-center">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m14.071 8.071l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <h4 class="text-2xl font-bold text-slateNavy font-serif">Mindful Exercises</h4>
+                <p class="text-slate-500 text-sm font-semibold leading-relaxed">Curated clinical program directories with customized daily breathing patterns, mood tracking logs, and CBT exercises.</p>
+                <div class="text-xs font-bold text-tealAccent uppercase tracking-widest bg-slate-100 border border-tealAccent/25 py-2 px-4 rounded-full inline-block self-center">Hover to Flip</div>
+              </div>
+
+              <!-- Back Face -->
+              <div class="flip-card-back bg-slateNavy border-4 border-tealAccent p-8 flex flex-col justify-between text-center text-slate-200 shadow-2xl">
+                <div class="space-y-4">
+                  <h4 class="text-2xl font-bold text-tealAccent font-serif">Evidence-Based Tools</h4>
+                  <p class="text-slate-300 text-sm font-medium leading-relaxed">Unlock over 150+ specialized frameworks co-designed by cognitive-behavioral scientists to safely resolve negative anxiety spirals in real-time.</p>
+                  <ul class="text-xs text-tealAccent space-y-1 font-semibold">
+                    <li>• Guided Diaphragmatic Breath</li>
+                    <li>• Standard Clinical Diagnostics</li>
+                    <li>• Personalized Habit Logs</li>
+                  </ul>
+                </div>
+                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-none">Try Preview</a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Card C: Absolute Anonymity (Hover border trigger enabled) -->
+          <div class="perspective-container" data-tilt>
+            <div class="flip-card-inner interactive-box">
+              
+              <!-- Front Face -->
+              <div class="flip-card-front bg-canvasCream border border-slate-200 hover:border-brand p-8 flex flex-col justify-between text-center shadow-lg hover:shadow-2xl transition-all duration-300 glint-overlay">
+                <div class="mx-auto w-16 h-16 rounded-2xl bg-slate-100 border border-goldAccent-accent/20 text-goldAccent-accent flex items-center justify-center">
+                  <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                  </svg>
+                </div>
+                <h4 class="text-2xl font-bold text-slateNavy font-serif">Absolute Anonymity</h4>
+                <p class="text-slate-500 text-sm font-semibold leading-relaxed">Safe, completely anonymous login protocols that guarantee zero trace elements are kept from your private dialog logs.</p>
+                <div class="text-xs font-bold text-goldAccent-accent uppercase tracking-widest bg-slate-100 border border-goldAccent-accent/25 py-2 px-4 rounded-full inline-block self-center">Hover to Flip</div>
+              </div>
+
+              <!-- Back Face -->
+              <div class="flip-card-back bg-slateNavy border-4 border-goldAccent-accent p-8 flex flex-col justify-between text-center text-slate-200 shadow-2xl">
+                <div class="space-y-4">
+                  <h4 class="text-2xl font-bold text-goldAccent-accent font-serif">Zero Identity Storage</h4>
+                  <p class="text-slate-300 text-sm font-medium leading-relaxed">Mentrova routes every dialog stream through encrypted masking servers. There are no profiles, email logs, or trace trackers saved on our clinical databases.</p>
+                  <ul class="text-xs text-goldAccent-accent space-y-1 font-semibold">
+                    <li>• Strict No-Log Server Polices</li>
+                    <li>• Cryptographic Identity Erasure</li>
+                    <li>• Zero Ad-Tracking Identifiers</li>
+                  </ul>
+                </div>
+                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-none">Learn More</a>
+              </div>
+
+            </div>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- COMPREHENSIVE FAQ ACCORDION HUB -->
-    <section id="faq" class="py-24 bg-pureWhite">
+    <!-- SECTION 7 — CLINICAL ASSESSMENT ENGINE -->
+    <section id="assessment-hub" class="py-24 bg-canvasBase relative border-t border-slate-100">
+      <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Real-time Check-In</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Check In With Yourself</h3>
+          <p class="text-lg text-slate-600 font-semibold leading-relaxed">
+            Take a brief, completely private assessment to estimate your current wellness indexes and unlock initial recommendations.
+          </p>
+        </div>
+
+        <!-- Assessment Widget Container -->
+        <div class="bg-canvasBase border border-slate-100 rounded-[2.5rem] p-8 md:p-14 shadow-inner relative overflow-hidden min-h-[420px] flex flex-col justify-between interactive-box">
+          
+          <!-- Progress bar -->
+          <div class="w-full bg-slate-200 h-2.5 rounded-full mb-8 relative overflow-hidden">
+            <div id="assessmentProgress" class="bg-brand h-full w-[33%] transition-all duration-500 rounded-full"></div>
+          </div>
+
+          <!-- Step Display Card (Controlled via JavaScript) -->
+          <div class="flex-grow flex flex-col justify-center">
+            
+            <!-- Step 1: Stress frequency -->
+            <div id="assess-step-1" class="assess-step space-y-8 transition-all duration-300">
+              <h4 class="text-2xl font-bold text-center text-slateNavy font-serif">Question 1: How often do you find it hard to disconnect from stressful thoughts?</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button onclick="handleAnswer(1, 33)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Rarely / Never</button>
+                <button onclick="handleAnswer(1, 20)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Sometimes</button>
+                <button onclick="handleAnswer(1, 5)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Almost Always</button>
+              </div>
+            </div>
+
+            <!-- Step 2: Energy level -->
+            <div id="assess-step-2" class="assess-step hidden space-y-8 transition-all duration-300">
+              <h4 class="text-2xl font-bold text-center text-slateNavy font-serif">Question 2: How would you describe your overall mental energy today?</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button onclick="handleAnswer(2, 5)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Slightly Depleted</button>
+                <button onclick="handleAnswer(2, 20)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Stable & Balanced</button>
+                <button onclick="handleAnswer(2, 33)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Highly Energized</button>
+              </div>
+            </div>
+
+            <!-- Step 3: Physical signs -->
+            <div id="assess-step-3" class="assess-step hidden space-y-8 transition-all duration-300">
+              <h4 class="text-2xl font-bold text-center text-slateNavy font-serif">Question 3: Are you experiencing physical symptoms of stress like tension?</h4>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <button onclick="handleAnswer(3, 34)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">No, I feel relaxed</button>
+                <button onclick="handleAnswer(3, 20)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Yes, mild tightness</button>
+                <button onclick="handleAnswer(3, 5)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Yes, severe tension</button>
+              </div>
+            </div>
+
+            <!-- Step 4: Final Calculations -->
+            <div id="assess-step-final" class="assess-step hidden space-y-6 text-center transition-all duration-300">
+              <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-slateNavy border-4 border-brand text-brand mb-4 shadow-sm">
+                🧘
+              </div>
+              <h4 class="text-3xl font-extrabold text-slateNavy font-serif">Your Assessment Complete</h4>
+              <p class="text-lg text-slate-500 font-semibold">Your Mental Resilience Index is calculated as:</p>
+              
+              <div class="text-5xl font-black text-brand bg-slateNavy py-4 px-10 rounded-full inline-block tracking-tight shadow-sm border border-borderAccent">
+                <span id="scoreVal">0</span> / 100
+              </div>
+
+              <div class="bg-slate-900 rounded-3xl p-6 border border-slate-800 max-w-lg mx-auto text-left mt-6">
+                <h5 class="text-base font-bold text-white mb-2">Personalized Recommendation:</h5>
+                <p id="recommendationText" class="text-sm text-slate-300 leading-relaxed font-semibold">Your scoring indicators are loading...</p>
+              </div>
+
+              <button onclick="resetAssessment()" class="mt-6 text-sm font-bold text-slate-400 hover:text-slateNavy hover:underline focus:outline-none transition cursor-none">Retake Assessment</button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 8 — ENTERPRISE WORKPLACE ANALYTICS INTERFACE -->
+    <section id="employers-section" class="py-24 bg-pureWhite relative border-y border-slate-100">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          
+          <!-- Left Text Details -->
+          <div class="space-y-6 text-center lg:text-left">
+            <span class="section-label text-xs font-bold uppercase tracking-widest text-brand block reveal">B2B Core Architecture</span>
+            <h2 class="section-title font-serif text-4xl font-extrabold text-slateNavy leading-tight reveal reveal-delay-1">Reduce Workplace Burnout & Absenteeism Directly</h2>
+            <p class="text-lg text-slate-655 font-medium leading-relaxed reveal reveal-delay-2">
+              We understand corporate stress indexes. Mentrova provides early, therapeutic conversational screening loops that significantly reduce employee mental health crises while fully protecting staff member privacy.
+            </p>
+            <div class="grid grid-cols-2 gap-6 pt-4 text-left reveal reveal-delay-3">
+              <div class="border-l-4 border-brand pl-4">
+                <!-- Contrast Fixed: White text shifted to readable professional slateNavy -->
+                <span class="block text-3xl font-black text-slateNavy">-28%</span>
+                <span class="text-sm text-slate-450 font-semibold">Workspace Burnout reduction</span>
+              </div>
+              <div class="border-l-4 border-tealAccent pl-4">
+                <!-- Contrast Fixed: White text shifted to readable professional slateNavy -->
+                <span class="block text-3xl font-black text-slateNavy">4.3x</span>
+                <span class="text-sm text-slate-455 font-semibold">Standard corporate ROI return</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Mockup Analytics Workspace Dashboard (Highlight on hover ONLY) -->
+          <div class="flex justify-center">
+            <div class="bg-canvasBase border border-slate-200/85 hover:border-brand rounded-[2.5rem] p-6 md:p-8 shadow-sm max-w-lg w-full space-y-6 transition-all duration-300" data-tilt>
+              <div class="flex justify-between items-center border-b border-slate-200/50 pb-3">
+                <h4 class="text-xs font-bold text-slateNavy uppercase tracking-wider">Aggregate Analytics Dashboard</h4>
+                <span class="text-[10px] text-brand font-bold bg-slateNavy px-2 py-0.5 rounded-md border border-borderAccent">Live Platform</span>
+              </div>
+
+              <!-- Metrics -->
+              <div class="grid grid-cols-2 gap-4 text-left">
+                <div class="bg-canvasCream p-4 rounded-2xl border border-slate-100">
+                  <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Resilience Index</span>
+                  <div class="text-2xl font-black text-slateNavy mt-1"><span id="metric-resilience">82</span>%</div>
+                </div>
+                <div class="bg-canvasCream p-4 rounded-2xl border border-slate-100">
+                  <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Total Check-Ins</span>
+                  <div class="text-2xl font-black text-slateNavy mt-1"><span id="metric-sessions">12,480</span></div>
+                </div>
+              </div>
+
+              <!-- CSS Mockup Graphs/Chart representation -->
+              <div class="bg-canvasCream p-5 rounded-2xl border border-slate-100 space-y-4">
+                <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold block text-left">Aggregate Monthly Stress Trends</span>
+                <div class="flex items-end justify-between h-28 pt-2">
+                  <div class="w-8 bg-slate-100 rounded-t-lg h-[40%]"></div>
+                  <div class="w-8 bg-slate-100 rounded-t-lg h-[60%]"></div>
+                  <div class="w-8 bg-brand rounded-t-lg h-[30%]"></div>
+                  <div class="w-8 bg-slate-100 rounded-t-lg h-[75%]"></div>
+                  <div class="w-8 bg-tealAccent rounded-t-lg h-[45%]"></div>
+                  <div class="w-8 bg-brand rounded-t-lg h-[20%]"></div>
+                </div>
+              </div>
+
+              <p class="text-[10px] text-slate-400 text-left font-bold uppercase tracking-wider text-center">
+                🛡️ Individual logs remain anonymized inside AES-256 databases
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 — CLINICAL INTEGRITY -->
+    <section id="clinical-integrity" class="py-24 bg-slate-50 relative border-b border-slate-200/60">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div class="bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-[3rem] p-10 md:p-16 shadow-xl shadow-slate-100/40 interactive-box">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-left">
+            
+            <!-- Large Stats -->
+            <div class="space-y-8">
+              <span class="section-label text-xs font-bold uppercase tracking-widest text-brand block">Science Backed</span>
+              <h3 class="text-3xl sm:text-4xl font-extrabold tracking-tight leading-tight text-slateNavy font-serif">Empathetic Tech Rooted in Real Peer-Reviewed Validation</h3>
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                <div class="border-l-4 border-brand pl-4">
+                  <span class="block text-4xl font-black text-slateNavy tracking-tight">91%</span>
+                  <p class="text-sm text-slate-600 font-semibold mt-1">Users reporting improved resilience</p>
+                </div>
+                <div class="border-l-4 border-brand pl-4">
+                  <span class="block text-4xl font-black text-slateNavy tracking-tight">50M+</span>
+                  <p class="text-sm text-slate-600 font-semibold mt-1">Sessions safely administered</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Academic Content -->
+            <div class="space-y-6">
+              <h5 class="text-lg font-bold text-brand font-serif">Validated Behavioral Methods</h5>
+              <p class="text-base text-slate-600 font-semibold leading-relaxed">
+                Mentrova is built from peer-reviewed scientific investigations, integrating Cognitive Behavioral Therapy (CBT), dialectical coaching patterns, and custom breath metrics into comfortable mobile screen conversations.
+              </p>
+              <p class="text-base text-slate-600 font-semibold leading-relaxed">
+                Our structures undergo continuous clinical board evaluations to verify that Menti's dialog trees are safe, supportive, and useful for people across global demographics.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 9 — FAQS ACCORDION -->
+    <section id="faq" class="py-24 bg-pureWhite border-t border-slate-100">
       <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
         
         <!-- Header -->
         <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Common Questions</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">Clear Insights Into Mentrova</h3>
-          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
-            Discover how we manage personal safety, data parameters, and clinical compliance workflows.
+          <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Security Clearances</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Insights Into Mentrova Settings</h3>
+          <p class="text-lg text-slate-505 font-semibold leading-relaxed">
+            Verify how we manage data protection, conversational systems, and corporate deployments.
           </p>
         </div>
 
-        <!-- Accordion Modules -->
-        <div class="space-y-4">
+        <!-- Accordions -->
+        <div class="space-y-4 text-left">
           
           <!-- Accordion item 1 -->
-          <div class="bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300">
-            <button onclick="toggleAccordion(1)" class="w-full flex items-center justify-between p-6 sm:p-8 text-left focus:outline-none">
-              <span class="text-lg sm:text-xl font-bold text-slateNavy">Is my personal data completely secure and anonymous?</span>
-              <span id="faq-icon-1" class="text-2xl font-bold text-slateNavy/50 transform transition-transform duration-300">+</span>
+          <div class="bg-canvasCream border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brand interactive-box">
+            <button onclick="toggleAccordion(1)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-none">
+              <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">Is my personal data completely secure and anonymous?</span>
+              <span id="faq-icon-1" class="text-2xl font-bold text-slate-400 transform transition-transform duration-300">+</span>
             </button>
             <div id="faq-panel-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <div class="p-6 sm:p-8 pt-0 border-t border-slate-200/50 text-base text-slateNavy/80 font-medium leading-relaxed">
-                Yes, your privacy is our foundation. Mentrova implements strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information. All communication logs are fully encrypted.
+              <div class="p-6 sm:p-8 pt-0 border-t border-slate-100 text-base text-slate-500 font-semibold leading-relaxed">
+                Yes, your privacy is our foundation. Mentrova implements strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information. All communication logs are fully encrypted and kept safely.
               </div>
             </div>
           </div>
 
           <!-- Accordion item 2 -->
-          <div class="bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300">
-            <button onclick="toggleAccordion(2)" class="w-full flex items-center justify-between p-6 sm:p-8 text-left focus:outline-none">
-              <span class="text-lg sm:text-xl font-bold text-slateNavy">How does the conversational support framework operate?</span>
-              <span id="faq-icon-2" class="text-2xl font-bold text-slateNavy/50 transform transition-transform duration-300">+</span>
+          <div class="bg-canvasCream border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brand interactive-box">
+            <button onclick="toggleAccordion(2)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-none">
+              <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">How does the conversational support framework operate?</span>
+              <span id="faq-icon-2" class="text-2xl font-bold text-slate-400 transform transition-transform duration-300">+</span>
             </button>
             <div id="faq-panel-2" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <div class="p-6 sm:p-8 pt-0 border-t border-slate-200/50 text-base text-slateNavy/80 font-medium leading-relaxed">
+              <div class="p-6 sm:p-8 pt-0 border-t border-slate-100 text-base text-slate-500 font-semibold leading-relaxed">
                 Our conversational assistant, Menti, uses evidence-based Cognitive Behavioral Therapy (CBT) and Dialectical Behavioral Therapy (DBT) guidelines. Menti is programmed to respond with empathy, providing a safe and non-judgmental dialogue experience 24/7.
               </div>
             </div>
           </div>
 
           <!-- Accordion item 3 -->
-          <div class="bg-slate-50 border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300">
-            <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 sm:p-8 text-left focus:outline-none">
-              <span class="text-lg sm:text-xl font-bold text-slateNavy">Can organizations deploy Mentrova for employee wellness benefits?</span>
-              <span id="faq-icon-3" class="text-2xl font-bold text-slateNavy/50 transform transition-transform duration-300">+</span>
+          <div class="bg-canvasCream border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brand interactive-box">
+            <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-none">
+              <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">Can organizations deploy Mentrova for employee wellness benefits?</span>
+              <span id="faq-icon-3" class="text-2xl font-bold text-slate-400 transform transition-transform duration-300">+</span>
             </button>
             <div id="faq-panel-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <div class="p-6 sm:p-8 pt-0 border-t border-slate-200/50 text-base text-slateNavy/80 font-medium leading-relaxed">
+              <div class="p-6 sm:p-8 pt-0 border-t border-slate-100 text-base text-slate-500 font-semibold leading-relaxed">
                 Absolutely. We partner with forward-thinking organizations globally to upgrade employee mental health parameters, providing anonymized dashboard analytics and custom programs while keeping individual privacy safe.
               </div>
             </div>
@@ -614,34 +1014,34 @@
       </div>
     </section>
 
-    <!-- CORE PLATFORM CONTACT PORTAL -->
-    <section id="contact" class="py-24 bg-gradient-to-b from-pureWhite to-creamBg">
+    <!-- SECTION 10 — IMMERSIVE GLASSMORPHIC CONTACT & DEMO PORTAL -->
+    <section id="contact-portal" class="py-24 bg-gradient-to-b from-canvasCream to-canvasBase border-t border-slate-100">
       <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
         
         <!-- Headers -->
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
-          <h2 class="text-xs font-bold uppercase tracking-wider text-therapeuticGreen-deep bg-therapeuticGreen px-4.5 py-1.5 rounded-full inline-block">Partner With Us</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight">Begin Your Mental Health Journey</h3>
-          <p class="text-lg text-slateNavy/70 font-medium leading-relaxed">
-            Fill out the inquiry form below, and a clinical representative will guide your next steps.
+          <span class="section-label text-xs font-bold uppercase tracking-widest text-brand block reveal">Support Connection</span>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">We Are Here to Listen</h3>
+          <p class="text-lg text-slate-600 font-semibold leading-relaxed">
+            Have partner inquiries, general platform questions, or clinical trial consultation needs? Drop us a secure note.
           </p>
         </div>
 
-        <!-- Contact card -->
-        <div class="bg-pureWhite rounded-5xl p-8 md:p-14 border border-slate-100 shadow-xl shadow-slate-200/40">
-          <form id="contactForm" class="space-y-6">
+        <!-- Custom Glassmorphic Card Form Container -->
+        <div class="bg-white/70 backdrop-blur-md rounded-[2.5rem] p-8 md:p-14 border border-slate-200 shadow-2xl text-left interactive-box">
+          <form id="supportForm" class="space-y-6">
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <!-- Name -->
+              <!-- Name Input -->
               <div>
-                <label for="contactName" class="block text-sm font-bold text-slateNavy mb-2">Full Name</label>
-                <input type="text" id="contactName" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy placeholder-slateNavy/40" placeholder="Jane Doe">
+                <label for="contactName" class="block text-sm font-bold text-slateNavy mb-2">Your Name</label>
+                <input type="text" id="contactName" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-none" placeholder="Jane Doe">
               </div>
 
               <!-- Organization Selector -->
               <div>
                 <label for="orgType" class="block text-sm font-bold text-slateNavy mb-2">Organization Type</label>
-                <select id="orgType" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy font-bold select-custom">
+                <select id="orgType" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy font-bold cursor-none">
                   <option value="individual">Individual</option>
                   <option value="employer">Employer / Business Owner</option>
                   <option value="healthcare">Healthcare Provider</option>
@@ -650,22 +1050,22 @@
               </div>
             </div>
 
-            <!-- Email -->
+            <!-- Email Input -->
             <div>
               <label for="contactEmail" class="block text-sm font-bold text-slateNavy mb-2">Email Address</label>
-              <input type="email" id="contactEmail" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy placeholder-slateNavy/40" placeholder="jane@domain.com">
+              <input type="email" id="contactEmail" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-none" placeholder="jane@domain.com">
             </div>
 
-            <!-- Message -->
+            <!-- Message Input -->
             <div>
               <label for="contactMessage" class="block text-sm font-bold text-slateNavy mb-2">Your Message</label>
-              <textarea id="contactMessage" rows="5" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-therapeuticGreen-accent focus:ring-4 focus:ring-therapeuticGreen/25 transition-all duration-300 bg-creamBg text-slateNavy placeholder-slateNavy/40" placeholder="Write your core support needs here..."></textarea>
+              <textarea id="contactMessage" rows="5" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-none" placeholder="Type your supportive note or inquiry..."></textarea>
             </div>
 
-            <!-- Submit -->
+            <!-- Pulsing Action Button (text-white configuration completely fixes the empty black box issue) -->
             <div class="pt-2">
-              <button type="submit" class="w-full inline-flex items-center justify-center px-10 py-4.5 border border-transparent text-lg font-bold rounded-full text-pureWhite bg-slateNavy hover:bg-slateNavy/95 shadow-lg shadow-slateNavy/15 focus:outline-none transition-all duration-300 animate-glow">
-                Submit Inquiry
+              <button type="submit" class="w-full inline-flex items-center justify-center px-10 py-4.5 border border-transparent text-lg font-bold rounded-full text-white bg-slateNavy hover:bg-slate-800 shadow-lg shadow-slateNavy/15 focus:outline-none transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] glint-overlay cursor-none">
+                Send Message
               </button>
             </div>
 
@@ -677,66 +1077,231 @@
 
   </main>
 
-  <!-- ENTERPRISE FOOTER INTERFACE -->
-  <footer class="bg-slate-50 py-16 border-t border-slate-100">
+  <!-- SECTION 11 — ENTERPRISE DIRECTORY FOOTER -->
+  <footer class="bg-slate-50 text-slate-500 py-16 border-t border-slate-100 text-left">
     <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         
-        <!-- Col 1: Brand Info -->
+        <!-- Column 1: Platform Details -->
         <div class="space-y-4 md:col-span-2">
-          <div class="flex items-center gap-2.5">
-            <div class="h-9 w-9 bg-gradient-to-tr from-therapeuticGreen-accent to-pastelBlue-accent flex items-center justify-center rounded-xl shadow-sm">
+          <div class="flex items-center gap-3">
+            <div class="h-9 w-9 bg-gradient-to-tr from-brand to-electricBlue-accent flex items-center justify-center rounded-xl shadow-sm">
               <svg class="h-5.5 w-5.5 text-therapeuticGreen-deep" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
               </svg>
             </div>
-            <span class="text-xl font-bold text-slateNavy tracking-tight">Mentrova</span>
+            <span class="text-xl font-bold text-slateNavy tracking-tight font-serif">Mentrova</span>
           </div>
-          <p class="text-sm text-slateNavy/60 max-w-sm font-medium leading-relaxed">
-            Mentrova is a globally deployed conversational mental health ecosystem providing evidence-based digital therapy solutions. Committed to clinical efficacy, safety, and strict HIPAA security parameters.
+          <p class="text-sm text-slate-500 max-w-sm leading-relaxed font-semibold">
+            Mentrova is a globally deployed conversational mental health ecosystem providing evidence-based digital therapy solutions. Directed by Sachin.
           </p>
-          <div class="text-[10px] text-slateNavy/40 font-bold tracking-wider uppercase pt-2">
+          <div class="text-[10px] text-slate-500 font-bold tracking-wider uppercase pt-2">
             🔒 HIPAA Compliant • SOC2 Type II Certified
           </div>
         </div>
 
-        <!-- Col 2: Platform Links -->
+        <!-- Column 2: Solutions -->
         <div class="space-y-4">
-          <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy/80">Platform</h5>
-          <ul class="space-y-2 text-sm font-semibold">
-            <li><a href="#individuals-section" class="text-slateNavy/60 hover:text-slateNavy transition">For Individuals</a></li>
-            <li><a href="#employers-section" class="text-slateNavy/60 hover:text-slateNavy transition">For Employers</a></li>
-            <li><a href="#clinical-evidence" class="text-slateNavy/60 hover:text-slateNavy transition">Clinical Evidence</a></li>
-            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">FAQ</a></li>
+          <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy">Pathways</h5>
+          <ul class="space-y-2 text-sm font-semibold text-slate-500">
+            <li><a href="#solutions-explorer" class="hover:text-slateNavy transition cursor-none">For Individuals</a></li>
+            <li><a href="#employers-section" class="hover:text-slateNavy transition cursor-none">For Employers</a></li>
+            <li><a href="#clinical-integrity" class="hover:text-slateNavy transition cursor-none">Clinical Science</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">FAQ Hub</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Legal & Security Links -->
+        <!-- Column 3: Legal -->
         <div class="space-y-4">
-          <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy/80">Legal & Security</h5>
-          <ul class="space-y-2 text-sm font-semibold">
-            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">Privacy Policy</a></li>
-            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">Terms of Service</a></li>
-            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">Security Data Sheet</a></li>
-            <li><a href="#faq" class="text-slateNavy/60 hover:text-slateNavy transition">EHR API Spec</a></li>
+          <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy">Trust & Compliance</h5>
+          <ul class="space-y-2 text-sm font-semibold text-slate-500">
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">Privacy Policy</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">Terms of Service</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">EHR API Docs</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">Platform Security</a></li>
           </ul>
         </div>
 
       </div>
 
-      <!-- Legal Break line -->
-      <div class="border-t border-slate-200/60 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p class="text-xs text-slateNavy/40 font-medium">
-          &copy; 2026 Mentrova. All rights reserved. All digital conversational interactions are managed under strict zero-knowledge encryption patterns.
+      <!-- Divider line -->
+      <div class="border-t border-slate-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="text-xs text-slate-500 font-semibold">
+          &copy; 2026 Mentrova. All rights reserved. Platform directed by Sachin. Managed under encrypted zero-knowledge safety parameters.
         </p>
       </div>
 
     </div>
   </footer>
 
+  <!-- CDN LIBRARY LOADS -->
+  <!-- Three.js (For Immersive particle backdrop) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- GSAP (For Smooth hero reveal) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <!-- Vanilla-Tilt (For feature card depth controls) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
   <!-- INTERACTIVE JAVASCRIPT ENGINE -->
   <script>
-    // Mobile Drawer Navigation Toggles
+    // ── INTERACTIVE MOUSE CURSOR (Outer lag ring completely removed) ──────────────────────────────────
+    const cursor = document.getElementById('cursor');
+    let mx = 0, my = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    function animateCursor() {
+      cursor.style.left     = mx + 'px';
+      cursor.style.top      = my + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    // ── STICKY NAVIGATION ON SCROLL ──────────────────────────────
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── HERO PARTICLE CANVAS BACKDROP ────────────────────
+    const canvas = document.getElementById('hero-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H, particles = [], mouse = { x: -9999, y: -9999 };
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+    canvas.addEventListener('mousemove', e => {
+      const r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+    });
+
+    class Particle {
+      constructor() { this.reset(); }
+      reset() {
+        this.x  = Math.random() * W;
+        this.y  = Math.random() * H;
+        this.vx = (Math.random() - .5) * .25;
+        this.vy = (Math.random() - .5) * .25;
+        this.r  = Math.random() * 1.8 + .4;
+        this.a  = Math.random() * .5 + .1;
+        this.da = (Math.random() - .5) * .003;
+        const c = Math.random();
+        // High-contrast clean medical colors for crisp rendering over white background
+        if      (c < .4) this.color = `rgba(108,140,245,`;
+        else if (c < .7) this.color = `rgba(167,139,250,`;
+        else             this.color = `rgba(56,189,248,`;
+      }
+      update() {
+        const dx = mouse.x - this.x, dy = mouse.y - this.y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 180) {
+          this.vx += dx / dist * .006;
+          this.vy += dy / dist * .006;
+        }
+        this.vx *= .995; this.vy *= .995;
+        this.x += this.vx; this.y += this.vy;
+        this.a += this.da;
+        if (this.a < .05 || this.a > .65) this.da *= -1;
+        if (this.x < 0) this.x = W;
+        if (this.x > W) this.x = 0;
+        if (this.y < 0) this.y = H;
+        if (this.y > H) this.y = 0;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+        ctx.fillStyle = this.color + this.a + ')';
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 180; i++) particles.push(new Particle());
+
+    function drawConnections() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i+1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const d  = Math.sqrt(dx*dx + dy*dy);
+          if (d < 90) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(108,140,245,${(1 - d/90) * .12})`;
+            ctx.lineWidth = .5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      drawConnections();
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    // ── GSAP HERO TITLE CHARACTER STAGGER REVEAL ────────────────
+    const heroTitle = document.getElementById('hero-title');
+    const titleText = heroTitle.textContent.trim();
+    heroTitle.innerHTML = '';
+    titleText.split(" ").forEach(word => {
+      const span = document.createElement('span');
+      span.className = 'inline-block mr-3 opacity-0 translate-y-8';
+      span.innerText = word;
+      heroTitle.appendChild(span);
+    });
+    
+    gsap.to('#hero-title span', {
+      opacity: 1,
+      y: 0,
+      stagger: 0.08,
+      duration: 1.2,
+      ease: 'power4.out',
+      delay: 0.5
+    });
+
+    // ── SCROLL REVEAL ───────────────────────────
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: .12 });
+    reveals.forEach(el => io.observe(el));
+
+    // ── COUNTER ANIMATION ───────────────────────
+    function animateCounter(el) {
+      const target  = parseInt(el.dataset.count);
+      const suffix  = el.dataset.suffix || '';
+      const duration = 1800;
+      const start   = performance.now();
+      function step(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = Math.floor(ease * target);
+        el.textContent = (val >= 1000 ? val.toLocaleString() : val) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    const counterIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          animateCounter(e.target);
+          counterIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: .5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
+
+    // Mobile Navigation Drawer Toggle Mechanics
     const mobileMenuButton = document.getElementById('mobileMenuButton');
     const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
     const menuIconOpen = document.getElementById('menuIconOpen');
@@ -755,9 +1320,9 @@
       }
     });
 
-    // Close mobile drawer on element selection
-    const drawerNavLinks = mobileMenuDrawer.querySelectorAll('a');
-    drawerNavLinks.forEach(link => {
+    // Close Mobile Drawer on Link Click
+    const drawerLinks = mobileMenuDrawer.querySelectorAll('a');
+    drawerLinks.forEach(link => {
       link.addEventListener('click', () => {
         mobileMenuDrawer.classList.add('hidden');
         menuIconOpen.classList.remove('hidden');
@@ -765,36 +1330,52 @@
       });
     });
 
-    // Interactive Solution Explorer Tab Management
-    function switchTab(tabId) {
-      // Deactivate all tab contents
-      const tabPanes = document.querySelectorAll('.tab-pane');
-      tabPanes.forEach(pane => {
-        pane.classList.add('hidden');
+    // Smooth scroll transitions for anchor headers
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          const headerHeight = document.querySelector('header') ? document.querySelector('header').offsetHeight : 80;
+          const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
       });
+    });
+
+    // Core Solution Tab Explorer Controller
+    function switchTab(tabId) {
+      // Hide all panes
+      const tabPanes = document.querySelectorAll('.tab-pane');
+      tabPanes.forEach(pane => pane.classList.add('hidden'));
 
       // Remove activation colors from all tab buttons
       const tabButtons = document.querySelectorAll('.tab-btn');
       tabButtons.forEach(btn => {
-        btn.classList.remove('bg-slateNavy', 'text-white');
-        btn.classList.add('text-slateNavy/70', 'hover:text-slateNavy');
+        btn.classList.remove('bg-brand', 'text-slateNavy', 'shadow-md', 'bg-therapeuticGreen');
+        btn.classList.add('text-slate-600', 'hover:text-slateNavy');
       });
 
-      // Activate clicked tab content
-      const activePane = document.getElementById(`tab-content-${tabId}`);
-      if (activePane) {
-        activePane.classList.remove('hidden');
-      }
+      // Activate selected tab pane
+      const selectedPane = document.getElementById(`tab-content-${tabId}`);
+      if (selectedPane) selectedPane.classList.remove('hidden');
 
-      // Activate clicked tab button styling
+      // Add activation styles to clicked button
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       if (activeBtn) {
-        activeBtn.classList.remove('text-slateNavy/70', 'hover:text-slateNavy');
-        activeBtn.classList.add('bg-slateNavy', 'text-white');
+        activeBtn.classList.remove('text-slate-300', 'hover:text-slateNavy');
+        activeBtn.classList.add('bg-brand', 'text-slateNavy', 'shadow-md');
       }
     }
 
-    // Expandable FAQ Accordions
+    // Expandable FAQ Accordions Logic
     function toggleAccordion(id) {
       const panel = document.getElementById(`faq-panel-${id}`);
       const icon = document.getElementById(`faq-icon-${id}`);
@@ -803,31 +1384,97 @@
         panel.style.maxHeight = '0px';
         icon.style.transform = 'rotate(0deg)';
       } else {
-        // Reset all accordions first
+        // Reset other panels first
         for (let i = 1; i <= 3; i++) {
-          const currentPanel = document.getElementById(`faq-panel-${i}`);
-          const currentIcon = document.getElementById(`faq-icon-${i}`);
-          if (currentPanel) {
-            currentPanel.style.maxHeight = '0px';
-            currentIcon.style.transform = 'rotate(0deg)';
+          const targetPanel = document.getElementById(`faq-panel-${i}`);
+          const targetIcon = document.getElementById(`faq-icon-${i}`);
+          if (targetPanel) {
+            targetPanel.style.maxHeight = '0px';
+            targetIcon.style.transform = 'rotate(0deg)';
           }
         }
         
-        // Open target accordion
+        // Expand selected panel
         panel.style.maxHeight = panel.scrollHeight + 'px';
         icon.style.transform = 'rotate(45deg)';
       }
     }
 
-    // Success Overlay System Functions
+    // Interactive Assessment Tool Logic - Fixed Linear Scoring System
+    let currentStep = 1;
+    let totalScore = 0;
+
+    function handleAnswer(step, score) {
+      totalScore += score;
+      
+      const currentPane = document.getElementById(`assess-step-${step}`);
+      currentPane.classList.add('hidden');
+      
+      currentStep++;
+      
+      const nextPane = document.getElementById(`assess-step-${currentStep}`);
+      if (nextPane) {
+        nextPane.classList.remove('hidden');
+        // Update Progress Bar
+        const progressPercent = (currentStep / 3) * 100;
+        document.getElementById('assessmentProgress').style.width = `${progressPercent}%`;
+      } else {
+        // Final Results Calculation
+        document.getElementById('assess-step-final').classList.remove('hidden');
+        document.getElementById('assessmentProgress').style.width = `100%`;
+        
+        // Output clean visual score
+        const mappedScore = totalScore;
+        document.getElementById('scoreVal').innerText = mappedScore;
+
+        // Adjust recommendation text dynamically with high-fidelity, highly genuine summaries
+        const recommendationText = document.getElementById('recommendationText');
+        if (mappedScore >= 90) {
+          recommendationText.innerText = "Your mental resilience index is outstanding. You are demonstrating superb cognitive boundary management and stable neural recovery. We recommend maintaining your active wellness routines, such as deep breathing cycles and keeping a continuous daily reflective log. Sachin's Mentrova ecosystem is always here to help you sustain this high-level balance.";
+        } else if (mappedScore >= 60) {
+          recommendationText.innerText = "You are maintaining a reasonable baseline, but some persistent stress-signals are taxing your cognitive reserves. We suggest incorporating structured 4-7-8 deep breathing cycles twice daily, tracking your daily mood offsets, and engaging in light conversational decompression with our AI Guide to process residual cognitive strain before it builds.";
+        } else {
+          recommendationText.innerText = "Your indicators show significant active neural pressure and diminished mental energy reserves. This is a vital signal to slow down and rest. We highly recommend starting with our immediate 2-minute clinical grounding exercises, logging your physical tension triggers daily, and using our anonymized Conversational Guide for supportive, non-judgmental decompression. Consider consulting a clinical specialist to partner in your wellness recovery.";
+        }
+      }
+    }
+
+    function resetAssessment() {
+      currentStep = 1;
+      totalScore = 0;
+      document.getElementById('assessmentProgress').style.width = `33%`;
+      
+      const panes = document.querySelectorAll('.assess-step');
+      panes.forEach(p => p.classList.add('hidden'));
+      
+      document.getElementById('assess-step-1').classList.remove('hidden');
+    }
+
+    // Dashboard dynamic value updates (Corporate Workspace Mockup simulation)
+    setInterval(() => {
+      const indexField = document.getElementById('metric-resilience');
+      const sessionsField = document.getElementById('metric-sessions');
+
+      if (indexField && sessionsField) {
+        const currentResilience = parseInt(indexField.innerText);
+        const nextResilience = Math.min(98, Math.max(72, currentResilience + (Math.random() > 0.5 ? 1 : -1)));
+        indexField.innerText = nextResilience;
+
+        const currentSessions = parseInt(sessionsField.innerText.replace(/,/g, ''));
+        const nextSessions = currentSessions + Math.floor(Math.random() * 3) + 1;
+        sessionsField.innerText = nextSessions.toLocaleString();
+      }
+    }, 4000);
+
+    // Success Modals and Form Interceptor Logic
     const successModal = document.getElementById('successModal');
     const successModalCard = document.getElementById('successModalCard');
     const modalTitle = document.getElementById('modalTitle');
     const modalMessage = document.getElementById('modalMessage');
 
-    function openModal(title, message) {
+    function openModal(title, msg) {
       modalTitle.innerText = title;
-      modalMessage.innerText = message;
+      modalMessage.innerText = msg;
       successModal.classList.remove('opacity-0', 'pointer-events-none');
       successModalCard.classList.remove('scale-90');
       successModalCard.classList.add('scale-100');
@@ -839,17 +1486,31 @@
       successModalCard.classList.add('scale-90');
     }
 
-    // Close modal when clicking on ambient background
     successModal.addEventListener('click', (e) => {
-      if (e.target === successModal) {
-        closeModal();
-      }
+      if (e.target === successModal) closeModal();
     });
 
-    // Setup Form Interceptors
-    const contactForm = document.getElementById('contactForm');
+    // Form Submissions Interceptors
+    const heroWaitlistForm = document.getElementById('heroWaitlistForm');
+    const supportForm = document.getElementById('supportForm');
 
-    contactForm.addEventListener('submit', (e) => {
+    if (heroWaitlistForm) {
+      heroWaitlistForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const emailField = document.getElementById('heroEmail');
+        const emailVal = emailField.value.trim();
+
+        if (emailVal) {
+          openModal(
+            "Welcome to the Circle",
+            `Thank you for joining the Mentrova movement. We have securely saved your connection details under ${emailVal}. You will receive priority notices.`
+          );
+          emailField.value = '';
+        }
+      });
+    }
+
+    supportForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
       const nameField = document.getElementById('contactName');
@@ -863,18 +1524,25 @@
       const messageVal = messageField.value.trim();
 
       if (nameVal && emailVal && messageVal) {
-        // Trigger Success feedback
         openModal(
           "Inquiry Received",
-          `Thank you, ${nameVal}. Our specialized clinical wellness team has received your ${orgVal} inquiry and will follow up with you at ${emailVal} within 12 hours.`
+          `Thank you for reaching out, ${nameVal}. Our clinical support network directed by Sachin has received your ${orgVal} inquiry and will follow up with you at ${emailVal} within 12 hours.`
         );
-
-        // Clear data
         nameField.value = '';
         orgField.value = 'individual';
         emailField.value = '';
         messageField.value = '';
       }
+    });
+
+    // Initialize Card Tilt micro-animations using Vanilla Tilt CDN
+    document.addEventListener("DOMContentLoaded", function() {
+      VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+        max: 12,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.12
+      });
     });
   </script>
 </body>
