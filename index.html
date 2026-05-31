@@ -51,24 +51,7 @@
     body {
       background-color: #F1F5F9;
       color: #1E293B;
-      cursor: none; /* Custom interactive luxury cursor */
     }
-
-    /* ── CUSTOM CURSOR ── */
-    #cursor {
-      position: fixed; z-index: 9999; pointer-events: none;
-      width: 12px; height: 12px;
-      background: #6C8CF5;
-      border-radius: 50%;
-      transform: translate(-50%,-50%);
-      transition: transform .1s, width .3s, height .3s, background .3s;
-      mix-blend-mode: multiply; /* Perfect visual contrast on light bg */
-    }
-    body:has(a:hover) #cursor,
-    body:has(button:hover) #cursor,
-    body:has(input:hover) #cursor,
-    body:has(select:hover) #cursor,
-    body:has(textarea:hover) #cursor { width: 20px; height: 20px; background: #A78BFA; }
 
     /* Infinite Marquee Ticker Keyframe */
     @keyframes marquee {
@@ -185,16 +168,13 @@
 </head>
 <body class="bg-canvasBase text-slateNavy antialiased selection:bg-brand/25 selection:text-brand min-h-screen flex flex-col relative overflow-x-hidden">
 
-  <!-- CUSTOM CURSOR -->
-  <div id="cursor"></div>
-
   <!-- FIXED LAYER — INTERACTIVE WAVE CANVAS BACKDROP -->
   <canvas id="hero-canvas" class="fixed inset-0 -z-50 w-full h-full pointer-events-none opacity-[0.85]"></canvas>
 
   <!-- SUCCESS MODAL OVERLAY -->
   <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slateNavy/30 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
     <div id="successModalCard" class="bg-canvasCream rounded-[2.5rem] p-8 md:p-12 max-w-xl w-full text-center shadow-2xl border border-slate-100 transform scale-90 transition-all duration-300 text-slateNavy">
-      <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-therapeuticGreen border-4 border-white text-therapeuticGreen-deep mb-6 shadow-md shadow-brand/30 animate-pulse-brand">
+      <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-therapeuticGreen border-4 border-white text-therapeuticGreen-deep mb-6 shadow-md shadow-brand/30">
         <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
@@ -209,54 +189,59 @@
     </div>
   </div>
 
-  <!-- SECTION 1 — STICKY NAV -->
-  <nav id="nav" class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between padding-navbar bg-canvasCream/70 backdrop-blur-md border-b border-slate-100 py-5 px-12 transition-all duration-300">
-    <a class="logo flex items-center gap-2.5 group focus:outline-none" href="#hero-section">
-      <div class="logo-dot w-2.5 h-2.5 rounded-full bg-brand"></div>
-      <span class="text-2xl font-bold tracking-tight font-serif text-slateNavy group-hover:scale-105 transition-transform">Mentrova</span>
-    </a>
-    <ul class="nav-links hidden lg:flex items-center space-x-10">
-      <li><a href="#about" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">About</a></li>
-      <li><a href="#solutions-explorer" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Pathways</a></li>
-      <li><a href="#feature-grid" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Capabilities</a></li>
-      <li><a href="#clinical-integrity" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Integrity</a></li>
-      <li><a href="#faq" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">FAQ</a></li>
-    </ul>
-    <div class="hidden lg:flex items-center">
-      <a class="nav-cta text-xs font-bold uppercase tracking-widest px-6 py-3 border border-brand/50 rounded-full text-brand hover:bg-brand hover:text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(108,140,245,0.15)] cursor-none" href="#contact-portal">Begin Anonymously</a>
-    </div>
+  <!-- STICKY NAVBAR -->
+  <nav id="nav" class="sticky top-0 z-40 w-full bg-canvasCream/75 backdrop-blur-md border-b border-slate-100 py-5 px-12 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <a class="logo flex items-center gap-2.5 group focus:outline-none" href="#hero-section">
+        <div class="logo-dot w-2.5 h-2.5 rounded-full bg-brand"></div>
+        <span class="text-2xl font-bold tracking-tight font-serif text-slateNavy group-hover:scale-105 transition-transform">Mentrova</span>
+      </a>
+      <ul class="nav-links hidden lg:flex items-center space-x-10">
+        <li><a href="#about" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">About</a></li>
+        <li><a href="#solutions-explorer" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Pathways</a></li>
+        <li><a href="#feature-grid" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Capabilities</a></li>
+        <li><a href="#clinical-integrity" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Integrity</a></li>
+        <li><a href="#faq" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">FAQ</a></li>
+      </ul>
+      <div class="hidden lg:flex items-center">
+        <a class="nav-cta text-xs font-bold uppercase tracking-widest px-6 py-3 border border-brand/50 rounded-full text-brand hover:bg-brand hover:text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(108,140,245,0.15)]" href="#contact-portal">Begin Anonymously</a>
+      </div>
 
-    <!-- Mobile Hamburg Menu Button -->
-    <div class="flex lg:hidden">
-      <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2.5 rounded-2xl text-slateNavy hover:text-brand hover:bg-slate-100 focus:outline-none transition duration-200">
-        <span class="sr-only">Toggle Drawer</span>
-        <svg id="menuIconOpen" class="block h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-        </svg>
-        <svg id="menuIconClose" class="hidden h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
+      <!-- Mobile Hamburg Menu Button (Three Horizontal Lines) -->
+      <div class="flex lg:hidden">
+        <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2.5 rounded-2xl text-slateNavy hover:text-brand hover:bg-slate-100 focus:outline-none transition duration-200">
+          <span class="sr-only">Toggle Drawer</span>
+          <svg id="menuIconOpen" class="block h-7 w-7 animate-none" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+          <svg id="menuIconClose" class="hidden h-7 w-7 animate-none" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
     </div>
   </nav>
 
-  <!-- Mobile Slide-Down Navigation Drawer -->
-  <div id="mobileMenuDrawer" class="hidden lg:hidden fixed top-20 left-0 right-0 z-35 bg-canvasCream/95 border-b border-slate-100 transition-all duration-300">
-    <div class="px-6 pt-3 pb-8 space-y-4 shadow-inner">
-      <a href="#about" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">About</a>
-      <a href="#solutions-explorer" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">Pathways</a>
-      <a href="#feature-grid" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">Capabilities</a>
-      <a href="#clinical-integrity" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">Clinical Integrity</a>
-      <a href="#faq" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-slateNavy hover:bg-slate-50 transition">FAQ Hub</a>
+  <!-- BACKGROUND DIMMING/BLURRING OVERLAY FOR MOBILE DRAWER (Prevents background mixing/overlapping) -->
+  <div id="mobileMenuBackdrop" class="hidden fixed inset-0 top-20 bg-slate-900/40 backdrop-blur-md z-35 transition-all duration-300"></div>
+
+  <!-- MOBILE SLIDE-DOWN NAVIGATION DRAWER -->
+  <div id="mobileMenuDrawer" class="hidden fixed top-20 left-0 right-0 z-35 bg-white border-b border-slate-200 shadow-2xl transition-all duration-300">
+    <div class="px-6 pt-3 pb-8 space-y-4">
+      <a href="#about" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">About</a>
+      <a href="#solutions-explorer" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">Pathways</a>
+      <a href="#feature-grid" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">Capabilities</a>
+      <a href="#clinical-integrity" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">Clinical Integrity</a>
+      <a href="#faq" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">FAQ Hub</a>
       <div class="pt-4 border-t border-slate-100">
-        <a href="#contact-portal" class="block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-brand bg-canvasCream border border-brand/50 shadow-sm transition">
+        <a href="#contact-portal" class="block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand shadow-md transition">
           Begin Anonymously
         </a>
       </div>
     </div>
   </div>
 
-  <main class="flex-grow pt-20">
+  <main class="flex-grow">
 
     <!-- SECTION 2 — HERO -->
     <section id="hero-section" class="relative py-24 lg:py-32 overflow-hidden">
@@ -265,7 +250,7 @@
           
           <!-- Left Text Content Column -->
           <div class="lg:col-span-7 text-center lg:text-left space-y-8">
-            <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-therapeuticGreen border border-therapeuticGreen-accent/30 text-therapeuticGreen-deep text-xs font-bold tracking-widest uppercase">
+            <div class="inline-flex items-center gap-2.5 px-4.5 py-2.5 rounded-full bg-therapeuticGreen border border-therapeuticGreen-accent/30 text-therapeuticGreen-deep text-sm font-bold tracking-wide uppercase">
               <span class="w-2.5 h-2.5 rounded-full bg-therapeuticGreen-accent animate-ping"></span>
               Global Conversational & Mental Wellness Ecosystem
             </div>
@@ -411,7 +396,7 @@
       </div>
     </section>
 
-    <!-- SECTION 4 — ABOUT SPLIT (COMPACT SHOWN ROW IN HIGH CONTRAST) -->
+    <!-- SECTION 4 — ABOUT SPLIT -->
     <section id="about" class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center py-24 px-12 max-w-7xl mx-auto">
       
       <!-- Visual Display Container (Squeezed compact form factor, no empty bars above/below) -->
@@ -467,7 +452,7 @@
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Flexible Implementations</h2>
           <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">How Mentrova Meets Your Needs</h3>
-          <p class="text-lg text-slate-650 font-semibold leading-relaxed">
+          <p class="text-lg text-slate-600 font-semibold leading-relaxed">
             Select a pathway below to view customized configurations designed around individual or professional demographics.
           </p>
         </div>
@@ -539,7 +524,7 @@
               </div>
             </div>
             <div class="flex justify-center">
-              <div class="bg-white border border-slate-200 rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
                 <div class="w-12 h-12 rounded-2xl bg-slate-100 text-electricBlue-accent flex items-center justify-center border border-electricBlue-accent/20">
                   🏢
                 </div>
@@ -568,7 +553,7 @@
               </div>
             </div>
             <div class="flex justify-center">
-              <div class="bg-white border border-slate-200 rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
                 <div class="w-12 h-12 rounded-2xl bg-slate-100 text-pastelYellow-accent flex items-center justify-center border border-pastelYellow-accent/20">
                   🏥
                 </div>
@@ -608,13 +593,13 @@
               </svg>
             </div>
             <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Conversational AI Guide</h4>
-            <p class="text-slate-500 font-semibold leading-relaxed text-sm">
+            <p class="text-slate-505 font-semibold leading-relaxed text-sm">
               Our core conversational companion offers unlimited 24/7 listening support. It is trained under clinically validated cognitive-behavioral guidelines to provide a non-judgmental dialogue experience.
             </p>
           </div>
 
           <!-- Module B -->
-          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-100 hover:border-tealAccent hover:-translate-y-2 hover:shadow-2xl hover:shadow-tealAccent/5 transition-all duration-300 group text-left interactive-box">
+          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-200/80 hover:border-brand hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/5 transition-all duration-300 group text-left interactive-box">
             <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-tealAccent/25 text-tealAccent flex items-center justify-center mb-8">
               <!-- Lotus SVG -->
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
@@ -622,7 +607,7 @@
               </svg>
             </div>
             <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Mindfulness Toolkits</h4>
-            <p class="text-slate-500 font-semibold leading-relaxed text-sm">
+            <p class="text-slate-505 font-semibold leading-relaxed text-sm">
               Explore over 150+ specialized digital interventions, including controlled breathing pattern metrics, sleep aids, muscle-relaxation audios, and dynamic daily mood assessment metrics.
             </p>
           </div>
@@ -636,7 +621,7 @@
               </svg>
             </div>
             <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Anonymity & Encryption</h4>
-            <p class="text-slate-500 font-semibold leading-relaxed text-sm">
+            <p class="text-slate-505 font-semibold leading-relaxed text-sm">
               We deploy strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information on our companion dialog servers.
             </p>
           </div>
@@ -707,7 +692,7 @@
                   </svg>
                 </div>
                 <h4 class="text-2xl font-bold text-slateNavy font-serif">Mindful Exercises</h4>
-                <p class="text-slate-505 text-sm font-semibold leading-relaxed">Curated clinical program directories with customized daily breathing patterns, mood tracking logs, and CBT exercises.</p>
+                <p class="text-slate-500 text-sm font-semibold leading-relaxed">Curated clinical program directories with customized daily breathing patterns, mood tracking logs, and CBT exercises.</p>
                 <div class="text-xs font-bold text-tealAccent uppercase tracking-widest bg-slate-100 border border-tealAccent/25 py-2 px-4 rounded-full inline-block self-center">Hover to Flip</div>
               </div>
 
@@ -927,11 +912,11 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
                 <div class="border-l-4 border-brand pl-4">
                   <span class="block text-4xl font-black text-slateNavy tracking-tight">91%</span>
-                  <p class="text-sm text-slate-600 font-semibold mt-1">Users reporting improved resilience</p>
+                  <p class="text-sm text-slate-650 font-semibold mt-1">Users reporting improved resilience</p>
                 </div>
                 <div class="border-l-4 border-brand pl-4">
                   <span class="block text-4xl font-black text-slateNavy tracking-tight">50M+</span>
-                  <p class="text-sm text-slate-600 font-semibold mt-1">Sessions safely administered</p>
+                  <p class="text-sm text-slate-650 font-semibold mt-1">Sessions safely administered</p>
                 </div>
               </div>
             </div>
@@ -1299,32 +1284,49 @@
 
     document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
 
-    // Mobile Navigation Drawer Toggle Mechanics
+    // Mobile Navigation Drawer Toggle Mechanics & Background Blurring/Dimming
     const mobileMenuButton = document.getElementById('mobileMenuButton');
     const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+    const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
     const menuIconOpen = document.getElementById('menuIconOpen');
     const menuIconClose = document.getElementById('menuIconClose');
 
     mobileMenuButton.addEventListener('click', () => {
       const isVisible = !mobileMenuDrawer.classList.contains('hidden');
       if (isVisible) {
-        mobileMenuDrawer.classList.add('hidden');
-        menuIconOpen.classList.remove('hidden');
-        menuIconClose.classList.add('hidden');
+        closeMobileMenu();
       } else {
-        mobileMenuDrawer.classList.remove('hidden');
-        menuIconOpen.classList.add('hidden');
-        menuIconClose.classList.remove('hidden');
+        openMobileMenu();
       }
     });
+
+    // Close when clicking outside of the drawer
+    mobileMenuBackdrop.addEventListener('click', () => {
+      closeMobileMenu();
+    });
+
+    function openMobileMenu() {
+      mobileMenuDrawer.classList.remove('hidden');
+      mobileMenuBackdrop.classList.remove('hidden');
+      menuIconOpen.classList.add('hidden');
+      menuIconClose.classList.remove('hidden');
+      // Freeze scrolling when navigation is open
+      document.body.classList.add('overflow-hidden');
+    }
+
+    function closeMobileMenu() {
+      mobileMenuDrawer.classList.add('hidden');
+      mobileMenuBackdrop.classList.add('hidden');
+      menuIconOpen.classList.remove('hidden');
+      menuIconClose.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
 
     // Close Mobile Drawer on Link Click
     const drawerLinks = mobileMenuDrawer.querySelectorAll('a');
     drawerLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenuDrawer.classList.add('hidden');
-        menuIconOpen.classList.remove('hidden');
-        menuIconClose.classList.add('hidden');
+        closeMobileMenu();
       });
     });
 
