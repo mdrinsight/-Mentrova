@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mentrova — Your Safe Space for Mental Wellbeing</title>
+  <meta name="description" content="Mentrova is an upcoming platform dedicated to your mental health. Get early access to tools, guidance, and continuous support designed for peace of mind.">
+  <!-- Google Fonts: Poppins for clean, modern, empathetic typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+          },
+          colors: {
+            mint: {
+              50: '#f0fdf9',
+              100: '#ccfbf1',
+              200: '#99f6e4',
+              300: '#5eead4',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            },
+            softBlue: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              500: '#0ea5e9',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Premium visual animations for modern UI */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes pulse-slow {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 0.95; }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    .animate-pulse-slow {
+      animation: pulse-slow 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- SUCCESS MODAL (Custom Elegant On-Screen Success Overlay) -->
+  <div id="success-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+    <div class="bg-white rounded-3xl p-8 max-w-md w-full text-center shadow-2xl border border-mint-100 transform scale-95 transition-all duration-300" id="success-modal-card">
+      <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-mint-100 text-mint-600 mb-6">
+        <!-- Checkmark Icon -->
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-slate-900 mb-2" id="success-title">Thank You!</h3>
+      <p class="text-slate-600 mb-6" id="success-message">We've saved your spot. Stay tuned for early updates and calming tools delivered straight to your inbox.</p>
+      <button onclick="closeModal()" class="w-full py-3 px-6 bg-mint-600 hover:bg-mint-700 text-white font-medium rounded-full transition duration-300 focus:outline-none focus:ring-4 focus:ring-mint-500/20 shadow-lg shadow-mint-600/20">
+        Return to Peace
+      </button>
+    </div>
+  </div>
+
+  <!-- HEADER / NAVBAR -->
+  <header class="sticky top-0 z-40 w-full bg-white/85 backdrop-blur-md border-b border-slate-100 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <div class="flex items-center gap-2">
+          <div class="h-10 w-10 bg-gradient-to-tr from-mint-400 to-softBlue-200 rounded-xl flex items-center justify-center shadow-md shadow-mint-400/10">
+            <!-- Calming leaf/heart icon shape -->
+            <svg class="h-6 w-6 text-mint-700" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+            </svg>
+          </div>
+          <span class="text-2xl font-bold tracking-tight bg-gradient-to-r from-mint-700 to-teal-800 bg-clip-text text-transparent">Mentrova</span>
+        </div>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center space-x-10">
+          <a href="#how-it-works" class="text-slate-600 hover:text-mint-600 font-medium transition duration-200">How It Works</a>
+          <a href="#contact" class="text-slate-600 hover:text-mint-600 font-medium transition duration-200">Contact</a>
+        </nav>
+
+        <!-- Desktop CTA -->
+        <div class="hidden md:flex items-center">
+          <a href="#waitlist-section" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-sm font-semibold rounded-full text-white bg-mint-600 hover:bg-mint-700 shadow-md shadow-mint-600/10 transition duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mint-500">
+            Join Waitlist
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="flex items-center md:hidden">
+          <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-xl text-slate-500 hover:text-mint-600 hover:bg-mint-50 focus:outline-none transition duration-200" aria-controls="mobile-menu" aria-expanded="false">
+            <span class="sr-only">Open main menu</span>
+            <svg id="menu-icon-hamburger" class="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+            <svg id="menu-icon-close" class="hidden h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 transition duration-300">
+      <div class="px-4 pt-2 pb-6 space-y-3 shadow-inner">
+        <a href="#how-it-works" class="block px-4 py-3 rounded-2xl text-base font-medium text-slate-600 hover:text-mint-600 hover:bg-mint-50/50 transition">How It Works</a>
+        <a href="#contact" class="block px-4 py-3 rounded-2xl text-base font-medium text-slate-600 hover:text-mint-600 hover:bg-mint-50/50 transition">Contact</a>
+        <div class="pt-4 border-t border-slate-100">
+          <a href="#waitlist-section" class="block w-full text-center px-6 py-3.5 text-base font-semibold rounded-2xl text-white bg-mint-600 hover:bg-mint-700 shadow-md transition">
+            Join Waitlist
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <main class="flex-grow">
+    <section id="waitlist-section" class="relative overflow-hidden py-16 lg:py-24 bg-gradient-to-b from-mint-50/70 via-white to-slate-50">
+      <!-- Decorative Organic Pastel Background Shapes -->
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-mint-200/20 rounded-full filter blur-3xl -z-10 animate-pulse-slow"></div>
+      <div class="absolute bottom-10 right-10 w-80 h-80 bg-softBlue-100/30 rounded-full filter blur-3xl -z-10 animate-float"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          
+          <!-- Left Content -->
+          <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-mint-100/60 border border-mint-200 text-mint-800 text-xs font-semibold uppercase tracking-wider">
+              <span class="w-2 h-2 rounded-full bg-mint-500 animate-ping"></span>
+              Join the Movement for Calm
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+              Your Safe Space for <br>
+              <span class="bg-gradient-to-r from-mint-600 to-teal-700 bg-clip-text text-transparent">Mental Wellbeing</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+              Mentrova is an upcoming platform dedicated to your mental health. Get early access to tools, guidance, and continuous support designed for your peace of mind.
+            </p>
+
+            <!-- Inline "Coming Soon" Email Form -->
+            <div class="max-w-md mx-auto lg:mx-0">
+              <form id="hero-waitlist-form" class="mt-4 sm:flex gap-3 bg-white p-2 rounded-3xl sm:rounded-full shadow-xl shadow-slate-200/50 border border-slate-100">
+                <div class="flex-grow min-w-0">
+                  <label for="hero-email" class="sr-only">Email address</label>
+                  <input type="email" id="hero-email" required class="block w-full px-5 py-4 text-base text-slate-900 bg-transparent placeholder-slate-400 focus:outline-none focus:ring-0 rounded-full border-0" placeholder="Enter your email address...">
+                </div>
+                <button type="submit" class="w-full sm:w-auto flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-full text-white bg-mint-600 hover:bg-mint-700 shadow-md shadow-mint-600/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mint-500 transition duration-200">
+                  Notify Me
+                </button>
+              </form>
+              <p class="mt-3 text-xs text-slate-400 text-center lg:text-left px-4">
+                🔒 Privacy guaranteed. No spam, ever. Opt out anytime.
+              </p>
+            </div>
+          </div>
+
+          <!-- Right Graphical CSS Mockup -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="relative animate-float">
+              <!-- Background soft decorative orb -->
+              <div class="absolute -inset-4 bg-gradient-to-tr from-mint-300 to-softBlue-200 rounded-[3rem] filter blur-xl opacity-35 -z-10"></div>
+              
+              <!-- Pure CSS Smartphone Mockup representing mental wellness -->
+              <div class="w-72 h-[540px] bg-slate-900 rounded-[3.2rem] border-[10px] border-slate-800 shadow-2xl relative overflow-hidden flex flex-col justify-between">
+                
+                <!-- Screen Notch / Camera -->
+                <div class="absolute top-0 inset-x-0 flex justify-center z-20">
+                  <div class="w-32 h-6 bg-slate-800 rounded-b-2xl flex justify-between items-center px-4">
+                    <span class="w-3.5 h-3.5 rounded-full bg-slate-900"></span>
+                    <span class="w-10 h-1 bg-slate-700 rounded-full"></span>
+                  </div>
+                </div>
+
+                <!-- App Screen Content -->
+                <div class="flex-grow bg-gradient-to-b from-mint-50/80 via-white to-softBlue-50/50 pt-10 px-5 flex flex-col justify-between h-full text-left">
+                  
+                  <!-- Top Bar (Time & Greeting) -->
+                  <div class="pt-4 flex justify-between items-center">
+                    <div>
+                      <span class="text-xs text-slate-400 block font-medium">Hello, Breathe Easy</span>
+                      <h4 class="text-sm font-bold text-slate-800">Welcome to Mentrova</h4>
+                    </div>
+                    <span class="text-xs text-mint-600 font-semibold bg-mint-100/60 px-2 py-0.5 rounded-full">Active</span>
+                  </div>
+
+                  <!-- Center Piece: Breathing Guided Bubble (Pulsing CSS) -->
+                  <div class="my-auto flex flex-col items-center py-6">
+                    <div class="relative flex items-center justify-center">
+                      <div class="absolute w-36 h-36 bg-mint-200/40 rounded-full animate-pulse-slow"></div>
+                      <div class="absolute w-28 h-28 bg-mint-300/40 rounded-full animate-ping opacity-30"></div>
+                      <div class="relative w-24 h-24 bg-gradient-to-br from-mint-400 to-softBlue-200 rounded-full flex flex-col items-center justify-center text-center shadow-lg shadow-mint-500/10">
+                        <span class="text-xs font-semibold text-teal-900 tracking-wide uppercase">Breathe</span>
+                        <span class="text-2xl font-bold text-teal-900">In</span>
+                      </div>
+                    </div>
+                    <span class="mt-4 text-xs font-medium text-slate-500 text-center px-4">Daily Check-in: Gentle breathing to align your focus</span>
+                  </div>
+
+                  <!-- Bottom Wellness Cards inside Screen -->
+                  <div class="space-y-3 pb-8">
+                    <div class="bg-white/90 backdrop-blur-md border border-slate-100 p-3 rounded-2xl shadow-sm flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-mint-100 flex items-center justify-center text-mint-600">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m14.071 8.071l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                      </div>
+                      <div class="flex-grow">
+                        <div class="w-24 h-2 bg-slate-200 rounded-full mb-1"></div>
+                        <div class="w-16 h-1.5 bg-slate-100 rounded-full"></div>
+                      </div>
+                      <span class="text-[10px] font-semibold text-mint-600 bg-mint-50 px-2 py-0.5 rounded-md">8m Left</span>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur-md border border-slate-100 p-3 rounded-2xl shadow-sm flex items-center gap-3">
+                      <div class="w-8 h-8 rounded-full bg-softBlue-100 flex items-center justify-center text-softBlue-500">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                      </div>
+                      <div class="flex-grow">
+                        <div class="w-20 h-2 bg-slate-200 rounded-full mb-1"></div>
+                        <div class="w-12 h-1.5 bg-slate-100 rounded-full"></div>
+                      </div>
+                      <span class="text-[10px] font-semibold text-slate-400">Locked</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section id="how-it-works" class="py-24 bg-gradient-to-b from-slate-50 via-white to-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-mint-600">Simple & Effective</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Your Path to Calm in 3 Steps</h3>
+          <p class="text-lg text-slate-600 font-light">
+            We are structuring Mentrova around direct, easy steps that protect your privacy and empower your personal peace process.
+          </p>
+        </div>
+
+        <!-- 3-Column Steps Layout -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+          
+          <!-- Step 1 Card -->
+          <div class="relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-mint-200 shadow-sm hover:shadow-xl hover:shadow-mint-100/10 transition-all duration-300 group">
+            <div class="w-14 h-14 rounded-2xl bg-mint-50 group-hover:bg-mint-100 text-mint-600 flex items-center justify-center mb-6 transition-colors">
+              <!-- Step 1 SVG Icon (User registration / Mail) -->
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5"></path>
+              </svg>
+            </div>
+            <span class="absolute top-8 right-8 text-5xl font-extrabold text-slate-100 select-none group-hover:text-mint-100/50 transition-colors">01</span>
+            <h4 class="text-xl font-bold text-slate-900 mb-3">Join the Waitlist</h4>
+            <p class="text-slate-600 font-light leading-relaxed">
+              Secure your early spot with just your email. You will receive priority updates and exclusive early-bird notifications.
+            </p>
+          </div>
+
+          <!-- Step 2 Card -->
+          <div class="relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-mint-200 shadow-sm hover:shadow-xl hover:shadow-mint-100/10 transition-all duration-300 group">
+            <div class="w-14 h-14 rounded-2xl bg-mint-50 group-hover:bg-mint-100 text-mint-600 flex items-center justify-center mb-6 transition-colors">
+              <!-- Step 2 SVG Icon (App / Dashboard / Sparkles) -->
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
+              </svg>
+            </div>
+            <span class="absolute top-8 right-8 text-5xl font-extrabold text-slate-100 select-none group-hover:text-mint-100/50 transition-colors">02</span>
+            <h4 class="text-xl font-bold text-slate-900 mb-3">Get Early Access</h4>
+            <p class="text-slate-600 font-light leading-relaxed">
+              Be the first to explore personalized wellbeing tools. Test beta workflows designed strictly by mental health engineers.
+            </p>
+          </div>
+
+          <!-- Step 3 Card -->
+          <div class="relative bg-white rounded-3xl p-8 border border-slate-100 hover:border-mint-200 shadow-sm hover:shadow-xl hover:shadow-mint-100/10 transition-all duration-300 group">
+            <div class="w-14 h-14 rounded-2xl bg-mint-50 group-hover:bg-mint-100 text-mint-600 flex items-center justify-center mb-6 transition-colors">
+              <!-- Step 3 SVG Icon (Heart / Shield) -->
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <span class="absolute top-8 right-8 text-5xl font-extrabold text-slate-100 select-none group-hover:text-mint-100/50 transition-colors">03</span>
+            <h4 class="text-xl font-bold text-slate-900 mb-3">Thrive Daily</h4>
+            <p class="text-slate-600 font-light leading-relaxed">
+              Take complete control of your mental health journey. Experience full security and 100% data privacy parameters.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST & PRIVACY BANNER -->
+    <section class="py-12 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative bg-gradient-to-r from-mint-500 to-teal-700 text-white rounded-[2rem] px-8 py-10 md:py-12 md:px-14 shadow-xl shadow-mint-600/15 overflow-hidden">
+          <!-- Geometric accent background detail -->
+          <div class="absolute -right-16 -bottom-16 w-64 h-64 bg-white/5 rounded-full filter blur-2xl"></div>
+          
+          <div class="relative flex flex-col md:flex-row items-center gap-6 md:gap-10">
+            <!-- Security Icon Shield -->
+            <div class="flex-shrink-0 h-16 w-16 bg-white/10 rounded-2xl flex items-center justify-center border border-white/20 shadow-inner">
+              <svg class="h-9 w-9 text-mint-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <!-- Trust text content -->
+            <div class="text-center md:text-left">
+              <h3 class="text-xl md:text-2xl font-bold tracking-tight">100% Private & Secure</h3>
+              <p class="mt-2 text-base text-mint-50 font-light leading-relaxed">
+                Your mental health journey is entirely confidential and encrypted. We maintain no-log policies to ensure that whatever you express remains strictly yours.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT US SECTION -->
+    <section id="contact" class="py-24 bg-gradient-to-b from-slate-50 to-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Contact Heading -->
+        <div class="text-center mb-16 space-y-4">
+          <h2 class="text-xs font-semibold uppercase tracking-wider text-mint-600">Connect With Us</h2>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">We’re Here to Listen</h3>
+          <p class="text-lg text-slate-600 font-light">
+            Do you have questions, partnerships, or suggestions? Drop us a line.
+          </p>
+        </div>
+
+        <!-- Elegant Contact Form Card -->
+        <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-100 shadow-xl shadow-slate-200/40">
+          <form id="contact-form" class="space-y-6">
+            <!-- Form Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              
+              <!-- Name Input -->
+              <div>
+                <label for="contact-name" class="block text-sm font-semibold text-slate-700 mb-2">Name</label>
+                <input type="text" id="contact-name" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 transition-colors bg-slate-50/50 text-slate-900 placeholder-slate-400" placeholder="Your name">
+              </div>
+
+              <!-- Email Input -->
+              <div>
+                <label for="contact-email" class="block text-sm font-semibold text-slate-700 mb-2">Email</label>
+                <input type="email" id="contact-email" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 transition-colors bg-slate-50/50 text-slate-900 placeholder-slate-400" placeholder="your.email@domain.com">
+              </div>
+
+            </div>
+
+            <!-- Message Input -->
+            <div>
+              <label for="contact-message" class="block text-sm font-semibold text-slate-700 mb-2">Message</label>
+              <textarea id="contact-message" rows="5" required class="block w-full px-5 py-4 rounded-2xl border border-slate-200 focus:border-mint-500 focus:ring-4 focus:ring-mint-500/10 transition-colors bg-slate-50/50 text-slate-900 placeholder-slate-400" placeholder="How can we help or support your wellness mission?"></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-2">
+              <button type="submit" class="w-full inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-semibold rounded-2xl text-white bg-mint-600 hover:bg-mint-700 shadow-lg shadow-mint-600/15 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mint-500 transition duration-300">
+                Send Message
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-50 border-t border-slate-100 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Bottom Brand Logo -->
+        <div class="flex items-center gap-2">
+          <div class="h-8 w-8 bg-gradient-to-tr from-mint-400 to-softBlue-200 rounded-lg flex items-center justify-center">
+            <svg class="h-4.5 w-4.5 text-mint-700" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
+            </svg>
+          </div>
+          <span class="text-lg font-bold text-slate-800 tracking-tight">Mentrova</span>
+        </div>
+
+        <!-- Copyright Info -->
+        <p class="text-sm text-slate-500 order-last md:order-none">
+          &copy; 2026 Mentrova. All rights reserved.
+        </p>
+
+        <!-- Terms & Conditions Footer Links -->
+        <div class="flex space-x-6">
+          <a href="#" class="text-sm text-slate-500 hover:text-mint-600 transition">Privacy Policy</a>
+          <a href="#" class="text-sm text-slate-500 hover:text-mint-600 transition">Terms & Conditions</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // Elements
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconHamburger = document.getElementById('menu-icon-hamburger');
+    const menuIconClose = document.getElementById('menu-icon-close');
+    
+    const heroWaitlistForm = document.getElementById('hero-waitlist-form');
+    const contactForm = document.getElementById('contact-form');
+    
+    const successModal = document.getElementById('success-modal');
+    const successModalCard = document.getElementById('success-modal-card');
+    const successTitle = document.getElementById('success-title');
+    const successMessage = document.getElementById('success-message');
+
+    // MOBILE MENU TOGGLE
+    mobileMenuButton.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+      
+      mobileMenu.classList.toggle('hidden');
+      menuIconHamburger.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when clicking any menu links
+    const mobileNavLinks = mobileMenu.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconHamburger.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // FORM ACTION SUBMISSIONS
+
+    // Open Elegant Success Modal
+    function openModal(title, msg) {
+      successTitle.innerText = title;
+      successMessage.innerText = msg;
+      
+      successModal.classList.remove('opacity-0', 'pointer-events-none');
+      successModalCard.classList.remove('scale-95');
+      successModalCard.classList.add('scale-100');
+    }
+
+    // Close Elegant Success Modal
+    function closeModal() {
+      successModal.classList.add('opacity-0', 'pointer-events-none');
+      successModalCard.classList.remove('scale-100');
+      successModalCard.classList.add('scale-95');
+    }
+
+    // Handle waitlist submission
+    heroWaitlistForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const emailInput = document.getElementById('hero-email');
+      const emailValue = emailInput.value.trim();
+
+      if (emailValue) {
+        // Mock API submission flow
+        openModal(
+          "Welcome to Mentrova!", 
+          `We've added your address (${emailValue}) to our exclusive VIP early waiting list. We will send updates when our next batch of slots opens.`
+        );
+        // Clear value
+        emailInput.value = '';
+      }
+    });
+
+    // Handle contact form submission
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const nameInput = document.getElementById('contact-name');
+      const emailInput = document.getElementById('contact-email');
+      const messageInput = document.getElementById('contact-message');
+
+      if (nameInput.value.trim() && emailInput.value.trim() && messageInput.value.trim()) {
+        // Mock API message submission flow
+        openModal(
+          "Message Received", 
+          `Thank you, ${nameInput.value.trim()}. Your message has been sent directly to our wellness advocacy support network. We will answer your inquiry shortly.`
+        );
+        // Reset field elements
+        nameInput.value = '';
+        emailInput.value = '';
+        messageInput.value = '';
+      }
+    });
+
+    // Close modal when hitting outside the inner container card
+    successModal.addEventListener('click', (e) => {
+      if (e.target === successModal) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
