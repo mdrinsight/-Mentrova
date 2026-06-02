@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marzoft Demo — Enterprise-Grade Conversational Wellbeing Platform</title>
-  <meta name="description" content="Marzoft Demo provides clinically validated, completely anonymous conversational mental health support powered by empathetic cognitive-behavioral tools. Clinically validated support.">
+  <title>Marzoft Health Wellness Demo — Enterprise-Grade Conversational Wellbeing Platform</title>
+  <meta name="description" content="Marzoft Health Wellness Demo provides clinically validated, completely anonymous conversational mental health support powered by empathetic cognitive-behavioral tools. Clinically validated support.">
   
   <!-- Premium Typography: Cormorant Garamond & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -207,7 +207,7 @@
       </div>
       <h3 class="text-3xl font-bold font-serif text-slateNavy mb-3" id="modalTitle">Successfully Submitted</h3>
       <p class="text-slate-600 text-lg font-medium leading-relaxed mb-8" id="modalMessage">
-        Your registration details have been verified and securely logged inside Marzoft Demo's private clinical directory.
+        Your registration details have been verified and securely logged inside Marzoft Health Wellness Demo's private clinical directory.
       </p>
       <button onclick="closeModal()" class="w-full py-4.5 px-8 bg-slateNavy hover:bg-slateNavy/90 text-white text-lg font-bold rounded-full transition-all duration-300 shadow-lg active:scale-95 focus:outline-none">
         Return to Peace
@@ -215,57 +215,27 @@
     </div>
   </div>
 
-  <!-- SECTION 1 — STICKY NAV -->
-  <nav id="nav" class="sticky top-0 z-40 w-full bg-canvasCream/70 backdrop-blur-md border-b border-slate-100 py-5 px-12 transition-all duration-300">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a class="logo flex items-center gap-2.5 group focus:outline-none" href="#hero-section">
+  <!-- SECTION 1 — NAV -->
+  <nav id="nav" class="sticky top-0 z-40 w-full bg-canvasCream/70 backdrop-blur-md border-b border-slate-100 py-5 px-4 sm:px-8 lg:px-12 transition-all duration-300">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row gap-4 items-center justify-between">
+      
+      <!-- Brand Logo on Left -->
+      <a class="logo flex items-center gap-2.5 group focus:outline-none shrink-0" href="#hero-section">
         <div class="logo-dot w-2.5 h-2.5 rounded-full bg-brand"></div>
-        <span class="text-2xl font-bold tracking-tight font-serif text-slateNavy group-hover:scale-105 transition-transform">Marzoft Demo</span>
+        <span class="text-sm sm:text-lg md:text-2xl font-bold tracking-tight font-serif text-slateNavy group-hover:scale-105 transition-transform">Marzoft Health Wellness Demo</span>
       </a>
-      <ul class="nav-links hidden lg:flex items-center space-x-10">
-        <li><a href="#about" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">About</a></li>
-        <li><a href="#solutions-explorer" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Pathways</a></li>
-        <li><a href="#feature-grid" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Capabilities</a></li>
-        <li><a href="#clinical-integrity" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">Integrity</a></li>
-        <li><a href="#faq" class="text-xs font-semibold uppercase tracking-widest text-mutedText hover:text-slateNavy transition duration-200">FAQ</a></li>
-      </ul>
-      <div class="hidden lg:flex items-center">
-        <a class="nav-cta text-xs font-bold uppercase tracking-widest px-6 py-3 border border-brand/50 rounded-full text-brand hover:bg-brand hover:text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(108,140,245,0.15)]" href="#contact-portal">Begin Anonymously</a>
-      </div>
 
-      <!-- Mobile Hamburg Menu Button (Three Horizontal Lines) -->
-      <div class="flex lg:hidden">
-        <button id="mobileMenuButton" type="button" class="inline-flex items-center justify-center p-2.5 rounded-2xl text-slateNavy hover:text-brand hover:bg-slate-100 focus:outline-none transition duration-200">
-          <span class="sr-only">Toggle Drawer</span>
-          <svg id="menuIconOpen" class="block h-7 w-7 animate-none" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          <svg id="menuIconClose" class="hidden h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+      <!-- Menu Topics aligned dynamically beside logo on right -->
+      <ul class="nav-links flex flex-wrap items-center justify-center md:justify-end gap-x-4 sm:gap-x-8 md:gap-x-10 text-[10px] sm:text-xs font-semibold uppercase tracking-widest ml-auto">
+        <li><a href="#about" class="text-mutedText hover:text-slateNavy transition duration-200">About</a></li>
+        <li><a href="#solutions-explorer" class="text-mutedText hover:text-slateNavy transition duration-200">Pathways</a></li>
+        <li><a href="#feature-grid" class="text-mutedText hover:text-slateNavy transition duration-200">Capabilities</a></li>
+        <li><a href="#clinical-integrity" class="text-mutedText hover:text-slateNavy transition duration-200">Integrity</a></li>
+        <li><a href="#faq" class="text-mutedText hover:text-slateNavy transition duration-200">FAQ</a></li>
+      </ul>
+
     </div>
   </nav>
-
-  <!-- BACKGROUND DIMMING/BLURRING OVERLAY FOR MOBILE DRAWER -->
-  <div id="mobileMenuBackdrop" class="hidden fixed inset-0 top-20 bg-slate-900/40 backdrop-blur-md z-35 transition-all duration-300"></div>
-
-  <!-- MOBILE SLIDE-DOWN NAVIGATION DRAWER -->
-  <div id="mobileMenuDrawer" class="hidden fixed top-20 left-0 right-0 z-35 bg-white border-b border-slate-200 shadow-2xl transition-all duration-300">
-    <div class="px-6 pt-3 pb-8 space-y-4">
-      <a href="#about" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">About</a>
-      <a href="#solutions-explorer" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">Pathways</a>
-      <a href="#feature-grid" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">Capabilities</a>
-      <a href="#clinical-integrity" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">Clinical Integrity</a>
-      <a href="#faq" class="block px-4 py-3 rounded-2xl text-lg font-bold text-slateNavy/80 hover:text-brand hover:bg-slate-50 transition">FAQ Hub</a>
-      <div class="pt-4 border-t border-slate-100">
-        <a href="#contact-portal" class="block w-full text-center px-6 py-4 text-lg font-bold rounded-2xl text-white bg-brand shadow-md transition">
-          Begin Anonymously
-        </a>
-      </div>
-    </div>
-  </div>
 
   <main class="flex-grow">
 
@@ -287,7 +257,7 @@
             </h1>
 
             <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-              Marzoft Demo delivers clinically validated, anonymous mental health support through cognitive-behavioral tools and continuous guided conversations. Trusted globally by individuals seeking peace of mind, forward-thinking employers upgrading workplace resilience, and clinical networks expanding care access.
+              Marzoft Health Wellness Demo delivers clinically validated, anonymous mental health support through cognitive-behavioral tools and continuous guided conversations. Trusted globally by individuals seeking peace of mind, forward-thinking employers upgrading workplace resilience, and clinical networks expanding care access.
             </p>
 
             <!-- Dual-CTA Action Panel -->
@@ -413,12 +383,12 @@
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center space-y-6">
         <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400">Trusted by forward-thinking organizations globally</h4>
         <div class="animate-marquee-loop flex items-center gap-16 opacity-45">
-          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT DEMO PROJECT</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT DEMO PROJECT</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT DEMO PROJECT</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT DEMO PROJECT</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT DEMO PROJECT</span>
-          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT DEMO PROJECT</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT HEALTH WELLNESS DEMO PROJECT</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT HEALTH WELLNESS DEMO PROJECT</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT HEALTH WELLNESS DEMO PROJECT</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT HEALTH WELLNESS DEMO PROJECT</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT HEALTH WELLNESS DEMO PROJECT</span>
+          <span class="text-lg font-bold text-slateNavy tracking-wider">MARZOFT HEALTH WELLNESS DEMO PROJECT</span>
         </div>
       </div>
     </section>
@@ -441,7 +411,7 @@
             <div class="w-10 h-10 rounded-xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep mb-3 font-semibold text-lg">👥</div>
             <div class="about-stat-num font-serif text-3xl font-extrabold text-brand" data-count="10000" data-suffix="+">0</div>
             <div class="text-slateNavy font-bold text-sm mt-1">Sessions Completed</div>
-            <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-1">Anonymous support sessions successfully completed globally.</p>
+            <p class="text-[11px] text-slate-505 font-medium leading-relaxed mt-1">Anonymous support sessions completed globally.</p>
           </div>
 
           <!-- Card B -->
@@ -449,7 +419,7 @@
             <div class="w-10 h-10 rounded-xl bg-electricBlue flex items-center justify-center text-electricBlue-deep mb-3 font-semibold text-lg">📈</div>
             <div class="about-stat-num font-serif text-3xl font-extrabold text-brand" data-count="95" data-suffix="%">0</div>
             <div class="text-slateNavy font-bold text-sm mt-1">Positive Outcomes</div>
-            <p class="text-[11px] text-slate-500 font-medium leading-relaxed mt-1">Users report positive progress within their very first session.</p>
+            <p class="text-[11px] text-slate-505 font-medium leading-relaxed mt-1">Users report positive progress within their very first session.</p>
           </div>
 
         </div>
@@ -459,7 +429,7 @@
         <span class="section-label text-xs font-bold uppercase tracking-widest text-brand block reveal">Who We Are</span>
         <h2 class="section-title font-serif text-4xl sm:text-5xl font-light leading-tight text-slateNavy reveal reveal-delay-1">Healing begins with <em class="italic text-violetAccent">feeling safe</em></h2>
         <p class="section-body text-base text-slate-655 font-light leading-relaxed reveal reveal-delay-2">
-          Marzoft Demo is built on a single belief — that everyone deserves access to compassionate mental wellness support, without fear of judgment or identity exposure. We combine the speed of AI with the warmth of real human counsellors.
+          Marzoft Health Wellness Demo is built on a single belief — that everyone deserves access to compassionate mental wellness support, without fear of judgment or identity exposure. We combine the speed of AI with the warmth of real human counsellors.
         </p>
         <div class="about-pills flex flex-wrap gap-2.5 pt-4 justify-center lg:justify-start reveal reveal-delay-3">
           <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-pointer">No account required</span>
@@ -478,7 +448,7 @@
         <!-- Header -->
         <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Flexible Implementations</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">How Marzoft Demo Meets Your Needs</h3>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">How Marzoft Health Wellness Demo Meets Your Needs</h3>
           <p class="text-lg text-slate-600 font-semibold leading-relaxed">
             Select a pathway below to view customized configurations designed around individual or professional demographics.
           </p>
@@ -537,7 +507,7 @@
             <div class="space-y-6 text-left">
               <h4 class="text-3xl font-extrabold text-slateNavy font-serif">Empower & Support Your Workforce</h4>
               <p class="text-lg text-slate-655 font-medium leading-relaxed">
-                Upgrade workplace resilience with an anonymous platform your team will actually want to use. Marzoft Demo provides early mental resilience interventions while guaranteeing complete employee privacy to optimize true workspace trust.
+                Upgrade workplace resilience with an anonymous platform your team will actually want to use. Marzoft Health Wellness Demo provides early mental resilience interventions while guaranteeing complete employee privacy to optimize true workspace trust.
               </p>
               <div class="space-y-3 font-semibold">
                 <div class="flex items-center gap-3">
@@ -566,7 +536,7 @@
             <div class="space-y-6 text-left">
               <h4 class="text-3xl font-extrabold text-slateNavy font-serif">Integrating Clinical Support Pipelines</h4>
               <p class="text-lg text-slate-655 font-medium leading-relaxed">
-                Scale your mental health services safely. Marzoft Demo operates as a digital triaging tool, assessing and routing patient flows toward standardized clinical metrics (PHQ-9 / GAD-7) with secure backend API handshakes.
+                Scale your mental health services safely. Marzoft Health Wellness Demo operates as a digital triaging tool, assessing and routing patient flows toward standardized clinical metrics (PHQ-9 / GAD-7) with secure backend API handshakes.
               </p>
               <div class="space-y-3 font-semibold">
                 <div class="flex items-center gap-3">
@@ -762,7 +732,7 @@
                   </svg>
                 </div>
                 <h4 class="text-2xl font-bold text-slateNavy font-serif">Absolute Privacy</h4>
-                <p class="text-slate-500 text-sm font-semibold leading-relaxed">Safe, completely anonymous login protocols that guarantee zero trace elements are kept from your private dialog logs.</p>
+                <p class="text-slate-505 text-sm font-semibold leading-relaxed">Safe, completely anonymous login protocols that guarantee zero trace elements are kept from your private dialog logs.</p>
                 <div class="text-xs font-bold text-brand uppercase tracking-widest bg-slate-50 border border-slate-200 py-2 px-4 rounded-full inline-block self-center">Hover to Flip</div>
               </div>
 
@@ -795,7 +765,7 @@
                   </svg>
                 </div>
                 <h4 class="text-2xl font-bold text-slateNavy font-serif">Mindful Exercises</h4>
-                <p class="text-slate-500 text-sm font-semibold leading-relaxed">Curated clinical program directories with customized daily breathing patterns, mood tracking logs, and CBT exercises.</p>
+                <p class="text-slate-505 text-sm font-semibold leading-relaxed">Curated clinical program directories with customized daily breathing patterns, mood tracking logs, and CBT exercises.</p>
                 <div class="text-xs font-bold text-tealAccent uppercase tracking-widest bg-slate-100 border border-tealAccent/25 py-2 px-4 rounded-full inline-block self-center">Hover to Flip</div>
               </div>
 
@@ -828,7 +798,7 @@
                   </svg>
                 </div>
                 <h4 class="text-2xl font-bold text-slateNavy font-serif">Absolute Anonymity</h4>
-                <p class="text-slate-500 text-sm font-semibold leading-relaxed">Safe, completely anonymous login protocols that guarantee zero trace elements are kept from your private dialog logs.</p>
+                <p class="text-slate-505 text-sm font-semibold leading-relaxed">Safe, completely anonymous login protocols that guarantee zero trace elements are kept from your private dialog logs.</p>
                 <div class="text-xs font-bold text-goldAccent-accent uppercase tracking-widest bg-slate-100 border border-goldAccent-accent/25 py-2 px-4 rounded-full inline-block self-center">Hover to Flip</div>
               </div>
 
@@ -836,7 +806,7 @@
               <div class="flip-card-back bg-slateNavy border-4 border-goldAccent-accent p-8 flex flex-col justify-between text-center text-slate-200 shadow-2xl">
                 <div class="space-y-4">
                   <h4 class="text-2xl font-bold text-goldAccent-accent font-serif">Zero Identity Storage</h4>
-                  <p class="text-slate-300 text-sm font-medium leading-relaxed">Marzoft Demo routes every dialog stream through encrypted masking servers. There are no profiles, email logs, or trace trackers saved on our clinical databases.</p>
+                  <p class="text-slate-300 text-sm font-medium leading-relaxed">Marzoft Health Wellness Demo routes every dialog stream through encrypted masking servers. There are no profiles, email logs, or trace trackers saved on our clinical databases.</p>
                   <ul class="text-xs text-goldAccent-accent space-y-1 font-semibold">
                     <li>• Strict No-Log Server Polices</li>
                     <li>• Cryptographic Identity Erasure</li>
@@ -944,7 +914,7 @@
             <span class="section-label text-xs font-bold uppercase tracking-widest text-brand block reveal">B2B Core Architecture</span>
             <h2 class="section-title font-serif text-4xl font-extrabold text-slateNavy leading-tight reveal reveal-delay-1">Reduce Workplace Burnout & Absenteeism Directly</h2>
             <p class="text-lg text-slate-655 font-medium leading-relaxed reveal reveal-delay-2">
-              We understand corporate stress indexes. Marzoft Demo provides early, therapeutic conversational screening loops that significantly reduce employee mental health crises while fully protecting staff member privacy.
+              We understand corporate stress indexes. Marzoft Health Wellness Demo provides early, therapeutic conversational screening loops that significantly reduce employee mental health crises while fully protecting staff member privacy.
             </p>
             <div class="grid grid-cols-2 gap-6 pt-4 text-left reveal reveal-delay-3">
               <div class="border-l-4 border-brand pl-4">
@@ -1028,7 +998,7 @@
             <div class="space-y-6">
               <h5 class="text-lg font-bold text-brand font-serif">Validated Behavioral Methods</h5>
               <p class="text-base text-slate-600 font-semibold leading-relaxed">
-                Marzoft Demo is built from peer-reviewed scientific investigations, integrating Cognitive Behavioral Therapy (CBT), dialectical coaching patterns, and custom breath metrics into comfortable mobile screen conversations.
+                Marzoft Health Wellness Demo is built from peer-reviewed scientific investigations, integrating Cognitive Behavioral Therapy (CBT), dialectical coaching patterns, and custom breath metrics into comfortable mobile screen conversations.
               </p>
               <p class="text-base text-slate-600 font-semibold leading-relaxed">
                 Our structures undergo continuous clinical board evaluations to verify that Menti's dialog trees are safe, supportive, and useful for people across global demographics.
@@ -1047,7 +1017,7 @@
         <!-- Header -->
         <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
           <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Security Clearances</h2>
-          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Insights Into Marzoft Demo Settings</h3>
+          <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Insights Into Marzoft Health Wellness Demo Settings</h3>
           <p class="text-lg text-slate-505 font-semibold leading-relaxed">
             Verify how we manage data protection, conversational systems, and corporate deployments.
           </p>
@@ -1064,7 +1034,7 @@
             </button>
             <div id="faq-panel-1" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
               <div class="p-6 sm:p-8 pt-0 border-t border-slate-100 text-base text-slate-500 font-semibold leading-relaxed">
-                Yes, your privacy is our foundation. Marzoft Demo implements strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information. All communication logs are fully encrypted and kept safely.
+                Yes, your privacy is our foundation. Marzoft Health Wellness Demo implements strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information. All communication logs are fully encrypted and kept safely.
               </div>
             </div>
           </div>
@@ -1085,7 +1055,7 @@
           <!-- Accordion item 3 -->
           <div class="bg-canvasCream border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brand interactive-box">
             <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-pointer">
-              <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">Can organizations deploy Marzoft Demo for employee wellness benefits?</span>
+              <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">Can organizations deploy Marzoft Health Wellness Demo for employee wellness benefits?</span>
               <span id="faq-icon-3" class="text-2xl font-bold text-slate-400 transform transition-transform duration-300">+</span>
             </button>
             <div id="faq-panel-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
@@ -1176,10 +1146,10 @@
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15.5c0 .83-.67 1.5-1.5 1.5s-1.5-.67-1.5-1.5V13c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v4.5zm-1-7c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
               </svg>
             </div>
-            <span class="text-xl font-bold text-slateNavy tracking-tight font-serif">Marzoft Demo</span>
+            <span class="text-xl font-bold text-slateNavy tracking-tight font-serif">Marzoft Health Wellness Demo</span>
           </div>
           <p class="text-sm text-slate-505 max-w-sm leading-relaxed font-semibold">
-            Marzoft Demo is a globally deployed conversational mental health ecosystem providing evidence-based digital therapy solutions. Directed by Sachin.
+            Marzoft Health Wellness Demo is a globally deployed conversational mental health ecosystem providing evidence-based digital therapy solutions. Directed by Sachin.
           </p>
           <div class="text-[10px] text-slate-505 font-bold tracking-wider uppercase pt-2">
             🔒 HIPAA Compliant • SOC2 Type II Certified
@@ -1213,7 +1183,7 @@
       <!-- Divider line -->
       <div class="border-t border-slate-200 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p class="text-xs text-slate-505 font-semibold">
-          &copy; 2026 Marzoft Demo. All rights reserved. Platform directed by Sachin. Managed under encrypted zero-knowledge safety parameters.
+          &copy; 2026 Marzoft Health Wellness Demo. All rights reserved. Platform directed by Sachin. Managed under encrypted zero-knowledge safety parameters.
         </p>
       </div>
 
@@ -1388,49 +1358,6 @@
 
     document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
 
-    // Mobile Navigation Drawer Toggle Mechanics
-    const mobileMenuButton = document.getElementById('mobileMenuButton');
-    const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
-    const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
-    const menuIconOpen = document.getElementById('menuIconOpen');
-    const menuIconClose = document.getElementById('menuIconClose');
-
-    mobileMenuButton.addEventListener('click', () => {
-      const isVisible = !mobileMenuDrawer.classList.contains('hidden');
-      if (isVisible) {
-        closeMobileMenu();
-      } else {
-        openMobileMenu();
-      }
-    });
-
-    mobileMenuBackdrop.addEventListener('click', () => {
-      closeMobileMenu();
-    });
-
-    function openMobileMenu() {
-      mobileMenuDrawer.classList.remove('hidden');
-      mobileMenuBackdrop.classList.remove('hidden');
-      menuIconOpen.classList.add('hidden');
-      menuIconClose.classList.remove('hidden');
-      document.body.classList.add('overflow-hidden');
-    }
-
-    function closeMobileMenu() {
-      mobileMenuDrawer.classList.add('hidden');
-      mobileMenuBackdrop.classList.add('hidden');
-      menuIconOpen.classList.remove('hidden');
-      menuIconClose.classList.add('hidden');
-      document.body.classList.remove('overflow-hidden');
-    }
-
-    const drawerLinks = mobileMenuDrawer.querySelectorAll('a');
-    drawerLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        closeMobileMenu();
-      });
-    });
-
     // Smooth scroll transitions for anchor headers
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
@@ -1532,7 +1459,7 @@
 
         const recommendationText = document.getElementById('recommendationText');
         if (mappedScore >= 90) {
-          recommendationText.innerText = "Your mental resilience index is outstanding. You are demonstrating superb cognitive boundary management and stable neural recovery. We recommend maintaining your active wellness routines, such as deep breathing cycles and keeping a continuous daily reflective log. Sachin's Marzoft Demo ecosystem is always here to help you sustain this high-level balance.";
+          recommendationText.innerText = "Your mental resilience index is outstanding. You are demonstrating superb cognitive boundary management and stable neural recovery. We recommend maintaining your active wellness routines, such as deep breathing cycles and keeping a continuous daily reflective log. Sachin's Marzoft Health Wellness Demo ecosystem is always here to help you sustain this high-level balance.";
         } else if (mappedScore >= 60) {
           recommendationText.innerText = "You are maintaining a reasonable baseline, but some persistent stress-signals are taxing your cognitive reserves. We suggest incorporating structured 4-7-8 deep breathing cycles twice daily, tracking your daily mood offsets, and engaging in light conversational decompression with our AI Guide to process residual cognitive strain before it builds.";
         } else {
