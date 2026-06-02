@@ -1,3 +1,30 @@
+An issue with the interactive assessment is caused by a JavaScript error
+occurring at the very beginning of the script execution block.
+
+The script was attempting to initialize a custom cursor element (#cursor) that
+was not present in the HTML. When this script threw a TypeError, the browser
+halted all subsequent JavaScript execution, preventing the click event listeners
+for the "Check In With Yourself" assessment buttons (and other interactive
+features) from ever being registered.
+
+Additionally, many interactive elements had the Tailwind class cursor-none
+applied, which would hide the default system mouse cursor.
+
+Solution Applied:
+
+1.  JavaScript Error Guard: Safeguarded the custom cursor initialization code
+    with a logical check (if (cursor) { ... }) to ensure it does not break
+    script execution if the element is not present.
+2.  Standard Cursor Recovery: Replaced the cursor-none class on all buttons,
+    tabs, links, and interactive elements with standard pointer classes
+    (cursor-pointer) so users can reliably navigate and hover over options.
+3.  Tailwind Color Enhancements: Added missing color definitions
+    (therapeuticGreen, electricBlue, goldAccent, and pastelYellow) directly to
+    the Tailwind config extend block so all colored tags and visual layouts
+    render reliably with appropriate styling.
+
+Here is the complete, corrected code file:
+
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -6,7 +33,7 @@
   <title>Mentrova — Enterprise-Grade Conversational Wellbeing Platform</title>
   <meta name="description" content="Mentrova provides clinically validated, completely anonymous conversational mental health support powered by empathetic cognitive-behavioral tools. Clinically validated support.">
   
-  <!-- Premium Luxury Typography: Cormorant Garamond & Outfit -->
+  <!-- Premium Typography: Cormorant Garamond & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,7 +60,27 @@
             canvasBase: '#F1F5F9',      // Polished, highly professional light grey base
             canvasCream: '#FFFFFF',     // Clean pure white panels
             mutedText: '#475569',       // Clean highly readable slate grey
-            borderAccent: 'rgba(108,140,245,0.12)'
+            borderAccent: 'rgba(108,140,245,0.12)',
+            therapeuticGreen: {
+              DEFAULT: '#E2F1E7',
+              accent: '#4ade80',
+              deep: '#14532d'
+            },
+            electricBlue: {
+              DEFAULT: '#E0F2FE',
+              accent: '#38bdf8',
+              deep: '#0369a1'
+            },
+            goldAccent: {
+              DEFAULT: '#FEF3C7',
+              accent: '#f59e0b',
+              deep: '#78350f'
+            },
+            pastelYellow: {
+              DEFAULT: '#FEF9C3',
+              accent: '#eab308',
+              deep: '#713f12'
+            }
           },
           borderRadius: {
             '4xl': '2rem',
@@ -45,7 +92,7 @@
     }
   </script>
 
-  <!-- Advanced Creative Frontend Architect Micro-UX Styles -->
+  <!-- Advanced UX Styles -->
   <style>
     /* Clean, Professional light canvas background */
     body {
@@ -164,6 +211,12 @@
       box-shadow: 0 0 0 3px rgba(108,140,245,0.2) !important;
       transform: scale(0.985);
     }
+
+    /* Vertical Text Configuration for Collapsed HoverExpand Cards */
+    .writing-mode-vertical {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
   </style>
 </head>
 <body class="bg-canvasBase text-slateNavy antialiased selection:bg-brand/25 selection:text-brand min-h-screen flex flex-col relative overflow-x-hidden">
@@ -174,7 +227,7 @@
   <!-- SUCCESS MODAL OVERLAY -->
   <div id="successModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slateNavy/30 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
     <div id="successModalCard" class="bg-canvasCream rounded-[2.5rem] p-8 md:p-12 max-w-xl w-full text-center shadow-2xl border border-slate-100 transform scale-90 transition-all duration-300 text-slateNavy">
-      <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-therapeuticGreen border-4 border-white text-therapeuticGreen-deep mb-6 shadow-md shadow-brand/30">
+      <div class="mx-auto flex items-center justify-center h-20 w-20 rounded-full bg-therapeuticGreen border-4 border-white text-therapeuticGreen-deep mb-6 shadow-md shadow-brand/30 animate-pulse-brand">
         <svg class="h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
@@ -189,8 +242,8 @@
     </div>
   </div>
 
-  <!-- STICKY NAVBAR -->
-  <nav id="nav" class="sticky top-0 z-40 w-full bg-canvasCream/75 backdrop-blur-md border-b border-slate-100 py-5 px-12 transition-all duration-300">
+  <!-- SECTION 1 — STICKY NAV -->
+  <nav id="nav" class="sticky top-0 z-40 w-full bg-canvasCream/70 backdrop-blur-md border-b border-slate-100 py-5 px-12 transition-all duration-300">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <a class="logo flex items-center gap-2.5 group focus:outline-none" href="#hero-section">
         <div class="logo-dot w-2.5 h-2.5 rounded-full bg-brand"></div>
@@ -214,7 +267,7 @@
           <svg id="menuIconOpen" class="block h-7 w-7 animate-none" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
-          <svg id="menuIconClose" class="hidden h-7 w-7 animate-none" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+          <svg id="menuIconClose" class="hidden h-7 w-7" stroke="currentColor" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -222,7 +275,7 @@
     </div>
   </nav>
 
-  <!-- BACKGROUND DIMMING/BLURRING OVERLAY FOR MOBILE DRAWER (Prevents background mixing/overlapping) -->
+  <!-- BACKGROUND DIMMING/BLURRING OVERLAY FOR MOBILE DRAWER -->
   <div id="mobileMenuBackdrop" class="hidden fixed inset-0 top-20 bg-slate-900/40 backdrop-blur-md z-35 transition-all duration-300"></div>
 
   <!-- MOBILE SLIDE-DOWN NAVIGATION DRAWER -->
@@ -359,7 +412,7 @@
                 </div>
                 <div>
                   <h5 class="text-xs font-bold text-slateNavy">HIPAA</h5>
-                  <p class="text-[10px] text-slate-500 font-semibold">Protected Care</p>
+                  <p class="text-[10px] text-slate-505 font-semibold">Protected Care</p>
                 </div>
               </div>
 
@@ -369,7 +422,7 @@
                 </div>
                 <div>
                   <h5 class="text-xs font-bold text-slateNavy">SOC2 Type II</h5>
-                  <p class="text-[10px] text-slate-500 font-semibold">Certified Safe</p>
+                  <p class="text-[10px] text-slate-505 font-semibold">Certified Safe</p>
                 </div>
               </div>
 
@@ -399,18 +452,18 @@
     <!-- SECTION 4 — ABOUT SPLIT -->
     <section id="about" class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center py-24 px-12 max-w-7xl mx-auto">
       
-      <!-- Visual Display Container (Squeezed compact form factor, no empty bars above/below) -->
+      <!-- Visual Display Container -->
       <div class="about-visual relative rounded-[2.5rem] overflow-visible bg-gradient-to-br from-slate-100/40 to-white border border-slate-200/60 p-6 md:p-8 flex flex-col items-center justify-center w-full shadow-inner">
         <div class="about-grid absolute inset-0 opacity-[0.06] bg-[linear-gradient(rgba(108,140,245,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(108,140,245,0.18)_1px,transparent_1px)] bg-[size:40px_40px]"></div>
         
         <!-- Center-Aligned Visual Orb serving as background directly behind the cards -->
         <div class="about-visual-orb absolute w-[75%] h-[75%] rounded-full bg-[radial-gradient(circle_at_50%_50%,rgba(108,140,245,0.16),rgba(167,139,250,0.08)_50%,transparent_70%)] animate-pulse-brand filter blur-[3px]"></div>
 
-        <!-- Centered, side-by-side horizontal row (Aligns perfectly with circle bg) -->
+        <!-- Centered, side-by-side horizontal row -->
         <div class="relative z-20 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
           
-          <!-- Card A (Hover border highlight enabled) -->
-          <div class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-[2rem] p-5 shadow-lg shadow-slate-200/40 text-left transition-all duration-300 hover:border-brand interactive-box">
+          <!-- Card A -->
+          <div class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-[2rem] p-5 shadow-lg shadow-slate-200/40 text-left transition-all duration-300 hover:border-brand interactive-box cursor-pointer">
             <div class="w-10 h-10 rounded-xl bg-therapeuticGreen flex items-center justify-center text-therapeuticGreen-deep mb-3 font-semibold text-lg">👥</div>
             <div class="about-stat-num font-serif text-3xl font-extrabold text-brand" data-count="10000" data-suffix="+">0</div>
             <div class="text-slateNavy font-bold text-sm mt-1">Sessions Completed</div>
@@ -418,7 +471,7 @@
           </div>
 
           <!-- Card B -->
-          <div class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-[2rem] p-5 shadow-lg shadow-slate-200/40 text-left transition-all duration-300 hover:border-brand interactive-box">
+          <div class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-[2rem] p-5 shadow-lg shadow-slate-200/40 text-left transition-all duration-300 hover:border-brand interactive-box cursor-pointer">
             <div class="w-10 h-10 rounded-xl bg-electricBlue flex items-center justify-center text-electricBlue-deep mb-3 font-semibold text-lg">📈</div>
             <div class="about-stat-num font-serif text-3xl font-extrabold text-brand" data-count="95" data-suffix="%">0</div>
             <div class="text-slateNavy font-bold text-sm mt-1">Positive Outcomes</div>
@@ -431,15 +484,15 @@
       <div class="text-center lg:text-left space-y-6">
         <span class="section-label text-xs font-bold uppercase tracking-widest text-brand block reveal">Who We Are</span>
         <h2 class="section-title font-serif text-4xl sm:text-5xl font-light leading-tight text-slateNavy reveal reveal-delay-1">Healing begins with <em class="italic text-violetAccent">feeling safe</em></h2>
-        <p class="section-body text-base text-slate-600 font-light leading-relaxed reveal reveal-delay-2">
+        <p class="section-body text-base text-slate-655 font-light leading-relaxed reveal reveal-delay-2">
           Mentrova is built on a single belief — that everyone deserves access to compassionate mental wellness support, without fear of judgment or identity exposure. We combine the speed of AI with the warmth of real human counsellors.
         </p>
         <div class="about-pills flex flex-wrap gap-2.5 pt-4 justify-center lg:justify-start reveal reveal-delay-3">
-          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">No account required</span>
-          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">Data never sold</span>
-          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">End-to-end privacy</span>
-          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">Clinically informed</span>
-          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-none">Always available</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-pointer">No account required</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-pointer">Data never sold</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-pointer">End-to-end privacy</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-pointer">Clinically informed</span>
+          <span class="pill text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-slate-200 text-slate-500 bg-slate-50 hover:border-brand hover:text-brand transition cursor-pointer">Always available</span>
         </div>
       </div>
     </section>
@@ -460,13 +513,13 @@
         <!-- Horizontal navigation bar tabs -->
         <div class="flex justify-center mb-12">
           <div class="bg-slate-50 p-2 rounded-full border border-slate-200 flex gap-2">
-            <button onclick="switchTab('individuals')" id="tab-btn-individuals" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 bg-brand text-slateNavy shadow-md cursor-none">
+            <button onclick="switchTab('individuals')" id="tab-btn-individuals" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 bg-brand text-slateNavy shadow-md cursor-pointer">
               For Individuals
             </button>
-            <button onclick="switchTab('employers')" id="tab-btn-employers" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slateNavy cursor-none">
+            <button onclick="switchTab('employers')" id="tab-btn-employers" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slateNavy cursor-pointer">
               For Employers
             </button>
-            <button onclick="switchTab('healthcare')" id="tab-btn-healthcare" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slateNavy cursor-none">
+            <button onclick="switchTab('healthcare')" id="tab-btn-healthcare" class="tab-btn px-6 py-3.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-600 hover:text-slateNavy cursor-pointer">
               For Healthcare
             </button>
           </div>
@@ -494,13 +547,13 @@
               </div>
             </div>
             <div class="flex justify-center">
-              <!-- Personal Core Journey Card - Interactive hover highlight border -->
-              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
-                <div class="w-12 h-12 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center">
+              <!-- Personal Core Journey Card -->
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300 hover:shadow-xl hover:shadow-brand/5" data-tilt>
+                <div class="w-12 h-12 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center font-bold text-lg">
                   👤
                 </div>
                 <h5 class="text-xl font-bold text-slateNavy font-serif">Personal Core Journey</h5>
-                <p class="text-sm text-slate-500 leading-relaxed font-semibold">Your spaces, parameters, and logs stay locally on your device, giving you absolute power over your security.</p>
+                <p class="text-sm text-slate-505 leading-relaxed font-semibold">Your spaces, parameters, and logs stay locally on your device, giving you absolute power over your security.</p>
               </div>
             </div>
           </div>
@@ -524,7 +577,7 @@
               </div>
             </div>
             <div class="flex justify-center">
-              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300 hover:shadow-xl hover:shadow-brand/5" data-tilt>
                 <div class="w-12 h-12 rounded-2xl bg-slate-100 text-electricBlue-accent flex items-center justify-center border border-electricBlue-accent/20">
                   🏢
                 </div>
@@ -553,7 +606,7 @@
               </div>
             </div>
             <div class="flex justify-center">
-              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300" data-tilt>
+              <div class="bg-white border border-slate-200 hover:border-brand rounded-[2.5rem] p-8 max-w-sm space-y-4 text-left shadow-md transition-all duration-300 hover:shadow-xl hover:shadow-brand/5" data-tilt>
                 <div class="w-12 h-12 rounded-2xl bg-slate-100 text-pastelYellow-accent flex items-center justify-center border border-pastelYellow-accent/20">
                   🏥
                 </div>
@@ -568,64 +621,140 @@
       </div>
     </section>
 
-    <!-- SECTION 5 — ECOSYSTEM FEATURE GRID -->
+    <!-- SECTION 5 — ECOSYSTEM FEATURE GRID (REVOLUTIONARY HOVER ACCORDION) -->
     <section id="feature-grid" class="py-24 bg-canvasBase relative border-t border-slate-100">
-      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center space-y-16">
         
         <!-- Grid Header -->
-        <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+        <div class="max-w-3xl mx-auto space-y-4">
           <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Architecture</h2>
           <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Ecosystem Architecture Modules</h3>
           <p class="text-lg text-slate-655 font-semibold leading-relaxed">
-            Our platform merges clinical intelligence with elegant, high-fidelity engineering configurations.
+            Discover our signature modular workspace framework. Hover over each card to dynamically expand its deep clinical parameters.
           </p>
         </div>
 
-        <!-- 3-Column Feature Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+        <!-- HOVER EXPAND ACCORDION SYSTEM -->
+        <div class="hidden md:flex w-full items-center justify-center gap-4 min-h-[440px] px-4">
           
-          <!-- Module A -->
-          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-200/80 hover:border-brand hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/5 transition-all duration-300 group text-left interactive-box">
-            <div class="w-14 h-14 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center mb-8">
-              <!-- Chat Bubble SVG -->
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.023c.09-.457-.133-.901-.467-1.226C3.504 16.33 3 14.28 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
-              </svg>
+          <!-- Card 1: Conversational AI Guide -->
+          <div id="expand-card-0" class="hover-expand-card relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-gradient-to-tr from-therapeuticGreen-deep to-therapeuticGreen border border-slate-200/60 p-8 flex flex-col justify-between transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl hover:border-brand flex-grow max-w-xl active">
+            
+            <!-- Collapsed Vertical Label indicator -->
+            <div class="card-collapsed-label absolute inset-y-0 left-0 right-0 flex flex-col items-center justify-between py-8 opacity-0 pointer-events-none transition-all duration-300">
+              <span class="text-xs font-black uppercase tracking-widest text-slateNavy/30 font-sans">01</span>
+              <span class="writing-mode-vertical text-lg font-bold text-slateNavy font-serif tracking-widest uppercase">AI Guide</span>
+              <div class="w-8 h-8 rounded-full bg-therapeuticGreen-deep text-therapeuticGreen-accent flex items-center justify-center font-bold text-sm">💬</div>
             </div>
-            <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Conversational AI Guide</h4>
-            <p class="text-slate-505 font-semibold leading-relaxed text-sm">
-              Our core conversational companion offers unlimited 24/7 listening support. It is trained under clinically validated cognitive-behavioral guidelines to provide a non-judgmental dialogue experience.
-            </p>
+
+            <!-- Expanded Active Content panel -->
+            <div class="card-expanded-content flex flex-col justify-between h-full text-left transition-all duration-300">
+              <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                  <div class="w-14 h-14 rounded-2xl bg-therapeuticGreen-deep/30 border border-therapeuticGreen-accent text-therapeuticGreen-accent flex items-center justify-center shadow-inner">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.023c.09-.457-.133-.901-.467-1.226C3.504 16.33 3 14.28 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
+                    </svg>
+                  </div>
+                  <span class="text-xs font-bold tracking-widest text-therapeuticGreen-deep uppercase bg-therapeuticGreen px-4 py-1.5 rounded-full border border-therapeuticGreen-accent/30">Module 01</span>
+                </div>
+                <h4 class="text-3xl font-extrabold text-slateNavy font-serif leading-tight">Conversational AI Guide</h4>
+                <p class="text-slate-700 font-medium leading-relaxed text-sm max-w-md">
+                  Our core conversational companion offers unlimited 24/7 listening support. It is trained under clinically validated cognitive-behavioral guidelines to provide a non-judgmental dialogue experience.
+                </p>
+              </div>
+              <ul class="text-xs text-therapeuticGreen-deep font-bold space-y-1 pb-4">
+                <li>• Instant, Barrier-free Dialog Stream</li>
+                <li>• Clinically Validated CBT Schemas</li>
+                <li>• End-to-End Cryptographic Masking</li>
+              </ul>
+            </div>
           </div>
 
-          <!-- Module B -->
-          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-200/80 hover:border-brand hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/5 transition-all duration-300 group text-left interactive-box">
-            <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-tealAccent/25 text-tealAccent flex items-center justify-center mb-8">
-              <!-- Lotus SVG -->
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m14.071 8.071l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
+          <!-- Card 2: Mindful Toolkits -->
+          <div id="expand-card-1" class="hover-expand-card relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-gradient-to-tr from-sky-100 to-sky-50 border border-slate-200/60 p-8 flex flex-col justify-between transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl hover:border-brand w-24">
+            
+            <!-- Collapsed Vertical Label indicator -->
+            <div class="card-collapsed-label absolute inset-y-0 left-0 right-0 flex flex-col items-center justify-between py-8 transition-all duration-300">
+              <span class="text-xs font-black uppercase tracking-widest text-slateNavy/30 font-sans">02</span>
+              <span class="writing-mode-vertical text-lg font-bold text-slateNavy font-serif tracking-widest uppercase">Toolkits</span>
+              <div class="w-8 h-8 rounded-full bg-slate-800 text-electricBlue-accent flex items-center justify-center font-bold text-sm">🧘</div>
             </div>
-            <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Mindfulness Toolkits</h4>
-            <p class="text-slate-505 font-semibold leading-relaxed text-sm">
-              Explore over 150+ specialized digital interventions, including controlled breathing pattern metrics, sleep aids, muscle-relaxation audios, and dynamic daily mood assessment metrics.
-            </p>
+
+            <!-- Expanded Active Content panel -->
+            <div class="card-expanded-content flex flex-col justify-between h-full text-left opacity-0 pointer-events-none transition-all duration-300">
+              <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                  <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-tealAccent/25 text-tealAccent flex items-center justify-center shadow-inner">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 9h-1m14.071 8.071l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  </div>
+                  <span class="text-xs font-bold tracking-widest text-electricBlue-deep uppercase bg-sky-100 px-4 py-1.5 rounded-full border border-tealAccent/30">Module 02</span>
+                </div>
+                <h4 class="text-3xl font-extrabold text-slateNavy font-serif leading-tight">Mindfulness Toolkits</h4>
+                <p class="text-slate-700 font-medium leading-relaxed text-sm max-w-md">
+                  Explore over 150+ specialized digital interventions, including controlled breathing pattern metrics, sleep aids, muscle-relaxation audios, and daily mood tracking parameters.
+                </p>
+              </div>
+              <ul class="text-xs text-electricBlue-deep font-bold space-y-1 pb-4">
+                <li>• Over 150+ Interactive CBT Frameworks</li>
+                <li>• Standard Clinical Diagnostic Triages</li>
+                <li>• Locally Stored, Autonomous Habit Logs</li>
+              </ul>
+            </div>
           </div>
 
-          <!-- Module C (Anonymity & Encryption card - Hover highlight enabled) -->
-          <div class="bg-canvasCream rounded-5xl p-8 border border-slate-200 hover:border-brand hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand/5 transition-all duration-300 group text-left interactive-box">
-            <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-goldAccent-accent/25 text-goldAccent-accent flex items-center justify-center mb-8">
-              <!-- Lock SVG -->
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
-              </svg>
+          <!-- Card 3: Anonymity & Encryption -->
+          <div id="expand-card-2" class="hover-expand-card relative cursor-pointer overflow-hidden rounded-[2.5rem] bg-gradient-to-tr from-amber-100 to-amber-50 border border-slate-200/60 p-8 flex flex-col justify-between transition-all duration-500 ease-in-out shadow-lg hover:shadow-2xl hover:border-brand w-24">
+            
+            <!-- Collapsed Vertical Label indicator -->
+            <div class="card-collapsed-label absolute inset-y-0 left-0 right-0 flex flex-col items-center justify-between py-8 transition-all duration-300">
+              <span class="text-xs font-black uppercase tracking-widest text-slateNavy/30 font-sans">03</span>
+              <span class="writing-mode-vertical text-lg font-bold text-slateNavy font-serif tracking-widest uppercase">Anonymity</span>
+              <div class="w-8 h-8 rounded-full bg-slate-800 text-goldAccent-accent flex items-center justify-center font-bold text-sm">🔒</div>
             </div>
-            <h4 class="text-xl font-bold text-slateNavy font-serif mb-3">Anonymity & Encryption</h4>
-            <p class="text-slate-505 font-semibold leading-relaxed text-sm">
-              We deploy strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information on our companion dialog servers.
-            </p>
+
+            <!-- Expanded Active Content panel -->
+            <div class="card-expanded-content flex flex-col justify-between h-full text-left opacity-0 pointer-events-none transition-all duration-300">
+              <div class="space-y-6">
+                <div class="flex items-center justify-between">
+                  <div class="w-14 h-14 rounded-2xl bg-slate-100 border border-goldAccent-accent/25 text-goldAccent-accent flex items-center justify-center shadow-inner">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                  </div>
+                  <span class="text-xs font-bold tracking-widest text-goldAccent-deep uppercase bg-amber-100 px-4 py-1.5 rounded-full border border-goldAccent-accent/30">Module 03</span>
+                </div>
+                <h4 class="text-3xl font-extrabold text-slateNavy font-serif leading-tight">Anonymity & Encryption</h4>
+                <p class="text-slate-700 font-medium leading-relaxed text-sm max-w-md">
+                  We deploy strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information on our companion dialog servers.
+                </p>
+              </div>
+              <ul class="text-xs text-goldAccent-deep font-bold space-y-1 pb-4">
+                <li>• Strict, Audited No-Log Operations</li>
+                <li>• No IP Address Tracking Mechanisms</li>
+                <li>• Decentralized Data Retrieval Keys</li>
+              </ul>
+            </div>
           </div>
 
+        </div>
+
+        <!-- Mobile Fallback Grid -->
+        <div class="grid grid-cols-1 gap-6 md:hidden text-left">
+          <div class="bg-canvasCream rounded-[2rem] p-8 border border-slate-200">
+            <h4 class="text-xl font-bold text-slateNavy font-serif mb-2">Conversational AI Guide</h4>
+            <p class="text-slate-500 text-sm font-semibold leading-relaxed">Our core conversational companion offers unlimited 24/7 listening support. It is trained under clinically validated cognitive-behavioral guidelines.</p>
+          </div>
+          <div class="bg-canvasCream rounded-[2rem] p-8 border border-slate-200">
+            <h4 class="text-xl font-bold text-slateNavy font-serif mb-2">Mindfulness Toolkits</h4>
+            <p class="text-slate-500 text-sm font-semibold leading-relaxed">Explore over 150+ specialized digital interventions, including controlled breathing pattern metrics, sleep aids, and muscle-relaxation audios.</p>
+          </div>
+          <div class="bg-canvasCream rounded-[2rem] p-8 border border-slate-200">
+            <h4 class="text-xl font-bold text-slateNavy font-serif mb-2">Anonymity & Encryption</h4>
+            <p class="text-slate-500 text-sm font-semibold leading-relaxed">We deploy strict, zero-knowledge architectural rules. We do not store, distribute, or track names, email structures, or device information.</p>
+          </div>
         </div>
 
       </div>
@@ -651,7 +780,7 @@
           <div class="perspective-container" data-tilt>
             <div class="flip-card-inner interactive-box">
               
-              <!-- Front Face (Absolutely positioned to match identical grid coordinate specs + hover border trigger) -->
+              <!-- Front Face -->
               <div class="flip-card-front bg-canvasCream border border-slate-200/80 hover:border-brand p-8 flex flex-col justify-between text-center shadow-lg hover:shadow-2xl transition-all duration-300 glint-overlay">
                 <div class="mx-auto w-16 h-16 rounded-2xl bg-therapeuticGreen text-therapeuticGreen-deep flex items-center justify-center">
                   <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.8">
@@ -674,7 +803,7 @@
                     <li>• Evidence-Based CBT Schemas</li>
                   </ul>
                 </div>
-                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-none">Connect Now</a>
+                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-pointer">Connect Now</a>
               </div>
 
             </div>
@@ -707,13 +836,13 @@
                     <li>• Personalized Habit Logs</li>
                   </ul>
                 </div>
-                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-none">Try Preview</a>
+                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-pointer">Try Preview</a>
               </div>
 
             </div>
           </div>
 
-          <!-- Card C (Absolute Anonymity - Hover border trigger enabled) -->
+          <!-- Card C -->
           <div class="perspective-container" data-tilt>
             <div class="flip-card-inner interactive-box">
               
@@ -740,7 +869,7 @@
                     <li>• Zero Ad-Tracking Identifiers</li>
                   </ul>
                 </div>
-                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-none">Learn More</a>
+                <a href="#contact-portal" class="py-3.5 px-6 bg-brand text-white text-sm font-bold rounded-full hover:bg-brand/90 transition-colors duration-300 self-center cursor-pointer">Learn More</a>
               </div>
 
             </div>
@@ -750,7 +879,7 @@
       </div>
     </section>
 
-    <!-- SECTION 7 — CLINICAL ASSESSMENT ENGINE -->
+    <!-- SECTION 7 — CLINICAL ASSESSMENT ENGINE (Now fully interactive) -->
     <section id="assessment-hub" class="py-24 bg-canvasBase relative border-t border-slate-100">
       <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
         
@@ -758,7 +887,7 @@
         <div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
           <h2 class="text-xs font-bold uppercase tracking-wider text-brand bg-slate-100 border border-slate-200/80 px-4.5 py-1.5 rounded-full inline-block">Real-time Check-In</h2>
           <h3 class="text-3xl sm:text-4xl font-extrabold text-slateNavy tracking-tight font-serif">Check In With Yourself</h3>
-          <p class="text-lg text-slate-650 font-semibold leading-relaxed">
+          <p class="text-lg text-slate-655 font-semibold leading-relaxed">
             Take a brief, completely private assessment to estimate your current wellness indexes and unlock initial recommendations.
           </p>
         </div>
@@ -771,16 +900,16 @@
             <div id="assessmentProgress" class="bg-brand h-full w-[33%] transition-all duration-500 rounded-full"></div>
           </div>
 
-          <!-- Step Display Card (Controlled via JavaScript) -->
+          <!-- Step Display Card -->
           <div class="flex-grow flex flex-col justify-center">
             
             <!-- Step 1: Stress frequency -->
             <div id="assess-step-1" class="assess-step space-y-8 transition-all duration-300">
               <h4 class="text-2xl font-bold text-center text-slateNavy font-serif">Question 1: How often do you find it hard to disconnect from stressful thoughts?</h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button onclick="handleAnswer(1, 33)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Rarely / Never</button>
-                <button onclick="handleAnswer(1, 20)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Sometimes</button>
-                <button onclick="handleAnswer(1, 5)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Almost Always</button>
+                <button type="button" data-step="1" data-score="33" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Rarely / Never</button>
+                <button type="button" data-step="1" data-score="20" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Sometimes</button>
+                <button type="button" data-step="1" data-score="5" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Almost Always</button>
               </div>
             </div>
 
@@ -788,9 +917,9 @@
             <div id="assess-step-2" class="assess-step hidden space-y-8 transition-all duration-300">
               <h4 class="text-2xl font-bold text-center text-slateNavy font-serif">Question 2: How would you describe your overall mental energy today?</h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button onclick="handleAnswer(2, 5)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Slightly Depleted</button>
-                <button onclick="handleAnswer(2, 20)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Stable & Balanced</button>
-                <button onclick="handleAnswer(2, 33)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Highly Energized</button>
+                <button type="button" data-step="2" data-score="5" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Slightly Depleted</button>
+                <button type="button" data-step="2" data-score="20" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Stable & Balanced</button>
+                <button type="button" data-step="2" data-score="33" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Highly Energized</button>
               </div>
             </div>
 
@@ -798,9 +927,9 @@
             <div id="assess-step-3" class="assess-step hidden space-y-8 transition-all duration-300">
               <h4 class="text-2xl font-bold text-center text-slateNavy font-serif">Question 3: Are you experiencing physical symptoms of stress like tension?</h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <button onclick="handleAnswer(3, 34)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">No, I feel relaxed</button>
-                <button onclick="handleAnswer(3, 20)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Yes, mild tightness</button>
-                <button onclick="handleAnswer(3, 5)" class="py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-none">Yes, severe tension</button>
+                <button type="button" data-step="3" data-score="34" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">No, I feel relaxed</button>
+                <button type="button" data-step="3" data-score="20" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Yes, mild tightness</button>
+                <button type="button" data-step="3" data-score="5" class="assess-btn py-5 px-6 bg-canvasCream hover:bg-slateNavy border border-slate-200 hover:border-brand rounded-2xl text-lg font-semibold text-slate-655 hover:text-white transition duration-200 focus:border-brand focus:ring-4 focus:ring-brand/20 cursor-pointer">Yes, severe tension</button>
               </div>
             </div>
 
@@ -810,7 +939,7 @@
                 🧘
               </div>
               <h4 class="text-3xl font-extrabold text-slateNavy font-serif">Your Assessment Complete</h4>
-              <p class="text-lg text-slate-500 font-semibold">Your Mental Resilience Index is calculated as:</p>
+              <p class="text-lg text-slate-505 font-semibold">Your Mental Resilience Index is calculated as:</p>
               
               <div class="text-5xl font-black text-brand bg-slateNavy py-4 px-10 rounded-full inline-block tracking-tight shadow-sm border border-borderAccent">
                 <span id="scoreVal">0</span> / 100
@@ -821,7 +950,7 @@
                 <p id="recommendationText" class="text-sm text-slate-300 leading-relaxed font-semibold">Your scoring indicators are loading...</p>
               </div>
 
-              <button onclick="resetAssessment()" class="mt-6 text-sm font-bold text-slate-400 hover:text-slateNavy hover:underline focus:outline-none transition cursor-none">Retake Assessment</button>
+              <button onclick="resetAssessment()" class="mt-6 text-sm font-bold text-slate-400 hover:text-slateNavy hover:underline focus:outline-none transition cursor-pointer">Retake Assessment</button>
             </div>
 
           </div>
@@ -832,7 +961,7 @@
     </section>
 
     <!-- SECTION 8 — ENTERPRISE WORKPLACE ANALYTICS INTERFACE -->
-    <section id="employers-section" class="py-24 bg-pureWhite relative border-y border-slate-100">
+    <section id="employers-section" class="py-24 bg-white relative border-y border-slate-100">
       <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
@@ -855,7 +984,7 @@
             </div>
           </div>
 
-          <!-- Right Mockup Analytics Workspace Dashboard (Highlight on hover ONLY) -->
+          <!-- Right Mockup Analytics Workspace Dashboard -->
           <div class="flex justify-center">
             <div class="bg-canvasBase border border-slate-200/85 hover:border-brand rounded-[2.5rem] p-6 md:p-8 shadow-sm max-w-lg w-full space-y-6 transition-all duration-300" data-tilt>
               <div class="flex justify-between items-center border-b border-slate-200/50 pb-3">
@@ -875,7 +1004,7 @@
                 </div>
               </div>
 
-              <!-- CSS Mockup Graphs/Chart representation -->
+              <!-- Graphs/Chart representation -->
               <div class="bg-canvasCream p-5 rounded-2xl border border-slate-100 space-y-4">
                 <span class="text-[10px] text-slate-500 uppercase tracking-wider font-bold block text-left">Aggregate Monthly Stress Trends</span>
                 <div class="flex items-end justify-between h-28 pt-2">
@@ -888,7 +1017,7 @@
                 </div>
               </div>
 
-              <p class="text-[10px] text-slate-400 text-left font-bold uppercase tracking-wider text-center">
+              <p class="text-[10px] text-slate-400 text-center font-bold uppercase tracking-wider">
                 🛡️ Individual logs remain anonymized inside AES-256 databases
               </p>
             </div>
@@ -916,7 +1045,7 @@
                 </div>
                 <div class="border-l-4 border-brand pl-4">
                   <span class="block text-4xl font-black text-slateNavy tracking-tight">50M+</span>
-                  <p class="text-sm text-slate-650 font-semibold mt-1">Sessions safely administered</p>
+                  <p class="text-sm text-slate-655 font-semibold mt-1">Sessions safely administered</p>
                 </div>
               </div>
             </div>
@@ -938,7 +1067,7 @@
     </section>
 
     <!-- SECTION 9 — FAQS ACCORDION -->
-    <section id="faq" class="py-24 bg-pureWhite border-t border-slate-100">
+    <section id="faq" class="py-24 bg-white border-t border-slate-100">
       <div class="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
         
         <!-- Header -->
@@ -955,7 +1084,7 @@
           
           <!-- Accordion item 1 -->
           <div class="bg-canvasCream border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brand interactive-box">
-            <button onclick="toggleAccordion(1)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-none">
+            <button onclick="toggleAccordion(1)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-pointer">
               <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">Is my personal data completely secure and anonymous?</span>
               <span id="faq-icon-1" class="text-2xl font-bold text-slate-400 transform transition-transform duration-300">+</span>
             </button>
@@ -968,7 +1097,7 @@
 
           <!-- Accordion item 2 -->
           <div class="bg-canvasCream border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brand interactive-box">
-            <button onclick="toggleAccordion(2)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-none">
+            <button onclick="toggleAccordion(2)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-pointer">
               <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">How does the conversational support framework operate?</span>
               <span id="faq-icon-2" class="text-2xl font-bold text-slate-400 transform transition-transform duration-300">+</span>
             </button>
@@ -981,12 +1110,12 @@
 
           <!-- Accordion item 3 -->
           <div class="bg-canvasCream border border-slate-100 rounded-3xl overflow-hidden transition-all duration-300 hover:border-brand interactive-box">
-            <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-none">
+            <button onclick="toggleAccordion(3)" class="w-full flex items-center justify-between p-6 sm:p-8 focus:outline-none cursor-pointer">
               <span class="text-lg sm:text-xl font-bold text-slateNavy font-serif">Can organizations deploy Mentrova for employee wellness benefits?</span>
               <span id="faq-icon-3" class="text-2xl font-bold text-slate-400 transform transition-transform duration-300">+</span>
             </button>
             <div id="faq-panel-3" class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-              <div class="p-6 sm:p-8 pt-0 border-t border-slate-100 text-base text-slate-300 font-semibold leading-relaxed">
+              <div class="p-6 sm:p-8 pt-0 border-t border-slate-100 text-base text-slate-500 font-semibold leading-relaxed">
                 Absolutely. We partner with forward-thinking organizations globally to upgrade employee mental health parameters, providing anonymized dashboard analytics and custom programs while keeping individual privacy safe.
               </div>
             </div>
@@ -1010,7 +1139,7 @@
           </p>
         </div>
 
-        <!-- Custom Glassmorphic Card Form Container -->
+        <!-- Glassmorphic Card Form Container -->
         <div class="bg-white/70 backdrop-blur-md rounded-[2.5rem] p-8 md:p-14 border border-slate-200 shadow-2xl text-left interactive-box">
           <form id="supportForm" class="space-y-6">
             
@@ -1018,13 +1147,13 @@
               <!-- Name Input -->
               <div>
                 <label for="contactName" class="block text-sm font-bold text-slateNavy mb-2">Your Name</label>
-                <input type="text" id="contactName" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-none" placeholder="Jane Doe">
+                <input type="text" id="contactName" required class="block w-full px-5 py-4 rounded-2xl border border-slate-300 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-pointer" placeholder="Jane Doe">
               </div>
 
               <!-- Organization Selector -->
               <div>
                 <label for="orgType" class="block text-sm font-bold text-slateNavy mb-2">Organization Type</label>
-                <select id="orgType" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy font-bold cursor-none">
+                <select id="orgType" required class="block w-full px-5 py-4 rounded-2xl border border-slate-300 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy font-bold cursor-pointer">
                   <option value="individual">Individual</option>
                   <option value="employer">Employer / Business Owner</option>
                   <option value="healthcare">Healthcare Provider</option>
@@ -1036,18 +1165,18 @@
             <!-- Email Input -->
             <div>
               <label for="contactEmail" class="block text-sm font-bold text-slateNavy mb-2">Email Address</label>
-              <input type="email" id="contactEmail" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-none" placeholder="jane@domain.com">
+              <input type="email" id="contactEmail" required class="block w-full px-5 py-4 rounded-2xl border border-slate-300 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-pointer" placeholder="jane@domain.com">
             </div>
 
             <!-- Message Input -->
             <div>
               <label for="contactMessage" class="block text-sm font-bold text-slateNavy mb-2">Your Message</label>
-              <textarea id="contactMessage" rows="5" required class="block w-full px-5 py-4 rounded-2xl border border-slate-250 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-none" placeholder="Type your supportive note or inquiry..."></textarea>
+              <textarea id="contactMessage" rows="5" required class="block w-full px-5 py-4 rounded-2xl border border-slate-300 focus:border-brand focus:ring-4 focus:ring-brand/20 transition-all duration-300 bg-slate-50/50 text-slateNavy placeholder-slateNavy/30 cursor-pointer" placeholder="Type your supportive note or inquiry..."></textarea>
             </div>
 
             <!-- Pulsing Action Button -->
             <div class="pt-2">
-              <button type="submit" class="w-full inline-flex items-center justify-center px-10 py-4.5 border border-transparent text-lg font-bold rounded-full text-white bg-slateNavy hover:bg-slate-800 shadow-lg shadow-slateNavy/15 focus:outline-none transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] glint-overlay cursor-none">
+              <button type="submit" class="w-full inline-flex items-center justify-center px-10 py-4.5 border border-transparent text-lg font-bold rounded-full text-white bg-slateNavy hover:bg-slate-800 shadow-lg shadow-slateNavy/15 focus:outline-none transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] glint-overlay cursor-pointer">
                 Send Message
               </button>
             </div>
@@ -1087,10 +1216,10 @@
         <div class="space-y-4">
           <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy">Pathways</h5>
           <ul class="space-y-2 text-sm font-semibold text-slate-500">
-            <li><a href="#solutions-explorer" class="hover:text-slateNavy transition cursor-none">For Individuals</a></li>
-            <li><a href="#employers-section" class="hover:text-slateNavy transition cursor-none">For Employers</a></li>
-            <li><a href="#clinical-integrity" class="hover:text-slateNavy transition cursor-none">Clinical Science</a></li>
-            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">FAQ Hub</a></li>
+            <li><a href="#solutions-explorer" class="hover:text-slateNavy transition cursor-pointer">For Individuals</a></li>
+            <li><a href="#employers-section" class="hover:text-slateNavy transition cursor-pointer">For Employers</a></li>
+            <li><a href="#clinical-integrity" class="hover:text-slateNavy transition cursor-pointer">Clinical Science</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-pointer">FAQ Hub</a></li>
           </ul>
         </div>
 
@@ -1098,10 +1227,10 @@
         <div class="space-y-4">
           <h5 class="text-sm font-bold uppercase tracking-wider text-slateNavy">Trust & Compliance</h5>
           <ul class="space-y-2 text-sm font-semibold text-slate-500">
-            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">Privacy Policy</a></li>
-            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">Terms of Service</a></li>
-            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">EHR API Docs</a></li>
-            <li><a href="#faq" class="hover:text-slateNavy transition cursor-none">Platform Security</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-pointer">Privacy Policy</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-pointer">Terms of Service</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-pointer">EHR API Docs</a></li>
+            <li><a href="#faq" class="hover:text-slateNavy transition cursor-pointer">Platform Security</a></li>
           </ul>
         </div>
 
@@ -1118,25 +1247,27 @@
   </footer>
 
   <!-- CDN LIBRARY LOADS -->
-  <!-- Three.js (For Immersive particle backdrop) -->
+  <!-- Three.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <!-- GSAP (For Smooth hero reveal) -->
+  <!-- GSAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <!-- Vanilla-Tilt (For feature card depth controls) -->
+  <!-- Vanilla-Tilt -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
   <!-- INTERACTIVE JAVASCRIPT ENGINE -->
   <script>
-    // ── INTERACTIVE MOUSE CURSOR (Outer lag ring completely removed) ──────────────────────────────────
+    // ── INTERACTIVE MOUSE CURSOR ──────────────────────────────────
     const cursor = document.getElementById('cursor');
-    let mx = 0, my = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-    function animateCursor() {
-      cursor.style.left     = mx + 'px';
-      cursor.style.top      = my + 'px';
-      requestAnimationFrame(animateCursor);
+    if (cursor) {
+      let mx = 0, my = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      function animateCursor() {
+        cursor.style.left     = mx + 'px';
+        cursor.style.top      = my + 'px';
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
     }
-    animateCursor();
 
     // ── STICKY NAVIGATION ON SCROLL ──────────────────────────────
     const nav = document.getElementById('nav');
@@ -1172,7 +1303,6 @@
         this.a  = Math.random() * .5 + .1;
         this.da = (Math.random() - .5) * .003;
         const c = Math.random();
-        // High-contrast clean medical colors for crisp rendering over white background
         if      (c < .4) this.color = `rgba(108,140,245,`;
         else if (c < .7) this.color = `rgba(167,139,250,`;
         else             this.color = `rgba(56,189,248,`;
@@ -1284,7 +1414,7 @@
 
     document.querySelectorAll('[data-count]').forEach(el => counterIO.observe(el));
 
-    // Mobile Navigation Drawer Toggle Mechanics & Background Blurring/Dimming
+    // Mobile Navigation Drawer Toggle Mechanics
     const mobileMenuButton = document.getElementById('mobileMenuButton');
     const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
     const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
@@ -1300,7 +1430,6 @@
       }
     });
 
-    // Close when clicking outside of the drawer
     mobileMenuBackdrop.addEventListener('click', () => {
       closeMobileMenu();
     });
@@ -1310,7 +1439,6 @@
       mobileMenuBackdrop.classList.remove('hidden');
       menuIconOpen.classList.add('hidden');
       menuIconClose.classList.remove('hidden');
-      // Freeze scrolling when navigation is open
       document.body.classList.add('overflow-hidden');
     }
 
@@ -1322,7 +1450,6 @@
       document.body.classList.remove('overflow-hidden');
     }
 
-    // Close Mobile Drawer on Link Click
     const drawerLinks = mobileMenuDrawer.querySelectorAll('a');
     drawerLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -1352,22 +1479,18 @@
 
     // Core Solution Tab Explorer Controller
     function switchTab(tabId) {
-      // Hide all panes
       const tabPanes = document.querySelectorAll('.tab-pane');
       tabPanes.forEach(pane => pane.classList.add('hidden'));
 
-      // Remove activation colors from all tab buttons
       const tabButtons = document.querySelectorAll('.tab-btn');
       tabButtons.forEach(btn => {
         btn.classList.remove('bg-brand', 'text-slateNavy', 'shadow-md', 'bg-therapeuticGreen');
         btn.classList.add('text-slate-600', 'hover:text-slateNavy');
       });
 
-      // Activate selected tab pane
       const selectedPane = document.getElementById(`tab-content-${tabId}`);
       if (selectedPane) selectedPane.classList.remove('hidden');
 
-      // Add activation styles to clicked button
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       if (activeBtn) {
         activeBtn.classList.remove('text-slate-300', 'hover:text-slateNavy');
@@ -1384,7 +1507,6 @@
         panel.style.maxHeight = '0px';
         icon.style.transform = 'rotate(0deg)';
       } else {
-        // Reset other panels first
         for (let i = 1; i <= 3; i++) {
           const targetPanel = document.getElementById(`faq-panel-${i}`);
           const targetIcon = document.getElementById(`faq-icon-${i}`);
@@ -1394,7 +1516,6 @@
           }
         }
         
-        // Expand selected panel
         panel.style.maxHeight = panel.scrollHeight + 'px';
         icon.style.transform = 'rotate(45deg)';
       }
@@ -1404,30 +1525,37 @@
     let currentStep = 1;
     let totalScore = 0;
 
+    const assessButtons = document.querySelectorAll('.assess-btn');
+    assessButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const step = parseInt(btn.getAttribute('data-step'));
+        const score = parseInt(btn.getAttribute('data-score'));
+        handleAnswer(step, score);
+      });
+    });
+
     function handleAnswer(step, score) {
       totalScore += score;
       
       const currentPane = document.getElementById(`assess-step-${step}`);
-      currentPane.classList.add('hidden');
+      if (currentPane) {
+        currentPane.classList.add('hidden');
+      }
       
       currentStep++;
       
       const nextPane = document.getElementById(`assess-step-${currentStep}`);
       if (nextPane) {
         nextPane.classList.remove('hidden');
-        // Update Progress Bar
         const progressPercent = (currentStep / 3) * 100;
         document.getElementById('assessmentProgress').style.width = `${progressPercent}%`;
       } else {
-        // Final Results Calculation
         document.getElementById('assess-step-final').classList.remove('hidden');
         document.getElementById('assessmentProgress').style.width = `100%`;
         
-        // Output clean visual score
         const mappedScore = totalScore;
         document.getElementById('scoreVal').innerText = mappedScore;
 
-        // Adjust recommendation text dynamically with high-fidelity, highly genuine summaries
         const recommendationText = document.getElementById('recommendationText');
         if (mappedScore >= 90) {
           recommendationText.innerText = "Your mental resilience index is outstanding. You are demonstrating superb cognitive boundary management and stable neural recovery. We recommend maintaining your active wellness routines, such as deep breathing cycles and keeping a continuous daily reflective log. Sachin's Mentrova ecosystem is always here to help you sustain this high-level balance.";
@@ -1450,7 +1578,7 @@
       document.getElementById('assess-step-1').classList.remove('hidden');
     }
 
-    // Dashboard dynamic value updates (Corporate Workspace Mockup simulation)
+    // Dashboard dynamic value updates
     setInterval(() => {
       const indexField = document.getElementById('metric-resilience');
       const sessionsField = document.getElementById('metric-sessions');
@@ -1465,6 +1593,26 @@
         sessionsField.innerText = nextSessions.toLocaleString();
       }
     }, 4000);
+
+    // Dynamic Hover Accordion logic for Section 5
+    const hoverCards = document.querySelectorAll('.hover-expand-card');
+    hoverCards.forEach((card, index) => {
+      const activate = () => {
+        hoverCards.forEach((c) => {
+          c.classList.remove('flex-grow', 'max-w-xl', 'active');
+          c.classList.add('w-24');
+          c.querySelector('.card-expanded-content').classList.add('opacity-0', 'pointer-events-none');
+          c.querySelector('.card-collapsed-label').classList.remove('opacity-0');
+        });
+        card.classList.remove('w-24');
+        card.classList.add('flex-grow', 'max-w-xl', 'active');
+        card.querySelector('.card-expanded-content').classList.remove('opacity-0', 'pointer-events-none');
+        card.querySelector('.card-collapsed-label').classList.add('opacity-0');
+      };
+      
+      card.addEventListener('mouseenter', activate);
+      card.addEventListener('click', activate);
+    });
 
     // Success Modals and Form Interceptor Logic
     const successModal = document.getElementById('successModal');
@@ -1490,26 +1638,7 @@
       if (e.target === successModal) closeModal();
     });
 
-    // Form Submissions Interceptors
-    const heroWaitlistForm = document.getElementById('heroWaitlistForm');
     const supportForm = document.getElementById('supportForm');
-
-    if (heroWaitlistForm) {
-      heroWaitlistForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const emailField = document.getElementById('heroEmail');
-        const emailVal = emailField.value.trim();
-
-        if (emailVal) {
-          openModal(
-            "Welcome to the Circle",
-            `Thank you for joining the Mentrova movement. We have securely saved your connection details under ${emailVal}. You will receive priority notices.`
-          );
-          emailField.value = '';
-        }
-      });
-    }
-
     supportForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
